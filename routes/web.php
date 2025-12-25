@@ -34,9 +34,9 @@ Route::get('/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'
 Route::post('/cart/apply-coupon', [App\Http\Controllers\CartController::class, 'applyCoupon'])->name('cart.applyCoupon');
 Route::post('/cart/remove-coupon', [App\Http\Controllers\CartController::class, 'removeCoupon'])->name('cart.removeCoupon');
 
- Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
+Route::get('/checkout', [App\Http\Controllers\CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout', [App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');
- 
+
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('login');
 
 Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
