@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\OrderCoupon;
 use App\Models\Coupon;
+use App\Models\Payment;
 use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
