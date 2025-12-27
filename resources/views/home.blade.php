@@ -10,7 +10,7 @@
                 <div class="item-slick1 item1-slick1" style="background-image: url(assets/images/slide1-01.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                         <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-                            Welcome to
+                            Chào mừng đến với
                         </span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
@@ -20,7 +20,7 @@
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
                             <!-- Button1 -->
                             <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                Xem Thực Đơn
                             </a>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="item-slick1 item2-slick1" style="background-image: url(assets/images/master-slides-02.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                         <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
-                            Welcome to
+                            Chào mừng đến với
                         </span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
@@ -39,7 +39,7 @@
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
                             <!-- Button1 -->
                             <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                Xem Thực Đơn
                             </a>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                         <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15"
                             data-appear="rotateInDownLeft">
-                            Welcome to
+                            Chào mừng đến với
                         </span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37"
@@ -60,7 +60,7 @@
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="rotateIn">
                             <!-- Button1 -->
                             <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                Xem Thực Đơn
                             </a>
                         </div>
                     </div>
@@ -79,20 +79,19 @@
                 <div class="col-md-6 p-t-45 p-b-30">
                     <div class="wrap-text-welcome t-center">
                         <span class="tit2 t-center">
-                            Italian Restaurant
+                            Nhà Hàng Ý
                         </span>
 
                         <h3 class="tit3 t-center m-b-35 m-t-5">
-                            Welcome
+                            Chào Mừng
                         </h3>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed
-                            imperdiet lacinia, nisl ante egestas mi, ac facilisis ligula sem id neque.
+                            Chào mừng bạn đến với nhà hàng của chúng tôi. Chúng tôi mang đến những món ăn Ý tinh tế và không gian ấm cúng để bạn tận hưởng.
                         </p>
 
                         <a href="about.html" class="txt4">
-                            Our Story
+                            Câu Chuyện Của Chúng Tôi
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -112,7 +111,7 @@
         <div class="header-intro parallax100 t-center p-t-135 p-b-158"
             style="background-image: url(assets/images/bg-intro-01.jpg);">
             <span class="tit2 p-l-15 p-r-15">
-                Discover
+                Khám Phá
             </span>
 
             <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
@@ -133,16 +132,16 @@
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#">
                                     <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                        Romantic Restaurant
+                                        Nhà Hàng Lãng Mạn
                                     </h4>
                                 </a>
 
                                 <p class="m-b-20">
-                                    Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
+                                    Trải nghiệm không gian lãng mạn với những món ăn tinh tế và dịch vụ chuyên nghiệp.
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    Tìm Hiểu Thêm
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -159,16 +158,16 @@
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#">
                                     <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                        Delicious Food
+                                        Đồ Ăn Ngon
                                     </h4>
                                 </a>
 
                                 <p class="m-b-20">
-                                    Aliquam eget aliquam magna, quis posuere risus ac justo ipsum nibh urna
+                                    Những món ăn ngon miệng được chế biến từ nguyên liệu tươi ngon nhất.
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    Tìm Hiểu Thêm
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -185,16 +184,16 @@
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#">
                                     <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                        Red Wines You Love
+                                        Rượu Đỏ Bạn Yêu Thích
                                     </h4>
                                 </a>
 
                                 <p class="m-b-20">
-                                    Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
+                                    Bộ sưu tập rượu đỏ tinh tế từ các vùng nổi tiếng trên thế giới.
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    Tìm Hiểu Thêm
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -211,11 +210,11 @@
         <div class="container">
             <div class="title-section-ourmenu t-center m-b-22">
                 <span class="tit2 t-center">
-                    Discover
+                    Khám Phá
                 </span>
 
                 <h3 class="tit5 t-center m-t-2">
-                    Our Menu
+                    Thực Đơn Của Chúng Tôi
                 </h3>
             </div>
 
@@ -229,7 +228,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size4">
-                                    Lunch
+                                    Bữa Trưa
                                 </a>
                             </div>
                         </div>
@@ -241,7 +240,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size5">
-                                    Dinner
+                                    Bữa Tối
                                 </a>
                             </div>
                         </div>
@@ -253,7 +252,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size6">
-                                    Happy Hour
+                                    Giờ Vui Vẻ
                                 </a>
                             </div>
                         </div>
@@ -269,7 +268,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size7">
-                                    Drink
+                                    Đồ Uống
                                 </a>
                             </div>
                         </div>
@@ -281,7 +280,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size8">
-                                    Starters
+                                    Khai Vị
                                 </a>
                             </div>
                         </div>
@@ -293,7 +292,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size9">
-                                    Dessert
+                                    Món Tráng Miệng
                                 </a>
                             </div>
                         </div>
@@ -315,11 +314,11 @@
                             <!-- - -->
                             <div class="title-event t-center m-b-52">
                                 <span class="tit2 p-l-15 p-r-15">
-                                    Upcomming
+                                    Sắp Tới
                                 </span>
 
                                 <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-                                    Events
+                                    Sự Kiện
                                 </h3>
                             </div>
 
@@ -338,12 +337,11 @@
                                 <!-- Text block2 -->
                                 <div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
                                     <h4 class="tit7 t-center m-b-10">
-                                        Wines during specific nights
+                                        Rượu Vang Trong Những Đêm Đặc Biệt
                                     </h4>
 
                                     <p class="t-center">
-                                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc
-                                        sed imperdiet lacinia
+                                        Thưởng thức rượu vang tinh tế trong không gian ấm cúng vào những đêm đặc biệt.
                                     </p>
 
                                     <div class="flex-sa-m flex-w w-full m-t-40">
@@ -353,7 +351,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Days
+                                                Ngày
                                             </span>
                                         </div>
 
@@ -363,7 +361,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Hours
+                                                Giờ
                                             </span>
                                         </div>
 
@@ -373,7 +371,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Minutes
+                                                Phút
                                             </span>
                                         </div>
 
@@ -383,13 +381,13 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Seconds
+                                                Giây
                                             </span>
                                         </div>
                                     </div>
 
                                     <a href="#" class="txt4 m-t-40">
-                                        View Details
+                                        Xem Chi Tiết
                                         <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -428,12 +426,11 @@
                                 <!-- Text block2 -->
                                 <div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
                                     <h4 class="tit7 t-center m-b-10">
-                                        Wines during specific nights
+                                        Rượu Vang Trong Những Đêm Đặc Biệt
                                     </h4>
 
                                     <p class="t-center">
-                                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc
-                                        sed imperdiet lacinia
+                                        Thưởng thức rượu vang tinh tế trong không gian ấm cúng vào những đêm đặc biệt.
                                     </p>
 
                                     <div class="flex-sa-m flex-w w-full m-t-40">
@@ -443,7 +440,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Days
+                                                Ngày
                                             </span>
                                         </div>
 
@@ -453,7 +450,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Hours
+                                                Giờ
                                             </span>
                                         </div>
 
@@ -463,7 +460,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Minutes
+                                                Phút
                                             </span>
                                         </div>
 
@@ -473,13 +470,13 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Seconds
+                                                Giây
                                             </span>
                                         </div>
                                     </div>
 
                                     <a href="#" class="txt4 m-t-40">
-                                        View Details
+                                        Xem Chi Tiết
                                         <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -518,12 +515,11 @@
                                 <!-- Text block2 -->
                                 <div class="wrap-text-blo2 flex-col-c-m p-l-40 p-r-40 p-t-45 p-b-30">
                                     <h4 class="tit7 t-center m-b-10">
-                                        Wines during specific nights
+                                        Rượu Vang Trong Những Đêm Đặc Biệt
                                     </h4>
 
                                     <p class="t-center">
-                                        Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc
-                                        sed imperdiet lacinia
+                                        Thưởng thức rượu vang tinh tế trong không gian ấm cúng vào những đêm đặc biệt.
                                     </p>
 
                                     <div class="flex-sa-m flex-w w-full m-t-40">
@@ -533,7 +529,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Days
+                                                Ngày
                                             </span>
                                         </div>
 
@@ -543,7 +539,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Hours
+                                                Giờ
                                             </span>
                                         </div>
 
@@ -553,7 +549,7 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Minutes
+                                                Phút
                                             </span>
                                         </div>
 
@@ -563,13 +559,13 @@
                                             </span>
 
                                             <span class="dis-block t-center txt8">
-                                                Seconds
+                                                Giây
                                             </span>
                                         </div>
                                     </div>
 
                                     <a href="#" class="txt4 m-t-40">
-                                        View Details
+                                        Xem Chi Tiết
                                         <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -591,11 +587,11 @@
                 <div class="col-lg-6 p-b-30">
                     <div class="t-center">
                         <span class="tit2 t-center">
-                            Reservation
+                            Đặt Chỗ
                         </span>
 
                         <h3 class="tit3 t-center m-b-35 m-t-2">
-                            Book table
+                            Đặt Bàn
                         </h3>
                     </div>
 
@@ -604,7 +600,7 @@
                             <div class="col-md-6">
                                 <!-- Date -->
                                 <span class="txt9">
-                                    Date
+                                    Ngày
                                 </span>
 
                                 <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
@@ -616,7 +612,7 @@
 
                                 <!-- Time -->
                                 <span class="txt9">
-                                    Time
+                                    Thời Gian
                                 </span>
 
                                 <div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
@@ -646,24 +642,24 @@
 
                                 <!-- People -->
                                 <span class="txt9">
-                                    People
+                                    Số Người
                                 </span>
 
                                 <div class="wrap-inputpeople size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                     <!-- Select2 -->
                                     <select class="selection-1" name="people">
-                                        <option>1 person</option>
-                                        <option>2 people</option>
-                                        <option>3 people</option>
-                                        <option>4 people</option>
-                                        <option>5 people</option>
-                                        <option>6 people</option>
-                                        <option>7 people</option>
-                                        <option>8 people</option>
-                                        <option>9 people</option>
-                                        <option>10 people</option>
-                                        <option>11 people</option>
-                                        <option>12 people</option>
+                                        <option>1 người</option>
+                                        <option>2 người</option>
+                                        <option>3 người</option>
+                                        <option>4 người</option>
+                                        <option>5 người</option>
+                                        <option>6 người</option>
+                                        <option>7 người</option>
+                                        <option>8 người</option>
+                                        <option>9 người</option>
+                                        <option>10 người</option>
+                                        <option>11 người</option>
+                                        <option>12 người</option>
                                     </select>
                                 </div>
                             </div>
@@ -671,22 +667,22 @@
                             <div class="col-md-6">
                                 <!-- Name -->
                                 <span class="txt9">
-                                    Name
+                                    Tên
                                 </span>
 
                                 <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                     <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name"
-                                        placeholder="Name">
+                                        placeholder="Tên">
                                 </div>
 
                                 <!-- Phone -->
                                 <span class="txt9">
-                                    Phone
+                                    Điện Thoại
                                 </span>
 
                                 <div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                     <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="phone"
-                                        placeholder="Phone">
+                                        placeholder="Điện Thoại">
                                 </div>
 
                                 <!-- Email -->
@@ -696,7 +692,7 @@
 
                                 <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
                                     <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email"
-                                        placeholder="Email">
+                                        placeholder="Địa Chỉ Email">
                                 </div>
                             </div>
                         </div>
@@ -704,7 +700,7 @@
                         <div class="wrap-btn-booking flex-c-m m-t-6">
                             <!-- Button3 -->
                             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">
-                                Book Table
+                                Đặt Bàn
                             </button>
                         </div>
                     </form>
@@ -724,11 +720,11 @@
         <!-- - -->
         <div class="title-review t-center m-b-2">
             <span class="tit2 p-l-15 p-r-15">
-                Customers Say
+                Khách Hàng Nói
             </span>
 
             <h3 class="tit8 t-center p-l-20 p-r-15 p-t-3">
-                Review
+                Đánh Giá
             </h3>
         </div>
 
@@ -745,8 +741,7 @@
 
                             <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
                                 <p class="t-center txt12 size15 m-l-r-auto">
-                                    “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem,
-                                    mattis in pre-tium nec, fermentum viverra dui ”
+                                    "Nhà hàng tuyệt vời với đồ ăn ngon và dịch vụ chuyên nghiệp. Tôi sẽ quay lại!"
                                 </p>
 
                                 <div class="star-review fs-18 color0 flex-c-m m-t-12">
@@ -776,8 +771,7 @@
 
                             <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
                                 <p class="t-center txt12 size15 m-l-r-auto">
-                                    “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem,
-                                    mattis in pre-tium nec, fermentum viverra dui ”
+                                    "Món ăn ngon miệng, không gian sang trọng. Một trải nghiệm đáng nhớ!"
                                 </p>
 
                                 <div class="star-review fs-18 color0 flex-c-m m-t-12">
@@ -807,8 +801,7 @@
 
                             <div class="content-review m-t-33 animated visible-false" data-appear="fadeInUp">
                                 <p class="t-center txt12 size15 m-l-r-auto">
-                                    “ We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem,
-                                    mattis in pre-tium nec, fermentum viverra dui ”
+                                    "Dịch vụ tốt, đồ ăn tuyệt vời. Khuyến khích mọi người đến đây!"
                                 </p>
 
                                 <div class="star-review fs-18 color0 flex-c-m m-t-12">
@@ -839,11 +832,11 @@
     <section class="section-video parallax100" style="background-image: url(assets/images/bg-cover-video-02.jpg);">
         <div class="content-video t-center p-t-225 p-b-250">
             <span class="tit2 p-l-15 p-r-15">
-                Discover
+                Khám Phá
             </span>
 
             <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-                Our Video
+                Video Của Chúng Tôi
             </h3>
 
             <div class="btn-play ab-center size16 hov-pointer m-l-r-auto m-t-43 m-b-33" data-toggle="modal"
@@ -861,11 +854,11 @@
         <div class="container">
             <div class="title-section-ourmenu t-center m-b-22">
                 <span class="tit2 t-center">
-                    Latest News
+                    Tin Tức Mới Nhất
                 </span>
 
                 <h3 class="tit5 t-center m-t-2">
-                    The Blog
+                    Blog
                 </h3>
             </div>
 
@@ -884,16 +877,16 @@
                         <div class="wrap-text-blo1 p-t-35">
                             <a href="blog-detail.html">
                                 <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                    Best Places for Wine
+                                    Những Nơi Tốt Nhất Cho Rượu Vang
                                 </h4>
                             </a>
 
                             <p class="m-b-20">
-                                Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
+                                Khám phá các địa điểm tuyệt vời để thưởng thức rượu vang tinh tế.
                             </p>
 
                             <a href="blog-detail.html" class="txt4">
-                                Continue Reading
+                                Đọc Tiếp
                                 <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -914,16 +907,16 @@
                         <div class="wrap-text-blo1 p-t-35">
                             <a href="blog-detail.html">
                                 <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                    Eggs and Cheese
+                                    Trứng Và Phô Mai
                                 </h4>
                             </a>
 
                             <p class="m-b-20">
-                                Duis elementum, risus sit amet lobortis nunc justo condimentum ligula, vitae feugiat
+                                Những món ăn sáng ngon với trứng và phô mai tươi ngon.
                             </p>
 
                             <a href="blog-detail.html" class="txt4">
-                                Continue Reading
+                                Đọc Tiếp
                                 <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -944,16 +937,16 @@
                         <div class="wrap-text-blo1 p-t-35">
                             <a href="blog-detail.html">
                                 <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                    Style the Wedding Party
+                                    Phong Cách Cho Tiệc Cưới
                                 </h4>
                             </a>
 
                             <p class="m-b-20">
-                                Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
+                                Lời khuyên về cách tổ chức tiệc cưới sang trọng và lãng mạn.
                             </p>
 
                             <a href="blog-detail.html" class="txt4">
-                                Continue Reading
+                                Đọc Tiếp
                                 <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -969,18 +962,18 @@
     <div class="section-signup bg1-pattern p-t-85 p-b-85">
         <form class="flex-c-m flex-w flex-col-c-m-lg p-l-5 p-r-5">
             <span class="txt5 m-10">
-                Specials Sign up
+                Đăng Ký Đặc Biệt
             </span>
 
             <div class="wrap-input-signup size17 bo2 bo-rad-10 bgwhite pos-relative txt10 m-10">
                 <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email-address"
-                    placeholder="Email Adrress">
+                    placeholder="Địa Chỉ Email">
                 <i class="fa fa-envelope ab-r-m m-r-18" aria-hidden="true"></i>
             </div>
 
             <!-- Button3 -->
             <button type="submit" class="btn3 flex-c-m size18 txt11 trans-0-4 m-10">
-                Sign-up
+                Đăng Ký
             </button>
         </form>
     </div>
