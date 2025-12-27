@@ -15,7 +15,8 @@ return new class extends Migration
                 ->constrained('orders')
                 ->onDelete('cascade'); // Xóa đơn hàng thì xóa thanh toán
 
-            $table->string('payment_method')->after('order_id'); // cash, bank_transfer, vnpay, momo, zalo_pay, etc.
+            $table->string('payment_method');
+ // cash, bank_transfer, vnpay, momo, zalo_pay, etc.
 
             $table->integer('amount_cents')->unsigned(); // Số tiền thanh toán (cents hoặc đồng tùy bạn)
 
