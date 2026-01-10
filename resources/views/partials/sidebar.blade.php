@@ -5,42 +5,36 @@
     <!-- - -->
     <ul class="menu-sidebar p-t-95 p-b-70">
         <li class="t-center m-b-13">
-            <a href="index" class="txt19">Home</a>
+            <a href="{{ url('/') }}" class="txt19">Trang Chủ</a>
         </li>
 
         <li class="t-center m-b-13">
-            <a href="menu" class="txt19">Menu</a>
+            <a href="{{ url('menu') }}" class="txt19">Thực Đơn</a>
         </li>
 
         <li class="t-center m-b-13">
-            <a href="gallery" class="txt19">Gallery</a>
+            <a href="{{ url('gallery') }}" class="txt19">Thư Viện</a>
         </li>
 
         <li class="t-center m-b-13">
-            <a href="about" class="txt19">About</a>
+            <a href="{{ url('about') }}" class="txt19">Giới Thiệu</a>
         </li>
 
         <li class="t-center m-b-13">
-            <a href="blog" class="txt19">Blog</a>
+            <a href="{{ url('blog') }}" class="txt19">Bài Viết</a>
         </li>
 
         <li class="t-center m-b-33">
-            <a href="contact" class="txt19">Contact</a>
+            <a href="{{ url('contact') }}" class="txt19">Liên Hệ</a>
         </li>
 
-        <li class="t-center">
-            <!-- Button3 -->
-            <a href="reservation" class="btn3 flex-c-m size13 txt11 trans-0-4 m-l-r-auto">
-                Reservation
-            </a>
-        </li>
     </ul>
 
     <!-- - -->
     <div class="gallery-sidebar t-center p-l-60 p-r-60 p-b-40">
         <!-- - -->
         <h4 class="txt20 m-b-33">
-            Gallery
+            Thư Viện
         </h4>
 
         <!-- Gallery -->

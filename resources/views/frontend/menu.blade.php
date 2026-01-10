@@ -1,6 +1,6 @@
     @extends('layouts.pato')
 
-    @section('title', 'Menu - Pato Restaurant')
+    @section('title', 'Th?c Ðon - Pato Restaurant')
     @include('partials.sidebar')
 
     @section('content')

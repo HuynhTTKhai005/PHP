@@ -11,9 +11,6 @@ Route::get('/', function () {
 Route::get('/menu', [App\Http\Controllers\MenuController::class, 'index'])
     ->name('menu');
 
-Route::get('/reservation', [App\Http\Controllers\ReservationController::class, 'index'])
-    ->name('reservation');;
-
 Route::get('/gallery', [App\Http\Controllers\GalleryController::class, 'index'])
     ->name('gallery');
 

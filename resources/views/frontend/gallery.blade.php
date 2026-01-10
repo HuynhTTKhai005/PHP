@@ -7,34 +7,34 @@
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
         style="background-image: url(assets/images/bg-title-page-02.jpg);">
         <h2 class="tit6 t-center">
-            Gallery
+            Thu Vi?n
         </h2>
     </section>
 
 
 
-    <!-- Gallery -->
+    <!-- Thu Vi?n -->
     <div class="section-gallery p-t-118 p-b-100">
         <div
             class="wrap-label-gallery filter-tope-group size27 flex-w flex-sb-m m-l-r-auto flex-col-c-sm p-l-15 p-r-15 m-b-60">
             <button class="label-gallery txt26 trans-0-4 is-actived" data-filter="*">
-                All Photo
+                Tất cả ảnh
             </button>
 
             <button class="label-gallery txt26 trans-0-4" data-filter=".interior">
-                Interior
+                Nội thất
             </button>
 
             <button class="label-gallery txt26 trans-0-4" data-filter=".food">
-                Food
+                Đồ ăn
             </button>
 
             <button class="label-gallery txt26 trans-0-4" data-filter=".events">
-                Events
+                Sự kiện
             </button>
 
             <button class="label-gallery txt26 trans-0-4" data-filter=".guests">
-                Vip guests
+                Khách VIP
             </button>
         </div>
 

@@ -7,7 +7,7 @@
 	<!-- Title Page -->
 	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url(assets/images/bg-title-page-03.jpg);">
 		<h2 class="tit6 t-center">
-			Blog
+			B‡i Vi?t
 		</h2>
 	</section>
 
@@ -23,7 +23,7 @@
 				<span class="txt29 m-l-10 m-r-10">/</span>
 
 				<span class="txt29">
-					Blog
+					B‡i Vi?t
 				</span>
 			</div>
 		</div>
@@ -35,8 +35,8 @@
 						<!-- Block4 -->
 						<div class="blo4 p-b-63">
 							<div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
-								<a href="blog-detail.html">
-									<img src="assets/images/blog-05.jpg" alt="IMG-BLOG">
+								<a href="B‡i Vi?t-detail.html">
+									<img src="assets/images/B‡i Vi?t-05.jpg" alt="IMG-B‡i Vi?t">
 								</a>
 
 								<div class="date-blo4 flex-col-c-m">
@@ -52,22 +52,22 @@
 
 							<div class="text-blo4 p-t-33">
 								<h4 class="p-b-16">
-									<a href="blog-detail.html" class="tit9">Cooking recipe Delicious</a>
+									<a href="B‡i Vi?t-detail.html" class="tit9">C√¥ng th·ª©c n·∫•u ƒÉn ngon mi·ªáng</a>
 								</h4>
 
 								<div class="txt32 flex-w p-b-24">
 									<span>
-										by Admin
+										b·ªüi Admin
 										<span class="m-r-6 m-l-4">|</span>
 									</span>
 
 									<span>
-										28 December, 2018
+										28 Th√°ng 12, 2018
 										<span class="m-r-6 m-l-4">|</span>
 									</span>
 
 									<span>
-										Cooking, Food
+										N·∫•u ƒÉn, ƒê·ªì ƒÉn
 										<span class="m-r-6 m-l-4">|</span>
 									</span>
 
@@ -80,8 +80,8 @@
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<a href="blog-detail.html" class="dis-block txt4 m-t-30">
-									Continue Reading
+								<a href="B‡i Vi?t-detail.html" class="dis-block txt4 m-t-30">
+									–?c ti?p
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>
 							</div>
@@ -90,8 +90,8 @@
 						<!-- Block4 -->
 						<div class="blo4 p-b-63">
 							<div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
-								<a href="blog-detail.html">
-									<img src="assets/images/blog-06.jpg" alt="IMG-BLOG">
+								<a href="B‡i Vi?t-detail.html">
+									<img src="assets/images/B‡i Vi?t-06.jpg" alt="IMG-B‡i Vi?t">
 								</a>
 
 								<div class="date-blo4 flex-col-c-m">
@@ -107,7 +107,7 @@
 
 							<div class="text-blo4 p-t-33">
 								<h4 class="p-b-16">
-									<a href="blog-detail.html" class="tit9">Pizza is prepared fresh</a>
+									<a href="B‡i Vi?t-detail.html" class="tit9">Pizza is prepared fresh</a>
 								</h4>
 
 								<div class="txt32 flex-w p-b-24">
@@ -135,8 +135,8 @@
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<a href="blog-detail.html" class="dis-block txt4 m-t-30">
-									Continue Reading
+								<a href="B‡i Vi?t-detail.html" class="dis-block txt4 m-t-30">
+									–?c ti?p
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>
 							</div>
@@ -145,8 +145,8 @@
 						<!-- Block4 -->
 						<div class="blo4 p-b-63">
 							<div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
-								<a href="blog-detail.html">
-									<img src="assets/images/blog-04.jpg" alt="IMG-BLOG">
+								<a href="B‡i Vi?t-detail.html">
+									<img src="assets/images/B‡i Vi?t-04.jpg" alt="IMG-B‡i Vi?t">
 								</a>
 
 								<div class="date-blo4 flex-col-c-m">
@@ -162,7 +162,7 @@
 
 							<div class="text-blo4 p-t-33">
 								<h4 class="p-b-16">
-									<a href="blog-detail.html" class="tit9">Style the Wedding Party</a>
+									<a href="B‡i Vi?t-detail.html" class="tit9">Style the Wedding Party</a>
 								</h4>
 
 								<div class="txt32 flex-w p-b-24">
@@ -190,8 +190,8 @@
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<a href="blog-detail.html" class="dis-block txt4 m-t-30">
-									Continue Reading
+								<a href="B‡i Vi?t-detail.html" class="dis-block txt4 m-t-30">
+									–?c ti?p
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>
 							</div>
@@ -200,8 +200,8 @@
 						<!-- Block4 -->
 						<div class="blo4 p-b-63">
 							<div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
-								<a href="blog-detail.html">
-									<img src="assets/images/blog-07.jpg" alt="IMG-BLOG">
+								<a href="B‡i Vi?t-detail.html">
+									<img src="assets/images/B‡i Vi?t-07.jpg" alt="IMG-B‡i Vi?t">
 								</a>
 
 								<div class="date-blo4 flex-col-c-m">
@@ -217,7 +217,7 @@
 
 							<div class="text-blo4 p-t-33">
 								<h4 class="p-b-16">
-									<a href="blog-detail.html" class="tit9">Best Places for Wine</a>
+									<a href="B‡i Vi?t-detail.html" class="tit9">Best Places for Wine</a>
 								</h4>
 
 								<div class="txt32 flex-w p-b-24">
@@ -245,8 +245,8 @@
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<a href="blog-detail.html" class="dis-block txt4 m-t-30">
-									Continue Reading
+								<a href="B‡i Vi?t-detail.html" class="dis-block txt4 m-t-30">
+									–?c ti?p
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>
 							</div>
@@ -255,8 +255,8 @@
 						<!-- Block4 -->
 						<div class="blo4 p-b-63">
 							<div class="pic-blo4 hov-img-zoom bo-rad-10 pos-relative">
-								<a href="blog-detail.html">
-									<img src="assets/images/blog-10.jpg" alt="IMG-BLOG">
+								<a href="B‡i Vi?t-detail.html">
+									<img src="assets/images/B‡i Vi?t-10.jpg" alt="IMG-B‡i Vi?t">
 								</a>
 
 								<div class="date-blo4 flex-col-c-m">
@@ -272,7 +272,7 @@
 
 							<div class="text-blo4 p-t-33">
 								<h4 class="p-b-16">
-									<a href="blog-detail.html" class="tit9">Best Places for Wine</a>
+									<a href="B‡i Vi?t-detail.html" class="tit9">Best Places for Wine</a>
 								</h4>
 
 								<div class="txt32 flex-w p-b-24">
@@ -300,8 +300,8 @@
 									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
 								</p>
 
-								<a href="blog-detail.html" class="dis-block txt4 m-t-30">
-									Continue Reading
+								<a href="B‡i Vi?t-detail.html" class="dis-block txt4 m-t-30">
+									–?c ti?p
 									<i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
 								</a>
 							</div>
@@ -338,7 +338,7 @@
 
 								<li class="bo5-b p-t-8 p-b-8">
 									<a href="#" class="txt27">
-										Delicious foods
+										–? an ngon
 									</a>
 								</li>
 
@@ -350,7 +350,7 @@
 
 								<li class="bo5-b p-t-8 p-b-8">
 									<a href="#" class="txt27">
-										Restaurant Place
+										Nh‡ H‡ng
 									</a>
 								</li>
 
@@ -372,7 +372,7 @@
 								<li class="flex-w m-b-25">
 									<div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
 										<a href="#">
-											<img src="assets/images/blog-11.jpg" alt="IMG-BLOG">
+											<img src="assets/images/B‡i Vi?t-11.jpg" alt="IMG-B‡i Vi?t">
 										</a>
 									</div>
 
@@ -390,7 +390,7 @@
 								<li class="flex-w m-b-25">
 									<div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
 										<a href="#">
-											<img src="assets/images/blog-12.jpg" alt="IMG-BLOG">
+											<img src="assets/images/B‡i Vi?t-12.jpg" alt="IMG-B‡i Vi?t">
 										</a>
 									</div>
 
@@ -408,7 +408,7 @@
 								<li class="flex-w m-b-25">
 									<div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
 										<a href="#">
-											<img src="assets/images/blog-13.jpg" alt="IMG-BLOG">
+											<img src="assets/images/B‡i Vi?t-13.jpg" alt="IMG-B‡i Vi?t">
 										</a>
 									</div>
 
@@ -426,7 +426,7 @@
 								<li class="flex-w m-b-25">
 									<div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
 										<a href="#">
-											<img src="assets/images/blog-14.jpg" alt="IMG-BLOG">
+											<img src="assets/images/B‡i Vi?t-14.jpg" alt="IMG-B‡i Vi?t">
 										</a>
 									</div>
 
@@ -444,7 +444,7 @@
 								<li class="flex-w m-b-25">
 									<div class="size16 bo-rad-10 wrap-pic-w of-hidden m-r-18">
 										<a href="#">
-											<img src="assets/images/blog-15.jpg" alt="IMG-BLOG">
+											<img src="assets/images/B‡i Vi?t-15.jpg" alt="IMG-B‡i Vi?t">
 										</a>
 									</div>
 

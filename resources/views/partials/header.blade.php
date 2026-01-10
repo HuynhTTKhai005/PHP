@@ -5,7 +5,7 @@
             <div class="wrap_header trans-0-3">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index">
+                    <a href="{{ url('/') }}">
                         <img src="assets/images/icons/logo.png" alt="IMG-LOGO"
                             data-logofixed="assets/images/icons/logo2.png">
                     </a>
@@ -16,27 +16,22 @@
                     <nav class="menu">
                         <ul class="main_menu">
                             <li>
-                                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Home</a>
+                                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Trang chủ</a>
                             </li>
 
                             <li>
                                 <a href="{{ url('menu') }}"
-                                    class="{{ request()->is('menu') ? 'active' : '' }}">Menu</a>
-                            </li>
-
-                            <li>
-                                <a href="{{ url('reservation') }}"
-                                    class="{{ request()->is('reservation') ? 'active' : '' }}">Reservation</a>
+                                    class="{{ request()->is('menu') ? 'active' : '' }}">Thực đơn</a>
                             </li>
 
                             <li>
                                 <a href="{{ url('gallery') }}"
-                                    class="{{ request()->is('gallery') ? 'active' : '' }}">Gallery</a>
+                                    class="{{ request()->is('gallery') ? 'active' : '' }}">Thư viện</a>
                             </li>
 
                             <li>
                                 <a href="{{ url('about') }}"
-                                    class="{{ request()->is('about') ? 'active' : '' }}">About</a>
+                                    class="{{ request()->is('about') ? 'active' : '' }}">Giới thiệu</a>
                             </li>
 
                             <li>
@@ -46,7 +41,7 @@
 
                             <li>
                                 <a href="{{ url('contact') }}"
-                                    class="{{ request()->is('contact') ? 'active' : '' }}">Contact</a>
+                                    class="{{ request()->is('contact') ? 'active' : '' }}">Liên hệ</a>
                             </li>
                         </ul>
 

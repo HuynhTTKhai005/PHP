@@ -8,14 +8,14 @@
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
         style="background-image: url(assets/images/bg-title-page-02.jpg);">
         <h2 class="tit6 t-center">
-            Contact
+            Liên H?
         </h2>
     </section>
 
 
 
-    <!-- Contact form -->
-    <section class="section-contact bg1-pattern p-t-90 p-b-113">
+    <!-- Liên H? form -->
+    <section class="section-Liên H? bg1-pattern p-t-90 p-b-113">
         <!-- Map -->
         <div class="container">
             <div class="map bo8 bo-rad-10 of-hidden">
@@ -56,7 +56,7 @@
 
                         <div class="flex-col-l">
                             <span class="txt5 p-b-10">
-                                Call Us
+                                G?i Cho Chúng Tôi
                             </span>
 
                             <span class="txt23 size38">
@@ -75,7 +75,7 @@
 
                         <div class="flex-col-l">
                             <span class="txt5 p-b-10">
-                                Opening Hours
+                                Gi? M? C?a
                             </span>
 
                             <span class="txt23 size38">

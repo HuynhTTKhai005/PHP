@@ -122,7 +122,7 @@
         <div class="content-intro bg-white p-t-77 p-b-133">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 p-t-30">
+                    <div class="col-md-6 p-t-30">
                         <!-- Block1 -->
                         <div class="blo1">
                             <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 p-t-30">
+                    <div class="col-md-6 p-t-30">
                         <!-- Block1 -->
                         <div class="blo1">
                             <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
@@ -164,32 +164,6 @@
 
                                 <p class="m-b-20">
                                     Những món ăn ngon miệng được chế biến từ nguyên liệu tươi ngon nhất.
-                                </p>
-
-                                <a href="#" class="txt4">
-                                    Tìm Hiểu Thêm
-                                    <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 p-t-30">
-                        <!-- Block1 -->
-                        <div class="blo1">
-                            <div class="wrap-pic-blo1 bo-rad-10 hov-img-zoom">
-                                <a href="#"><img src="assets/images/intro-04.jpg" alt="IMG-INTRO"></a>
-                            </div>
-
-                            <div class="wrap-text-blo1 p-t-35">
-                                <a href="#">
-                                    <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                        Rượu Đỏ Bạn Yêu Thích
-                                    </h4>
-                                </a>
-
-                                <p class="m-b-20">
-                                    Bộ sưu tập rượu đỏ tinh tế từ các vùng nổi tiếng trên thế giới.
                                 </p>
 
                                 <a href="#" class="txt4">

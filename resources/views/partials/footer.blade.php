@@ -4,7 +4,7 @@
             <div class="col-sm-6 col-md-4 p-t-50">
                 <!-- - -->
                 <h4 class="txt13 m-b-33">
-                    Contact Us
+                    Liên H?
                 </h4>
 
                 <ul class="m-b-70">
@@ -26,7 +26,7 @@
 
                 <!-- - -->
                 <h4 class="txt13 m-b-32">
-                    Opening Times
+                    Gi? M? C?a
                 </h4>
 
                 <ul>
@@ -43,7 +43,7 @@
             <div class="col-sm-6 col-md-4 p-t-50">
                 <!-- - -->
                 <h4 class="txt13 m-b-33">
-                    Latest twitter
+                    Twitter M?i Nh?t
                 </h4>
 
                 <div class="m-b-25">
@@ -173,8 +173,8 @@
                 </div>
 
                 <div class="txt17 p-r-20 p-t-5 p-b-5">
-                    Copyright &copy; 2018 All rights reserved | This template is made with <i class="fa fa-heart"></i>
-                    by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    Copyright &copy; 2018 T?t c? quy?n du?c b?o luu | M?u này du?c t?o v?i <i class="fa fa-heart"></i>
+                    b?i <a href="https://colorlib.com" target="_blank">Colorlib</a>
                 </div>
             </div>
         </div>
