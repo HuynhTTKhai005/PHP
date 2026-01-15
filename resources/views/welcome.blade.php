@@ -1,6 +1,7 @@
+
 @extends('layouts.pato')
 
-@section('title', 'Pato Place - Nhà hàng cao cấp')
+@section('title', 'Sincay - Nhà hàng cao cấp')
 
 @section('content')
     <!-- Slide1 -->
@@ -10,17 +11,17 @@
                 <div class="item-slick1 item1-slick1" style="background-image: url(assets/images/slide1-01.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                         <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-                            Welcome to
+                            Chào mừng đến với
                         </span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
-                            Pato Place
+                            Sincay Place
                         </h2>
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="zoomIn">
                             <!-- Button1 -->
                             <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                Xem Menu
                             </a>
                         </div>
                     </div>
@@ -29,17 +30,17 @@
                 <div class="item-slick1 item2-slick1" style="background-image: url(assets/images/master-slides-02.jpg);">
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                         <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15" data-appear="rollIn">
-                            Welcome to
+                            Chào mừng đến với
                         </span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
-                            Pato Place
+                            Sincay Place
                         </h2>
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="slideInUp">
                             <!-- Button1 -->
                             <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                Xem Menu
                             </a>
                         </div>
                     </div>
@@ -49,18 +50,18 @@
                     <div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
                         <span class="caption1-slide1 txt1 t-center animated visible-false m-b-15"
                             data-appear="rotateInDownLeft">
-                            Welcome to
+                            Chào mừng đến với
                         </span>
 
                         <h2 class="caption2-slide1 tit1 t-center animated visible-false m-b-37"
                             data-appear="rotateInUpRight">
-                            Pato Place
+                            Sincay Place
                         </h2>
 
                         <div class="wrap-btn-slide1 animated visible-false" data-appear="rotateIn">
                             <!-- Button1 -->
                             <a href="menu.html" class="btn1 flex-c-m size1 txt3 trans-0-4">
-                                Look Menu
+                                Xem Menu
                             </a>
                         </div>
                     </div>
@@ -79,20 +80,20 @@
                 <div class="col-md-6 p-t-45 p-b-30">
                     <div class="wrap-text-welcome t-center">
                         <span class="tit2 t-center">
-                            Italian Restaurant
+                            Nhà Hàng Ý
                         </span>
 
                         <h3 class="tit3 t-center m-b-35 m-t-5">
-                            Welcome
+                            Chào Mừng
                         </h3>
 
                         <p class="t-center m-b-22 size3 m-l-r-auto">
-                            Donec quis lorem nulla. Nunc eu odio mi. Morbi nec lobortis est. Sed fringilla, nunc sed
-                            imperdiet lacinia, nisl ante egestas mi, ac facilisis ligula sem id neque.
+                            Chào mừng bạn đến với nhà hàng của chúng tôi. Chúng tôi mang đến những món ăn ngon và trải
+                            nghiệm tuyệt vời.
                         </p>
 
                         <a href="about.html" class="txt4">
-                            Our Story
+                            Câu Chuyện Của Chúng Tôi
                             <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -112,11 +113,11 @@
         <div class="header-intro parallax100 t-center p-t-135 p-b-158"
             style="background-image: url(assets/images/bg-intro-01.jpg);">
             <span class="tit2 p-l-15 p-r-15">
-                Discover
+                Khám phá
             </span>
 
             <h3 class="tit4 t-center p-l-15 p-r-15 p-t-3">
-                Pato Place
+                Sincay Place
             </h3>
         </div>
 
@@ -133,7 +134,7 @@
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#">
                                     <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                        Romantic Restaurant
+                                        Nhà Hàng Lãng Mạn
                                     </h4>
                                 </a>
 
@@ -142,7 +143,7 @@
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    Tìm Hiểu Thêm
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -159,7 +160,7 @@
                             <div class="wrap-text-blo1 p-t-35">
                                 <a href="#">
                                     <h4 class="txt5 color0-hov trans-0-4 m-b-13">
-                                        Delicious Food
+                                        Món ăn ngon miệng
                                     </h4>
                                 </a>
 
@@ -168,7 +169,7 @@
                                 </p>
 
                                 <a href="#" class="txt4">
-                                    Learn More
+                                    Tìm hiểu thêm
                                     <i class="fa fa-long-arrow-right m-l-10" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -211,11 +212,11 @@
         <div class="container">
             <div class="title-section-ourmenu t-center m-b-22">
                 <span class="tit2 t-center">
-                    Discover
+                    Khám phá
                 </span>
 
                 <h3 class="tit5 t-center m-t-2">
-                    Our Menu
+                    Menu của chúng tôi
                 </h3>
             </div>
 
@@ -241,7 +242,7 @@
 
                                 <!-- Button2 -->
                                 <a href="#" class="btn2 flex-c-m txt5 ab-c-m size5">
-                                    Dinner
+                                    Bữa tối
                                 </a>
                             </div>
                         </div>
@@ -315,11 +316,11 @@
                             <!-- - -->
                             <div class="title-event t-center m-b-52">
                                 <span class="tit2 p-l-15 p-r-15">
-                                    Upcomming
+                                    Sắp Tới
                                 </span>
 
                                 <h3 class="tit6 t-center p-l-15 p-r-15 p-t-3">
-                                    Events
+                                    Sự Kiện
                                 </h3>
                             </div>
 

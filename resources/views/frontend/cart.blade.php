@@ -235,7 +235,7 @@
                 </div>
 
                 <!-- Checkout Button -->
-                <a href="{{ route('checkout.index') }}" class="checkout-btn"> <i class="fas fa-lock"></i>
+                <a href="{{ route('checkout') }}" class="checkout-btn"> <i class="fas fa-lock"></i>
                     Thanh toán an toàn
                 </a>
 

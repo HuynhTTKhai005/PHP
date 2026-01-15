@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;  // Bỏ dòng này nếu muốn thấy tiến trình
-
+ 
 class DatabaseSeeder extends Seeder
 {
     /**

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Pato Restaurant - Nhà hàng ngon nhất')</title>
+    <title>@yield('title', 'Sincay Restaurant - Nhà hàng ngon nhất')</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('assets/images/icons/favicon.png') }}" />

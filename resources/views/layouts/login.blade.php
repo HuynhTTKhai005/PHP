@@ -1,6 +1,6 @@
 @extends('layouts.pato')
 
-@section('title', 'Đăng nhập - Nhà hàng Pato')
+@section('title', 'Đăng nhập - Nhà hàng Sincay')
 
 {{-- Ẩn sidebar mobile nếu muốn trang login sạch hơn --}}
 @push('styles')
@@ -23,7 +23,7 @@
                 </span>
 
                 <span class="login100-form-subtitle p-b-40">
-                    Chào mừng bạn quay lại Nhà hàng Pato
+                    Chào mừng bạn quay lại Nhà hàng Sincay
                 </span>
 
                 <!-- Email -->
@@ -81,7 +81,7 @@
                 <!-- Demo account -->
                 <div class="text-center p-t-20">
                     <small style="color: #aaa;">
-                        Demo khách: khach@pato.com / 12345678
+                        Demo khách: khach@sincay.com / 12345678
                     </small>
                 </div>
             </form>

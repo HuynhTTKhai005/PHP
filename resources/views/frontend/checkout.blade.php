@@ -4,7 +4,7 @@
         <div class="container py-5">
             <h2 class="text-center mb-5">Xác nhận thông tin giao hàng</h2>
 
-            <form action="{{ route('checkout.store') }}" method="POST">
+            <form action="{{ route('checkout') }}" method="POST">
                 @csrf
                 <div class="row">
                     <!-- Form thông tin -->

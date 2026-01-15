@@ -7,7 +7,7 @@
                 <div class="logo">
                     <a href="index">
                         <img src="assets/images/icons/logo.png" alt="IMG-LOGO"
-                            data-logofixed="assets/images/icons/logo2.png">
+                            data-logofixed="assets/images/icons/logo.png">
                     </a>
                 </div>
 
@@ -53,14 +53,45 @@
                     </nav>
                 </div>
 
-                <!-- Social -->
-                <div class="social d-flex  flex-l-m p-r-20">
-                    <a href="{{ url('login') }}" class="hlogin-btn">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                    </a>
+                <!-- Social + User Login/Logout -->
+                <div class="social d-flex flex-l-m p-r-20">
+                    @auth
+                        <!-- ĐÃ ĐĂNG NHẬP -->
+                        <div class="dropdown-user">
+                            <a href="javascript:void(0)" class="hlogin-btn dropdown-toggle-user" id="userDropdown"
+                                data-toggle="dropdown">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span
+                                    class="ml-2 d-none d-md-inline">{{ Auth::user()->full_name ?? Auth::user()->email }}</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <i class="fa fa-user-edit"></i> Hồ sơ cá nhân
+                                </a>
+                                <a class="dropdown-item" href="{{ route('checkout') ?? '#' }}">
+                                    <i class="fa fa-shopping-bag"></i> Đơn hàng của tôi
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="fa fa-sign-out-alt"></i> Đăng xuất
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    @else
+                        <!-- CHƯA ĐĂNG NHẬP -->
+                        <a href="{{ route('login') }}" class="hlogin-btn">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span class="ml-2 d-none d-md-inline">Đăng nhập</span>
+                        </a>
+                    @endauth
+
+                    <!-- Giỏ hàng -->
                     <div class="header-cart-wrapitem">
                         <a href="{{ route('cart') }}" class="header-cart-item">
-                            <i class="bi bi-cart fs-20 "></i>
+                            <i class="bi bi-cart fs-20"></i>
 
                             @php
                                 $cartCount = collect(session('cart', []))->sum('quantity');
@@ -75,8 +106,7 @@
                     </div>
 
                     <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
-                </div> <!-- Giỏ hàng ở header -->
-
+                </div>
 
             </div>
         </div>
