@@ -1,54 +1,53 @@
     @extends('layouts.pato')
 
     @section('title', 'Menu - Pato Restaurant')
-    @include('partials.sidebar')
 
     @section('content')
         <!-- Title Page -->
-        <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
-            style="background-image: url(assets/images/bg-title-page-01.jpg);">
-            <h2 class="tit6 t-center">
-                Sincay Menu
-            </h2>
+        <section class="titles text-center text-white"
+            style="background:   url({{ asset('assets/images/bg-title-page-01.jpg') }}) center/cover no-repeat; min-height: 400px;">
+            <div class="container">
+                <h2 class="tit">Sincay Menu</h2>
+            </div>
         </section>
+
+
         <section class="food_section layout_padding ">
             <div class="container ">
 
 
                 <ul class="filters_menu">
+                    <li class="{{ !request('category') ? 'active' : '' }}">
+                        <a href="{{ route('menu') }}">Tất cả</a>
+                    </li>
                     @foreach ($categories as $category)
-                        @php
-                            $active = $category->slug == 'all' ? 'active' : '';
-                            $data_filter = $category->slug == 'all' ? '*' : '.' . $category->slug;
-                        @endphp
-                        <li class="{{ $active }}" data-filter="{{ $data_filter }}">{{ $category->name }}</li>
+                        <li class="{{ request('category') == $category->slug ? 'active' : '' }}">
+                            <a href="{{ route('menu', ['category' => $category->slug]) }}">
+                                @if ($category->icon)
+                                    <i class="{{ $category->icon }}"></i>
+                                @endif
+                                {{ $category->name }}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
 
                 <div class="filters-content">
                     <div class="row grid">
-
                         @foreach ($products as $product)
-                            <div class="col-sm-6 col-lg-4 all {{ $product->category->slug ?? '' }}">
+                            <div class="col-sm-6 col-lg-4 py-3 all {{ $product->category->slug ?? '' }}">
                                 <div class="box">
-
                                     <div class="img-box">
                                         <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
                                     </div>
-
                                     <div class="detail-box">
                                         <h5>{{ $product->name }}</h5>
-
                                         <p>{{ $product->description }}</p>
-
                                         <div class="options">
                                             <h6>
                                                 {{ number_format($product->base_price_cents) }} đ
                                             </h6>
-
-
                                             {{-- Nút thêm sp --}}
-
                                             @if ($product->is_spicy)
                                                 <!-- Nút mở modal chọn cấp độ cay -->
                                                 <button type="button" class="btn-add-cart" data-toggle="modal"
@@ -66,12 +65,9 @@
                                             @endif
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-                        @endforeach
 
-                        @foreach ($products as $product)
                             @if ($product->is_spicy)
                                 <!-- Modal chọn cấp độ cay -->
                                 <div class="modal fade" id="spicyModal{{ $product->id }}" tabindex="-1"
@@ -105,7 +101,7 @@
                                                     <div class="col-md-7">
                                                         <h5 class="fw-bold text-center mb-4 text-danger">Một cấp/5 trái ớt
                                                         </h5>
-                                                        
+
                                                         <form action="{{ route('cart.add', $product->id) }}"
                                                             method="POST">
                                                             @csrf
@@ -150,8 +146,9 @@
 
                     </div>
                 </div>
-
-
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                {{ $products->appends(['category' => request('category')])->links() }}
             </div>
         </section>
 

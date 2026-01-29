@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -33,14 +32,12 @@ class User extends Authenticatable
         'loyalty_point'     => 'integer',
     ];
 
-    // Quan trọng: Laravel Auth tìm cột 'password' → map sang password_hash
-    public function getAuthPassword()
+     public function getAuthPassword()
     {
         return $this->password_hash;
     }
 
-    // Khi set $user->password = '123' → tự động hash vào password_hash
-    public function setPasswordAttribute($value)
+     public function setPasswordAttribute($value)
     {
         $this->attributes['password_hash'] = bcrypt($value);
     }
@@ -49,5 +46,12 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+ 
+    public function addresses()
+    {
+         
+        return $this->hasMany(Useraddresses::class, 'user_id', 'id');
     }
 }

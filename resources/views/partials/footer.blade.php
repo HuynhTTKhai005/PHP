@@ -1,182 +1,80 @@
-<footer class="bg1">
-    <div class="container p-t-40 p-b-70">
-        <div class="row">
-            <div class="col-sm-6 col-md-4 p-t-50">
-                <!-- - -->
-                <h4 class="txt13 m-b-33">
-                    Contact Us
-                </h4>
-
-                <ul class="m-b-70">
-                    <li class="txt14 m-b-14">
-                        <i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                        8th floor, 379 Hudson St, New York, NY 10018
-                    </li>
-
-                    <li class="txt14 m-b-14">
-                        <i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
-                        (+1) 96 716 6879
-                    </li>
-
-                    <li class="txt14 m-b-14">
-                        <i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
-                        contact@site.com
-                    </li>
-                </ul>
-
-                <!-- - -->
-                <h4 class="txt13 m-b-32">
-                    Opening Times
-                </h4>
-
-                <ul>
-                    <li class="txt14">
-                        09:30 AM – 11:00 PM
-                    </li>
-
-                    <li class="txt14">
-                        Every Day
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-sm-6 col-md-4 p-t-50">
-                <!-- - -->
-                <h4 class="txt13 m-b-33">
-                    Latest twitter
-                </h4>
-
-                <div class="m-b-25">
-                    <span class="fs-13 color2 m-r-5">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </span>
-                    <a href="#" class="txt15">
-                        @colorlib
-                    </a>
-
-                    <p class="txt14 m-b-18">
-                        Activello is a good option. It has a slider built into that displays the featured image in the
-                        slider.
-                        <a href="#" class="txt15">
-                            https://buff.ly/2zaSfAQ
-                        </a>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <!-- Cột 1: Logo và mô tả -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-logo">
+                        <i class="fas fa-pepper-hot"></i>
+                        Mỳ Cay <span>Hàn Quốc</span>
+                    </div>
+                    <p class="footer-about">
+                        Nhà hàng chuyên phục vụ các món mỳ cay Hàn Quốc chính hiệu với nhiều cấp độ cay.
+                        Chúng tôi cam kết mang đến trải nghiệm ẩm thực Hàn Quốc đích thực.
                     </p>
-
-                    <span class="txt16">
-                        21 Dec 2017
-                    </span>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
 
-                <div>
-                    <span class="fs-13 color2 m-r-5">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </span>
-                    <a href="#" class="txt15">
-                        @colorlib
-                    </a>
+                <!-- Cột 2: Liên kết nhanh -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h4 class="footer-title">Liên kết nhanh</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Thực đơn</a></li>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Đặt bàn</a></li>
+                        <li><a href="#">Khuyến mãi</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
 
-                    <p class="txt14 m-b-18">
-                        Activello is a good option. It has a slider built into that displays
-                        <a href="#" class="txt15">
-                            https://buff.ly/2zaSfAQ
-                        </a>
-                    </p>
+                <!-- Cột 3: Thông tin liên hệ -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="footer-title">Thông tin liên hệ</h4>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Đường Ẩm Thực, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone-alt"></i> (028) 1234 5678</p>
+                        <p><i class="fas fa-envelope"></i> info@mycayhanquoc.com</p>
+                        <p><i class="fas fa-clock"></i> Mở cửa: 9:00 - 22:00 hàng ngày</p>
+                    </div>
+                </div>
 
-                    <span class="txt16">
-                        21 Dec 2017
-                    </span>
+                <!-- Cột 4: Giờ mở cửa -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="footer-title">Giờ mở cửa</h4>
+                    <div class="footer-hours">
+                        <p><span class="day">Thứ 2 - Thứ 6:</span> <span>9:00 - 22:00</span></p>
+                        <p><span class="day">Thứ 7:</span> <span>9:00 - 23:00</span></p>
+                        <p><span class="day">Chủ nhật:</span> <span>9:00 - 22:00</span></p>
+                        <p><span class="day">Ngày lễ:</span> <span>10:00 - 21:00</span></p>
+                    </div>
+
+                    <h4 class="footer-title mt-4">Thanh toán</h4>
+                    <div class="footer-payment">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fas fa-qrcode"></i>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-sm-6 col-md-4 p-t-50">
-                <!-- - -->
-                <h4 class="txt13 m-b-38">
-                    Gallery
-                </h4>
-
-                <!-- Gallery footer -->
-                <div class="wrap-gallery-footer flex-w">
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-01.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-01.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-02.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-02.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-03.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-03.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-04.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-04.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-05.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-05.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-06.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-06.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-07.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-07.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-08.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-08.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-09.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-09.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-10.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-10.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-11.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-11.jpg" alt="GALLERY">
-                    </a>
-
-                    <a class="item-gallery-footer wrap-pic-w" href="assets/images/photo-gallery-12.jpg"
-                        data-lightbox="gallery-footer">
-                        <img src="assets/images/photo-gallery-thumb-12.jpg" alt="GALLERY">
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="end-footer bg2">
-        <div class="container">
-            <div class="flex-sb-m flex-w p-t-22 p-b-22">
-                <div class="p-t-5 p-b-5">
-                    <a href="#" class="fs-15 c-white"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a>
-                    <a href="#" class="fs-15 c-white"><i class="fa fa-facebook m-l-18"
-                            aria-hidden="true"></i></a>
-                    <a href="#" class="fs-15 c-white"><i class="fa fa-twitter m-l-18"
-                            aria-hidden="true"></i></a>
-                </div>
-
-                <div class="txt17 p-r-20 p-t-5 p-b-5">
-                    Copyright &copy; 2018 All rights reserved | This template is made with <i class="fa fa-heart"></i>
-                    by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            <!-- Phần bottom -->
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                        &copy; 2023 Nhà Hàng Mỳ Cay Hàn Quốc. All rights reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="#">Chính sách bảo mật</a> |
+                        <a href="#">Điều khoản sử dụng</a> |
+                        <a href="#">Sơ đồ trang</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>

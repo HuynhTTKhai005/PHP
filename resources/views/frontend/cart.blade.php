@@ -122,9 +122,9 @@
 
                     // VAT 10% tính trên tiền sau giảm
                     $vat = $afterDiscount * 0.1;
-
+                    $shippingFeeCents = $subtotalCents >= 200000 ? 0 : 30000;
                     // Tổng cộng cuối cùng
-                    $total = $afterDiscount + $vat;
+                    $total = $afterDiscount + $vat + $shippingFeeCents;
 
                     // Logic miễn phí ship (ví dụ: miễn phí từ 200.000đ trở lên)
                     $freeShipThreshold = 200000; // 200k

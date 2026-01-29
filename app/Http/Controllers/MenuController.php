@@ -4,17 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
-
+use Illuminate\Http\Request;
+ 
 class MenuController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
         $categories = Category::orderBy('id')->get();
-        $products = Product::with('category')
-            ->where('is_available', true)
-            ->get();
+        $query = Product::with('category')->where('is_available', true);
 
+        if ($request->has('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+         $products = $query->paginate(6);
         return view('frontend.menu', compact('categories', 'products'));
     }
 }

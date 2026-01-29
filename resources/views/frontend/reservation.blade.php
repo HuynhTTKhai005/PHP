@@ -1,13 +1,11 @@
 @extends('layouts.pato')
-    @include('partials.sidebar')
-
-@section('content')
  
+@section('content')
     <!-- Title Page -->
     <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
         style="background-image: url(assets/images/bg-title-page-02.jpg);">
         <h2 class="tit6 t-center">
-            Reservation
+            Đặt Bàn
         </h2>
     </section>
 
@@ -32,7 +30,7 @@
                             <div class="col-md-4">
                                 <!-- Date -->
                                 <span class="txt9">
-                                    Date
+                                    Ngày
                                 </span>
 
                                 <div class="wrap-inputdate pos-relative txt10 size12 bo2 bo-rad-10 m-t-3 m-b-23">
@@ -45,7 +43,7 @@
                             <div class="col-md-4">
                                 <!-- Time -->
                                 <span class="txt9">
-                                    Time
+                                    Giờ
                                 </span>
 
                                 <div class="wrap-inputtime size12 bo2 bo-rad-10 m-t-3 m-b-23">
@@ -104,7 +102,7 @@
                             <div class="col-md-4">
                                 <!-- Name -->
                                 <span class="txt9">
-                                    Name
+                                    Tên
                                 </span>
 
                                 <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
@@ -142,7 +140,7 @@
                         <div class="wrap-btn-booking flex-c-m m-t-6">
                             <!-- Button3 -->
                             <button type="submit" class="btn3 flex-c-m size13 txt11 trans-0-4">
-                                Book Table
+                                Đặt Bàn
                             </button>
                         </div>
                     </form>
@@ -167,7 +165,7 @@
 
                 <div class="size24 w-full-md p-t-40">
                     <h4 class="txt5 m-b-18">
-                        For Event Booking
+                        Đặt Sự Kiện
                     </h4>
 
                     <p class="size26">

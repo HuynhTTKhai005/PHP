@@ -1,42 +1,42 @@
 <header>
     <!-- Header desktop -->
-    <div class="wrap-menu-header gradient1 trans-0-4">
+    <div class="header_menu_wrap">
         <div class="container h-full">
-            <div class="wrap_header trans-0-3">
+            <div class="header_wrap ">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index">
-                        <img src="assets/images/icons/logo.png" alt="IMG-LOGO"
-                            data-logofixed="assets/images/icons/logo.png">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset('assets/images/icons/logo.png') }}" alt="Sincay Logo" height="60">
                     </a>
                 </div>
 
                 <!-- Menu -->
-                <div class="wrap_menu p-l-45 p-l-0-xl">
-                    <nav class="menu">
-                        <ul class="main_menu">
+                <div class="menu-wrapper">
+                    <nav class="nav-menu">
+                        <ul class="nav-list">
                             <li>
-                                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Home</a>
+                                <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">Trang
+                                    chủ</a>
                             </li>
 
                             <li>
-                                <a href="{{ url('menu') }}"
-                                    class="{{ request()->is('menu') ? 'active' : '' }}">Menu</a>
+                                <a href="{{ url('menu') }}" class="{{ request()->is('menu') ? 'active' : '' }}">Thực
+                                    đơn</a>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <a href="{{ url('reservation') }}"
-                                    class="{{ request()->is('reservation') ? 'active' : '' }}">Reservation</a>
-                            </li>
+                                    class="{{ request()->is('reservation') ? 'active' : '' }}">Đặt bàn</a>
+                            </li> --}}
 
                             <li>
                                 <a href="{{ url('gallery') }}"
-                                    class="{{ request()->is('gallery') ? 'active' : '' }}">Gallery</a>
+                                    class="{{ request()->is('gallery') ? 'active' : '' }}">Thư viện</a>
                             </li>
 
                             <li>
-                                <a href="{{ url('about') }}"
-                                    class="{{ request()->is('about') ? 'active' : '' }}">About</a>
+                                <a href="{{ url('about') }}" class="{{ request()->is('about') ? 'active' : '' }}">Giới
+                                    thiệu</a>
                             </li>
 
                             <li>
@@ -46,29 +46,28 @@
 
                             <li>
                                 <a href="{{ url('contact') }}"
-                                    class="{{ request()->is('contact') ? 'active' : '' }}">Contact</a>
+                                    class="{{ request()->is('contact') ? 'active' : '' }}">Liên hệ</a>
                             </li>
                         </ul>
 
                     </nav>
                 </div>
 
-                <!-- Social + User Login/Logout -->
-                <div class="social d-flex flex-l-m p-r-20">
+                <!--   Login/Logout -->
+                <div class="social d-flex ">
                     @auth
                         <!-- ĐÃ ĐĂNG NHẬP -->
-                        <div class="dropdown-user">
-                            <a href="javascript:void(0)" class="hlogin-btn dropdown-toggle-user" id="userDropdown"
-                                data-toggle="dropdown">
+                        <div class="usered">
+                            <a href="javascript:void(0)" class="login-btn" id="userDropdown" data-toggle="dropdown">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span
-                                    class="ml-2 d-none d-md-inline">{{ Auth::user()->full_name ?? Auth::user()->email }}</span>
+                                    class="me-2 d-none d-md-inline">{{ Auth::user()->full_name ?? Auth::user()->email }}</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <a class="dropdown-item text-black" href="{{ route('profile') }}">
                                     <i class="fa fa-user-edit"></i> Hồ sơ cá nhân
                                 </a>
-                                <a class="dropdown-item" href="{{ route('checkout') ?? '#' }}">
+                                <a class="dropdown-item text-black" href="{{ route('checkout') ?? '#' }}">
                                     <i class="fa fa-shopping-bag"></i> Đơn hàng của tôi
                                 </a>
                                 <div class="dropdown-divider"></div>
@@ -82,30 +81,29 @@
                         </div>
                     @else
                         <!-- CHƯA ĐĂNG NHẬP -->
-                        <a href="{{ route('login') }}" class="hlogin-btn">
+                        <a href="{{ route('login') }}" class="login-btn ">
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            <span class="ml-2 d-none d-md-inline">Đăng nhập</span>
+                            <span class="ms-2 d-none d-md-inline ">Đăng nhập</span>
                         </a>
                     @endauth
 
                     <!-- Giỏ hàng -->
-                    <div class="header-cart-wrapitem">
-                        <a href="{{ route('cart') }}" class="header-cart-item">
-                            <i class="bi bi-cart fs-20"></i>
+                    <div class="cart-wrapitem">
+                        <a href="{{ route('cart') }}" class="cart-hitem">
+                            <i class="bi bi-cart "></i>
 
                             @php
                                 $cartCount = collect(session('cart', []))->sum('quantity');
                             @endphp
 
                             @if ($cartCount > 0)
-                                <span class="header-cart-badge">
+                                <span class="cart-badge">
                                     {{ $cartCount }}
                                 </span>
                             @endif
                         </a>
                     </div>
 
-                    <button class="btn-show-sidebar m-l-33 trans-0-4"></button>
                 </div>
 
             </div>

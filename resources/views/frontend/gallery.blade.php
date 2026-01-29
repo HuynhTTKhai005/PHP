@@ -1,140 +1,167 @@
 @extends('layouts.pato')
 
-@include('partials.sidebar')
 
 @section('content')
-    <!-- Title Page -->
-    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
-        style="background-image: url(assets/images/bg-title-page-02.jpg);">
-        <h2 class="tit6 t-center">
-            Gallery
-        </h2>
+    <section class="titles text-center text-white"
+        style="background: url({{ asset('assets/images/bg-title-page-01.jpg') }}) center/cover no-repeat; min-height: 400px;">
+        <div class="container">
+            <h2 class="tit">Sincay Menu</h2>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="noodle-gallery-section">
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div class="noodle-gallery-filter">
+                <button class="noodle-gallery-filter-btn active">Tất Cả Ảnh</button>
+                <button class="noodle-gallery-filter-btn">Nội Thất</button>
+                <button class="noodle-gallery-filter-btn">Đồ Ăn</button>
+                <button class="noodle-gallery-filter-btn">Sự Kiện</button>
+                <button class="noodle-gallery-filter-btn">Khách VIP</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="noodle-gallery-grid">
+                <!-- Item 1 - Events & Guests -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-13.jpg" alt="Sự kiện nhà hàng" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-13.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 2 - Food -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-14.jpg" alt="Món mỳ cay" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-14.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 3 - Events -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-15.jpg" alt="Tiệc tối" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-15.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 4 - Food -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-16.jpg" alt="Món ăn Hàn Quốc" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-16.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 5 - Food -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-17.jpg" alt="Mỳ cay đặc biệt" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-17.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 6 - Interior & Guests -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-18.jpg" alt="Không gian nhà hàng" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-18.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 7 - Interior -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-19.jpg" alt="Nội thất hiện đại" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-19.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 8 - Interior -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-20.jpg" alt="Khu vực bếp" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-20.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 9 - Events -->
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/photo-gallery-21.jpg" alt="Sự kiện đặc biệt" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/photo-gallery-21.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Thêm một số ảnh để gallery phong phú hơn -->
+                <div class="noodle-gallery-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Món ăn đặc sắc" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+                            class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="noodle-gallery-item">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Không gian sang trọng" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+                            class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="noodle-gallery-pagination">
+                <a href="#" class="noodle-gallery-page active">1</a>
+                <a href="#" class="noodle-gallery-page">2</a>
+                <a href="#" class="noodle-gallery-page">3</a>
+            </div>
+        </div>
     </section>
 
 
 
-    <!-- Gallery -->
-    <div class="section-gallery p-t-118 p-b-100">
-        <div
-            class="wrap-label-gallery filter-tope-group size27 flex-w flex-sb-m m-l-r-auto flex-col-c-sm p-l-15 p-r-15 m-b-60">
-            <button class="label-gallery txt26 trans-0-4 is-actived" data-filter="*">
-                All Photo
-            </button>
+    <!-- Phiên bản có filter thật sự (nếu cần) -->
+    <div class="d-none">
+        <input type="radio" name="noodle-filter" id="noodle-radio-all" class="noodle-gallery-radio-filter" checked>
+        <input type="radio" name="noodle-filter" id="noodle-radio-interior" class="noodle-gallery-radio-filter">
+        <input type="radio" name="noodle-filter" id="noodle-radio-food" class="noodle-gallery-radio-filter">
+        <input type="radio" name="noodle-filter" id="noodle-radio-events" class="noodle-gallery-radio-filter">
+        <input type="radio" name="noodle-filter" id="noodle-radio-guests" class="noodle-gallery-radio-filter">
 
-            <button class="label-gallery txt26 trans-0-4" data-filter=".interior">
-                Interior
-            </button>
-
-            <button class="label-gallery txt26 trans-0-4" data-filter=".food">
-                Food
-            </button>
-
-            <button class="label-gallery txt26 trans-0-4" data-filter=".events">
-                Events
-            </button>
-
-            <button class="label-gallery txt26 trans-0-4" data-filter=".guests">
-                Vip guests
-            </button>
-        </div>
-
-        <div class="wrap-gallery isotope-grid flex-w p-l-25 p-r-25">
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom events guests">
-                <img src="assets/images/photo-gallery-13.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-13.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom food">
-                <img src="assets/images/photo-gallery-14.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-14.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom events">
-                <img src="assets/images/photo-gallery-15.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-15.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom food">
-                <img src="assets/images/photo-gallery-16.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-16.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom food">
-                <img src="assets/images/photo-gallery-17.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-17.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom interior guests">
-                <img src="assets/images/photo-gallery-18.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-18.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom interior">
-                <img src="assets/images/photo-gallery-19.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-19.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom interior">
-                <img src="assets/images/photo-gallery-20.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-20.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-
-            <!-- - -->
-            <div class="item-gallery isotope-item bo-rad-10 hov-img-zoom events">
-                <img src="assets/images/photo-gallery-21.jpg" alt="IMG-GALLERY">
-
-                <div class="overlay-item-gallery trans-0-4 flex-c-m">
-                    <a class="btn-show-gallery flex-c-m fa fa-search" href="assets/images/photo-gallery-21.jpg"
-                        data-lightbox="gallery"></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="pagination flex-c-m flex-w p-l-15 p-r-15 m-t-24 m-b-50">
-            <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-            <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
-            <a href="#" class="item-pagination flex-c-m trans-0-4">3</a>
+        <div class="noodle-gallery-filter">
+            <label for="noodle-radio-all" class="noodle-filter-label noodle-gallery-filter-btn">Tất Cả Ảnh</label>
+            <label for="noodle-radio-interior" class="noodle-filter-label noodle-gallery-filter-btn">Nội Thất</label>
+            <label for="noodle-radio-food" class="noodle-filter-label noodle-gallery-filter-btn">Đồ Ăn</label>
+            <label for="noodle-radio-events" class="noodle-filter-label noodle-gallery-filter-btn">Sự Kiện</label>
+            <label for="noodle-radio-guests" class="noodle-filter-label noodle-gallery-filter-btn">Khách VIP</label>
         </div>
     </div>
-    @include('partials.signup')
 @endsection

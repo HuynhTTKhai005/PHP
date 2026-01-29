@@ -29,7 +29,7 @@ class RoleSeeder extends Seeder
 
         foreach ($roles as $roleData) {
             Role::updateOrCreate(
-                ['name' => $roleData['name']], // Nếu role đã tồn tại thì không tạo mới
+                ['name' => $roleData['name']],  
                 $roleData
             );
         }

@@ -13,7 +13,7 @@ class CouponSeeder extends Seeder
             'code' => 'GIAM50K',
             'description' => 'Giảm 50.000đ cho đơn từ 300.000đ',
             'discount_type' => 'fixed',
-            'discount_value' => 500000,  
+            'discount_value' => 50000,  
             'min_order_total_amount_cents' => 300000,  
             'max_discount_amount_cents' => null,
             'usage_limit' => 100,

@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             return;
         }
 
-    
+
 
         // === TÀI KHOẢN STAFF (Nhân viên) ===
         User::updateOrCreate(
@@ -73,10 +73,22 @@ class UserSeeder extends Seeder
                     'password_hash' => Hash::make('123456'),
                     'is_active'     => true,
                     'role_id'       => $customerRole->id,
-                    'loyalty_point' => 100 * ($index + 1),  
+                    'loyalty_point' => 100 * ($index + 1),
                 ]
             );
-        }
+        } // === TÀI KHOẢN ADMIN ===
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'full_name'     => 'Quản trị viên',
+                'email'         => 'admin@example.com',
+                'phone'         => '0901112223',
+                'password_hash' => Hash::make('123456'),
+                'is_active'     => true,
+                'role_id'       => $adminRole->id,
+                'loyalty_point' => 0,
+            ]
+        );
 
         $this->command->info('UserSeeder hoàn thành! Tạo 1 admin, 2 staff, 5 customer.');
     }

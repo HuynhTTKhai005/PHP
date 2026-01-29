@@ -67,6 +67,15 @@ class DashboardController extends Controller
             ? round((($newCustomersThisMonth - $previousMonthCustomers) / $previousMonthCustomers) * 100, 1)
             : ($newCustomersThisMonth > 0 ? 100 : 0);
 
+        $top_products = \App\Models\Product::limit(5)->get();
+
+
+        $customerRole = \App\Models\Role::where('name', 'customer')->first();
+
+        $recent_customers = \App\Models\User::where('role_id', $customerRole->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(5)
+            ->get();
         // Đơn hàng gần đây
         $recent_orders = Order::orderBy('created_at', 'desc')
             ->limit(8)
@@ -93,10 +102,12 @@ class DashboardController extends Controller
             'totalOrdersThisMonth',
             'ordersGrowth',
             'recent_orders',
+            'top_products',
+            'recent_customers',
             // 'newCustomersThisMonth',
             // 'customersGrowth',
-            'monthDisplay'
-
+            'monthDisplay',
+            'top_products'
         ));
     }
 }

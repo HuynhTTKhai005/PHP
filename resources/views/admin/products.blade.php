@@ -163,8 +163,8 @@
                                 <td>
                                     <div class="product-info">
                                         <div class="product-image">
-                                            @if ($product->images->first())
-                                                <img src="{{ asset('images->images->first()->path) }}"
+                                            @if ($product->images?->first())
+                                                <img src="{{ asset(images->images->first()->path) }}"
                                                     alt="{{ $product->name }}">
                                             @else
                                                 <i class="fas fa-box"></i>
@@ -177,7 +177,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="category-badge">{{ $product->category?->name ?? 'Chưa có' }}</span>
+                                    <span
+                                        class="category-badge">{{ $product->category?->name ?? 'Không có danh mục' }}</span>
                                 </td>
                                 <td class="price">{{ number_format($product->price, 0, ',', '.') }}đ</td>
                                 <td>
@@ -337,7 +338,7 @@
         });
 
         function editProduct(id) {
-            alert('Chức năng chỉnh sửa sẽ được mở (cần AJAX hoặc route edit riêng)');
+            alert('Chức năng chỉnh sửa chờ)');
         }
 
         function closeModal() {

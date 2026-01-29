@@ -1,148 +1,111 @@
-@extends('layouts.pato')    @include('partials.sidebar')
+@extends('layouts.pato')
 
 @section('content')
-    
-
-
-    <!-- Title Page -->
-    <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
-        style="background-image: url(assets/images/bg-title-page-02.jpg);">
-        <h2 class="tit6 t-center">
-            Contact
-        </h2>
+    <!-- Phần Header với tiêu đề -->
+    <section class="titles text-center text-white"
+        style="background:   url({{ asset('assets/images/bg-title-page-01.jpg') }}) center/cover no-repeat; min-height: 400px;">
+        <div class="container">
+            <h2 class="tit">Sincay Menu</h2>
+        </div>
     </section>
 
-
-
-    <!-- Contact form -->
-    <section class="section-contact bg1-pattern p-t-90 p-b-113">
-        <!-- Map -->
+    <!-- Phần chính với map và form liên hệ -->
+    <section class="spicy-contact-section">
         <div class="container">
-            <div class="map bo8 bo-rad-10 of-hidden">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29804.32622626954!2d106.64019445!3d10.7750359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ea144839ef1%3A0x798819bdcd0522b0!2zQ2FvIMSQ4bqzbmcgQ8O0bmcgTmdo4buHIFRow7RuZyBUaW4gVFAuSENN!5e1!3m2!1svi!2s!4v1765330404359!5m2!1svi!2s"
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-             </div>
-        </div>
-        </div>
+            <!-- Google Maps -->
+            <div class="spicy-map-container">
+                <div class="spicy-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29804.32622626954!2d106.64019445!3d10.7750359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ea144839ef1%3A0x798819bdcd0522b0!2zQ2FvIMSQ4bqzbmcgQ8O0bmcgTmdo4buHIFRow7RuZyBUaW4gVFAuSENN!5e1!3m2!1svi!2s!4v1765330404359!5m2!1svi!2s"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
 
-        <div class="container">
-            <h3 class="tit7 t-center p-b-62 p-t-105">
-                Send us a Message
+            <!-- Tiêu đề form -->
+            <h3 class="spicy-section-title">
+                Gửi Tin Nhắn Cho Chúng Tôi
             </h3>
 
-            <form class="wrap-form-reservation size22 m-l-r-auto">
-                <div class="row">
+            <!-- Form liên hệ -->
+            <div class="spicy-form-container">
+                <form class="row g-4">
                     <div class="col-md-4">
-                        <!-- Name -->
-                        <span class="txt9">
-                            Name
-                        </span>
-
-                        <div class="wrap-inputname size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                            <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="name" placeholder="Name">
-                        </div>
+                        <label class="spicy-form-label">Tên</label>
+                        <input class="spicy-form-input" type="text" name="name" placeholder="Nhập tên của bạn">
                     </div>
 
                     <div class="col-md-4">
-                        <!-- Email -->
-                        <span class="txt9">
-                            Email
-                        </span>
-
-                        <div class="wrap-inputemail size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                            <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="email"
-                                placeholder="Email">
-                        </div>
+                        <label class="spicy-form-label">Email</label>
+                        <input class="spicy-form-input" type="email" name="email" placeholder="Nhập địa chỉ email">
                     </div>
 
                     <div class="col-md-4">
-                        <!-- Phone -->
-                        <span class="txt9">
-                            Phone
-                        </span>
-
-                        <div class="wrap-inputphone size12 bo2 bo-rad-10 m-t-3 m-b-23">
-                            <input class="bo-rad-10 sizefull txt10 p-l-20" type="text" name="phone"
-                                placeholder="Phone">
-                        </div>
+                        <label class="spicy-form-label">Điện Thoại</label>
+                        <input class="spicy-form-input" type="text" name="phone" placeholder="Nhập số điện thoại">
                     </div>
 
                     <div class="col-12">
-                        <!-- Message -->
-                        <span class="txt9">
-                            Message
-                        </span>
-                        <textarea class="bo-rad-10 size35 bo2 txt10 p-l-20 p-t-15 m-b-10 m-t-3" name="message" placeholder="Message"></textarea>
+                        <label class="spicy-form-label">Tin Nhắn</label>
+                        <textarea class="spicy-form-textarea" name="message" placeholder="Nhập nội dung tin nhắn"></textarea>
                     </div>
-                </div>
 
-                <div class="wrap-btn-booking flex-c-m m-t-13">
-                    <!-- Button3 -->
-                    <button type="submit" class="btn3 flex-c-m size36 txt11 trans-0-4">
-                        Submit
-                    </button>
-                </div>
-            </form>
+                    <div class="col-12 text-center">
+                        <button type="submit" class="spicy-btn-submit">
+                            <i class="fas fa-paper-plane me-2"></i> Gửi Tin Nhắn
+                        </button>
+                    </div>
+                </form>
+            </div>
 
-            <div class="row p-t-135">
-                <div class="col-sm-8 col-md-4 col-lg-4 m-l-r-auto p-t-30">
-                    <div class="dis-flex m-l-23">
-                        <div class="p-r-40 p-t-6">
-                            <img src="assets/images/icons/map-icon.png" alt="IMG-ICON">
-                        </div>
-
-                        <div class="flex-col-l">
-                            <span class="txt5 p-b-10">
-                                Location
-                            </span>
-
-                            <span class="txt23 size38">
-                                8th floor, 379 Hudson St, New York, NY 10018
-                            </span>
+            <!-- Thông tin liên hệ -->
+            <div class="spicy-info-container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="spicy-info-box">
+                            <div class="spicy-info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="spicy-info-title">Địa Điểm</h4>
+                                <p class="spicy-info-text">
+                                    123 Đường Ẩm Thực, Quận 1<br>
+                                    Thành phố Hồ Chí Minh, Việt Nam
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-8 col-md-3 col-lg-4 m-l-r-auto p-t-30">
-                    <div class="dis-flex m-l-23">
-                        <div class="p-r-40 p-t-6">
-                            <img src="assets/images/icons/phone-icon.png" alt="IMG-ICON">
-                        </div>
-
-
-                        <div class="flex-col-l">
-                            <span class="txt5 p-b-10">
-                                Call Us
-                            </span>
-
-                            <span class="txt23 size38">
-                                (+1) 96 716 6879
-                            </span>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="spicy-info-box">
+                            <div class="spicy-info-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="spicy-info-title">Gọi Cho Chúng Tôi</h4>
+                                <p class="spicy-info-text">
+                                    (+84) 28 1234 5678<br>
+                                    (+84) 909 123 456
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-8 col-md-5 col-lg-4 m-l-r-auto p-t-30">
-                    <div class="dis-flex m-l-23">
-                        <div class="p-r-40 p-t-6">
-                            <img src="assets/images/icons/clock-icon.png" alt="IMG-ICON">
-                        </div>
-
-
-                        <div class="flex-col-l">
-                            <span class="txt5 p-b-10">
-                                Opening Hours
-                            </span>
-
-                            <span class="txt23 size38">
-                                09:30 AM – 11:00 PM <br />Every Day
-                            </span>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="spicy-info-box">
+                            <div class="spicy-info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="spicy-info-title">Giờ Mở Cửa</h4>
+                                <p class="spicy-info-text">
+                                    Thứ 2 - Thứ 6: 9:00 - 22:00<br>
+                                    Thứ 7 & CN: 9:00 - 23:00
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-@endsection
+    @endsection
