@@ -123,11 +123,21 @@ class CartController extends Controller
         return back()->with('success', 'Đã xóa mã giảm giá!');
     }
 
+
+
+
+
+
+
+
+
+
     // Helper tính tạm tính (subtotal)
     private function calculateSubtotal()
     {
         $cart = session('cart', []);
         $total = 0;
+
         foreach ($cart as $item) {
             $total += $item['base_price_cents'] * $item['quantity'];
         }
@@ -143,18 +153,16 @@ class CartController extends Controller
         if ($coupon = session('coupon')) {
             if ($coupon->discount_type === 'percent') {
                 $discountCents = ($subtotalCents * $coupon->discount_value) / 100;
-            } else { // fixed
+            } else {
                 $discountCents = $coupon->discount_value;
             }
-            // Không giảm quá tổng tiền
             if ($discountCents > $subtotalCents) {
                 $discountCents = $subtotalCents;
             }
         }
-
-        $afterDiscount = $subtotalCents - $discountCents;
+         $afterDiscount = $subtotalCents - $discountCents;
         $vatCents = $afterDiscount * 10 / 100; // VAT 10%
-        $totalCents = $afterDiscount + $vatCents;
+        $totalCents = $afterDiscount + $vatCents ;
 
         return [
             'subtotal'  => $subtotalCents / 100,

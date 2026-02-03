@@ -1,157 +1,177 @@
     @extends('layouts.pato')
 
     @section('title', 'Menu - Pato Restaurant')
-    @include('partials.sidebar')
 
     @section('content')
         <!-- Title Page -->
-        <section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15"
-            style="background-image: url(assets/images/bg-title-page-01.jpg);">
-            <h2 class="tit6 t-center">
-                Pato Menu
-            </h2>
+        <section class="titles text-center text-white"
+            style="background:   url({{ asset('assets/images/bg-title-page-01.jpg') }}) center/cover no-repeat; min-height: 400px;">
+            <div class="container">
+                <h2 class="tit">Sincay Menu</h2>
+            </div>
         </section>
+
+
         <section class="food_section layout_padding ">
             <div class="container ">
-
-
+                <div class="row justify-content-center mb-5">
+                    <div class="col-md-6">
+                        <form action="{{ route('menu') }}" method="GET" class="d-flex">
+                            <div class="input-group">
+                                <input type="text" name="search" class="form-control rounded-pill px-4"
+                                    placeholder="Bạn muốn ăn gì hôm nay? (Ví dụ: Mì cay)" value="{{ request('search') }}"
+                                    style="border: 1px solid #ced4da; height: 50px;">
+                                <button class="btn btn-warning rounded-pill ms-2 text-white px-4" type="submit"
+                                    style="background-color: #d63031; border: none;">
+                                    <i class="fas fa-search"></i> Tìm
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <ul class="filters_menu">
+                    <li class="{{ !request('category') ? 'active' : '' }}">
+                        <a href="{{ route('menu') }}">Tất cả</a>
+                    </li>
                     @foreach ($categories as $category)
-                        @php
-                            $active = $category->slug == 'all' ? 'active' : '';
-                            $data_filter = $category->slug == 'all' ? '*' : '.' . $category->slug;
-                        @endphp
-                        <li class="{{ $active }}" data-filter="{{ $data_filter }}">{{ $category->name }}</li>
+                        <li class="{{ request('category') == $category->slug ? 'active' : '' }}">
+                            <a href="{{ route('menu', ['category' => $category->slug]) }}">
+                                @if ($category->icon)
+                                    <i class="{{ $category->icon }}"></i>
+                                @endif
+                                {{ $category->name }}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
 
                 <div class="filters-content">
-                    <div class="row grid">
+                    @if ($products->isEmpty())
+                        <div class="row">
+                            <div class="col-12 text-center"
+                                style="min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
 
-                        @foreach ($products as $product)
-                            <div class="col-sm-6 col-lg-4 all {{ $product->category->slug ?? '' }}">
-                                <div class="box">
+                                <div class="mb-4">
+                                    <i class="fas fa-search fa-4x text-muted" style="opacity: 0.3;"></i>
+                                </div>
 
-                                    <div class="img-box">
-                                        <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
-                                    </div>
+                                <h3 class="text-muted mb-4" style="font-weight: 300;">
+                                    Không tìm thấy món nào phù hợp với từ khóa <br>
+                                    <span class="text-danger fw-bold"
+                                        style="font-size: 1.5rem;">"{{ request('search') }}"</span>
+                                </h3>
 
-                                    <div class="detail-box">
-                                        <h5>{{ $product->name }}</h5>
+                                <p class="text-muted mb-5">
+                                    Thử tìm kiếm với từ khóa khác hoặc quay lại xem toàn bộ thực đơn hấp dẫn của chúng tôi.
+                                </p>
 
-                                        <p>{{ $product->description }}</p>
+                                <a href="{{ route('menu') }}" class="btn btn-danger rounded-pill px-5 py-3 shadow-lg"
+                                    style="background-color: #d63031; border: none; min-width: 250px;">
+                                    <i class="fas fa-undo-alt me-2"></i> Quay lại thực đơn
+                                </a>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row grid">
+                            @foreach ($products as $product)
+                                <div class="col-sm-6 col-lg-4 py-3 all {{ $product->category->slug ?? '' }}">
+                                    <div class="box">
+                                        <div class="img-box">
+                                            <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
+                                        </div>
+                                        <div class="detail-box">
+                                            <h5>{{ $product->name }}</h5>
+                                            <p>{{ $product->description }}</p>
+                                            <div class="options">
+                                                <h6>{{ number_format($product->base_price_cents) }} đ</h6>
 
-                                        <div class="options">
-                                            <h6>
-                                                {{ number_format($product->base_price_cents) }} đ
-                                            </h6>
-
-
-                                            {{-- Nút thêm sp --}}
-
-                                            @if ($product->is_spicy)
-                                                <!-- Nút mở modal chọn cấp độ cay -->
-                                                <button type="button" class="btn-add-cart" data-toggle="modal"
-                                                    data-target="#spicyModal{{ $product->id }}">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            @else
-                                                <!-- Món thường – thêm thẳng -->
-                                                <form action="{{ route('cart.add', $product->id) }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn-add-cart">
+                                                @if ($product->is_spicy)
+                                                    <button type="button" class="btn-add-cart" data-toggle="modal"
+                                                        data-target="#spicyModal{{ $product->id }}">
                                                         <i class="fas fa-cart-plus"></i>
                                                     </button>
-                                                </form>
-                                            @endif
+                                                @else
+                                                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn-add-cart">
+                                                            <i class="fas fa-cart-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
-                            </div>
-                        @endforeach
 
-                        @foreach ($products as $product)
-                            @if ($product->is_spicy)
-                                <!-- Modal chọn cấp độ cay -->
-                                <div class="modal fade" id="spicyModal{{ $product->id }}" tabindex="-1"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                        <div class="modal-content overflow-hidden border-0 shadow-lg">
-                                            <!-- Header đỏ nổi bật -->
-                                            <div class="modal-header bg-gradient-danger text-orange-500 py-4">
-                                                <h4 class="modal-title fw-bold m-0">
-                                                    <i class="fas fa-pepper-hot me-2"></i> Chọn cấp độ cay
-                                                </h4>
-                                                <button type="button" class="btn-close btn-close-white"
-                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-
-                                            <div class="modal-body py-5 bg-light">
-                                                <div class="row g-4">
-                                                    <!-- Cột trái: Ảnh + thông tin món -->
-                                                    <div class="col-md-5 text-center">
-                                                        <img src="{{ asset($product->image_url) }}"
-                                                            class="img-fluid rounded-4 shadow-sm"
-                                                            style="max-height: 280px; object-fit: cover;">
-                                                        <h3 class="mt-4 mb-2 fw-bold">{{ $product->name }}</h3>
-                                                        <p class="text-muted mb-3">{{ $product->description }}</p>
-                                                        <h4 class="text-danger fw-bold">
-                                                            {{ number_format($product->base_price_cents) }}đ
-                                                        </h4>
-                                                    </div>
-
-                                                    <!-- Cột phải: Chọn cấp độ cay -->
-                                                    <div class="col-md-7">
-                                                        <h5 class="fw-bold text-center mb-4 text-danger">Một cấp/5 trái ớt
-                                                        </h5>
-                                                        
-                                                        <form action="{{ route('cart.add', $product->id) }}"
-                                                            method="POST">
-                                                            @csrf
-
-                                                            <div
-                                                                class="spicy-levels d-flex flex-column justify-content-start   ">
-                                                                @for ($i = 0; $i <= 7; $i++)
-                                                                    <div class="text-start   ">
-                                                                        <input class="btn-check " type="radio"
-                                                                            name="spicy_level"
-                                                                            id="level{{ $product->id }}_{{ $i }}"
-                                                                            value="{{ $i }}"
-                                                                            {{ $i == 3 ? 'checked' : '' }}>
-
-                                                                        <label class="btn spicy-btn "
-                                                                            for="level{{ $product->id }}_{{ $i }}">
-                                                                            <div class="fw-bold fs-20">Cấp
-                                                                                {{ $i }}
-                                                                            </div>
-                                                                        </label>
-                                                                    </div>
-                                                                    <hr>
-                                                                @endfor
-                                                            </div>
-
-                                                            <div class="text-center">
-                                                                <button type="submit"
-                                                                    class="btn btn-danger btn-lg px-5 py-3 rounded-pill shadow">
-                                                                    <i class="fas fa-cart-plus me-2"></i>
-                                                                    Thêm vào giỏ hàng
-                                                                </button>
-                                                            </div>
-                                                        </form>
+                                @if ($product->is_spicy)
+                                    <div class="modal fade" id="spicyModal{{ $product->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content overflow-hidden border-0 shadow-lg">
+                                                <div class="modal-header bg-gradient-danger text-orange-500 py-4">
+                                                    <h4 class="modal-title fw-bold m-0">
+                                                        <i class="fas fa-pepper-hot me-2"></i> Chọn cấp độ cay
+                                                    </h4>
+                                                    <button type="button" class="btn-close btn-close-white"
+                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body py-5 bg-light">
+                                                    <div class="row g-4">
+                                                        <div class="col-md-5 text-center">
+                                                            <img src="{{ asset($product->image_url) }}"
+                                                                class="img-fluid rounded-4 shadow-sm"
+                                                                style="max-height: 280px; object-fit: cover;">
+                                                            <h3 class="mt-4 mb-2 fw-bold">{{ $product->name }}</h3>
+                                                            <p class="text-muted mb-3">{{ $product->description }}</p>
+                                                            <h4 class="text-danger fw-bold">
+                                                                {{ number_format($product->base_price_cents) }}đ</h4>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <h5 class="fw-bold text-center mb-4 text-danger">Một cấp/5 trái
+                                                                ớt</h5>
+                                                            <form action="{{ route('cart.add', $product->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div
+                                                                    class="spicy-levels d-flex flex-column justify-content-start">
+                                                                    @for ($i = 0; $i <= 7; $i++)
+                                                                        <div class="text-start">
+                                                                            <input class="btn-check" type="radio"
+                                                                                name="spicy_level"
+                                                                                id="level{{ $product->id }}_{{ $i }}"
+                                                                                value="{{ $i }}"
+                                                                                {{ $i == 3 ? 'checked' : '' }}>
+                                                                            <label class="btn spicy-btn"
+                                                                                for="level{{ $product->id }}_{{ $i }}">
+                                                                                <div class="fw-bold fs-20">Cấp
+                                                                                    {{ $i }}</div>
+                                                                            </label>
+                                                                        </div>
+                                                                        <hr>
+                                                                    @endfor
+                                                                </div>
+                                                                <div class="text-center">
+                                                                    <button type="submit"
+                                                                        class="btn btn-danger btn-lg px-5 py-3 rounded-pill shadow">
+                                                                        <i class="fas fa-cart-plus me-2"></i> Thêm vào giỏ
+                                                                        hàng
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
-                        @endforeach
-
-                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
-
-
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                {{ $products->appends(request()->query())->links() }}
             </div>
         </section>
 

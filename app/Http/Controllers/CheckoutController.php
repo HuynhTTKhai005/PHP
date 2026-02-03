@@ -93,7 +93,7 @@ class CheckoutController extends Controller
         $coupon = session('coupon');
         if ($coupon) {
             if ($coupon->discount_type === 'percent') {
-                $discountCents = ($subtotalCents * $coupon->discount_value);
+                $discountCents = ($subtotalCents * $coupon->discount_value) / 100;
                 if ($coupon->max_discount_amount_cents) {
                     $discountCents = min($discountCents, $coupon->max_discount_amount_cents);
                 }

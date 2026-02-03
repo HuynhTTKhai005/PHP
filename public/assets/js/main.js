@@ -197,32 +197,29 @@ $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", funct
 
 
 
-})(jQuery);
+})(jQuery);/*[ Isotope Init ]
+===========================================================*/
 function initIsotope() {
-    // Chỉ chạy nếu trang có class .filters_menu (trang Menu)
-    if ($('.filters_menu').length > 0) {
+    $(window).on('load', function () {
         var $grid = $('.grid').isotope({
             itemSelector: '.all',
+            layoutMode: 'fitRows',
             percentPosition: true,
-            layoutMode: 'fitRows' // hoặc 'masonry' nếu muốn kiểu Pinterest
-        });
-
-        // Filter khi click
-        $('.filters_menu').on('click', 'li', function () {
-            var filterValue = $(this).attr('data-filter');
-            $grid.isotope({ filter: filterValue });
-
-            // Active class
-            $('.filters_menu li').removeClass('active');
-            $(this).addClass('active');
-        });
-
-        // Active mặc định cho "All"
-        $('.filters_menu li.active').trigger('click');
-    }
+         });
+    });
 }
 
-// Gọi hàm khi DOM ready (nếu dùng cách 1)
+// Kiểm tra và load Isotope một lần duy nhất
+$(document).ready(function () {
+    if (typeof $.fn.isotope !== 'function') {
+        $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", function () {
+            initIsotope();
+        });
+    } else {
+        initIsotope();
+    }
+});
+// Chạy khi DOM ready
 $(document).ready(function () {
     initIsotope();
 });
