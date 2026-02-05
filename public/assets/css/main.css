@@ -2633,9 +2633,8 @@ p {
 
 /* Gallery Grid - Masonry Layout */
 .noodle-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    display: flex;
+     gap: 20px;
     padding: 0 15px;
     margin-bottom: 60px;
 }
@@ -3267,9 +3266,7 @@ p {
     border-radius: 10px !important;
 }
 
-.parallax100 {
-    background-attachment: fixed !important;
-}
+ 
 
 /* Responsive Styles */
 @media (max-width: 768px) {
