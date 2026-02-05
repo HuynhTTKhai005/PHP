@@ -19,7 +19,7 @@
             <div class="carousel-inner">
                 <!-- Slide 1 -->
                 <div class="carousel-item active"
-                    style="background-image: url('{{ asset('assets/images/slide1-01.jpg') }}'); min-height: 80vh; background-size: cover; background-position: center;">
+                    style="background-image: url('{{ asset('assets/images/slide_1.jpg') }}'); min-height: 80vh; background-size: cover; background-position: center;">
                     <div
                         class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 text-center text-white">
                         <span class="hero-subtitle h3 mb-3 animate__animated animate__fadeInDown">Chào mừng đến với</span>
@@ -31,7 +31,7 @@
 
                 <!-- Slide 2 -->
                 <div class="carousel-item"
-                    style="background-image: url('{{ asset('assets/images/master-slides-02.jpg') }}'); min-height: 80vh; background-size: cover; background-position: center;">
+                    style="background-image: url('{{ asset('assets/images/slide_2.png') }}'); min-height: 80vh; background-size: cover; background-position: center;">
                     <div
                         class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 text-center text-white">
                         <span class="hero-subtitle h3 mb-3 animate__animated animate__rollIn">Chào mừng đến với</span>
@@ -44,7 +44,7 @@
 
                 <!-- Slide 3 -->
                 <div class="carousel-item"
-                    style="background-image: url('{{ asset('assets/images/master-slides-01.jpg') }}'); min-height: 80vh; background-size: cover; background-position: center;">
+                    style="background-image: url('{{ asset('assets/images/slide_3.png') }}'); min-height: 80vh; background-size: cover; background-position: center;">
                     <div
                         class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 text-center text-white">
                         <span class="hero-subtitle h3 mb-3 animate__animated animate__rotateInDownLeft">Chào mừng đến
@@ -76,11 +76,11 @@
                 <div class="col-lg-6 order-lg-1 order-2 py-4">
                     <div class="wrap-text-welcome text-center text-lg-start">
                         <span class="d-block fs-1 fw-bold text-uppercase mb-2">
-                            Nhà Hàng Ý
+                            Nhà Hàng Sincay
                         </span>
 
                         <h3 class="display-4 fw-bold mb-4">
-                            Chào Mừng
+                            Mì Cay Hàn Quốc
                         </h3>
 
                         <p class="lead mb-4">
@@ -97,7 +97,7 @@
 
                 <div class="col-lg-6 order-lg-2 order-1 py-4">
                     <div class="wrap-pic-welcome overflow-hidden rounded-3">
-                        <img src="assets/images/our-story-01.jpg" alt="IMG-OUR" class="img-fluid   object-fit-cover">
+                        <img src="assets/images/story_1.jpg" alt="IMG-OUR" class="img-fluid   object-fit-cover">
                     </div>
                 </div>
             </div>
@@ -106,8 +106,7 @@
 
     <!-- Intro -->
     <section class="section-intro">
-        <div class="header-intro parallax100 text-center py-5"
-            style="background-image: url(assets/images/bg-intro-01.jpg);">
+        <div class="header-intro parallax100 text-center py-5" style="background-image: url(assets/images/bgintro.png);">
             <span class="tit2 px-3">
                 Khám phá
             </span>
@@ -124,7 +123,7 @@
                         <!-- Block1 -->
                         <div class="blo1">
                             <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden">
-                                <a href="#"><img src="assets/images/intro-01.jpg" alt="IMG-INTRO"
+                                <a href="#"><img src="assets/images/intro_1.png" alt="IMG-INTRO"
                                         class="img-fluid w-100"></a>
                             </div>
 
@@ -151,7 +150,7 @@
                         <!-- Block1 -->
                         <div class="blo1">
                             <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden">
-                                <a href="#"><img src="assets/images/intro-02.jpg" alt="IMG-INTRO"
+                                <a href="#"><img src="assets/images/intro_3.jpg" alt="IMG-INTRO"
                                         class="img-fluid w-100"></a>
                             </div>
 
@@ -178,7 +177,7 @@
                         <!-- Block1 -->
                         <div class="blo1">
                             <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden">
-                                <a href="#"><img src="assets/images/intro-04.jpg" alt="IMG-INTRO"
+                                <a href="#"><img src="assets/images/intro_3.png" alt="IMG-INTRO"
                                         class="img-fluid w-100"></a>
                             </div>
 
@@ -205,92 +204,6 @@
         </div>
     </section>
 
-    <!-- Our menu -->
-    {{-- <section class="section-ourmenu bg2-pattern py-5">
-    <div class="container">
-        <div class="title-section-ourmenu text-center mb-4">
-            <span class="tit2 text-center">
-                Khám phá
-            </span>
-
-            <h3 class="tit5 text-center mt-1">
-                Menu của chúng tôi
-            </h3>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-8">
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <!-- Item our menu -->
-                        <div class="item-ourmenu bo-rad-10 position-relative">
-                            <img src="assets/images/our-menu-01.jpg" alt="IMG-MENU" class="img-fluid w-100">
-
-                            <!-- Button2 -->
-                            <a href="#" class="btn2 d-flex justify-content-center align-items-center txt5">
-                                Bữa Trưa
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <!-- Item our menu -->
-                        <div class="item-ourmenu bo-rad-10 position-relative">
-                            <img src="assets/images/our-menu-05.jpg" alt="IMG-MENU" class="img-fluid w-100">
-
-                            <!-- Button2 -->
-                            <a href="#" class="btn2 d-flex justify-content-center align-items-center txt5">
-                                Bữa tối
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <!-- Item our menu -->
-                        <div class="item-ourmenu bo-rad-10 position-relative">
-                            <img src="assets/images/our-menu-13.jpg" alt="IMG-MENU" class="img-fluid w-100">
-
-                            <!-- Button2 -->
-                            <a href="#" class="btn2 d-flex justify-content-center align-items-center txt5">
-                                Giờ Vui Vẻ
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="row g-4">
-                    <div class="col-12">
-                        <!-- Item our menu -->
-                        <div class="item-ourmenu bo-rad-10 position-relative">
-                            <img src="assets/images/our-menu-08.jpg" alt="IMG-MENU" class="img-fluid w-100">
-
-                            <!-- Button2 -->
-                            <a href="#" class="btn2 d-flex justify-content-center align-items-center txt5">
-                                Đồ Uống
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <!-- Item our menu -->
-                        <div class="item-ourmenu bo-rad-10 position-relative">
-                            <img src="assets/images/our-menu-10.jpg" alt="IMG-MENU" class="img-fluid w-100">
-
-                            <!-- Button2 -->
-                            <a href="#" class="btn2 d-flex justify-content-center align-items-center txt5">
-                                Khai Vị
-                            </a>
-                        </div>
-                    </div>
-
-                     
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 
 
     <!-- Booking -->
@@ -374,68 +287,14 @@
 
                 <div class="col-lg-6">
                     <div class="wrap-pic-booking bo-rad-10 overflow-hidden">
-                        <img src="assets/images/booking-01.jpg" alt="IMG-OUR" class="img-fluid w-100">
+                        <img src="assets/images/table.jpg" alt="IMG-OUR" class="img-fluid w-100">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Review - Carousel Bootstrap 5 -->
-    <section class="section-review py-5">
-        <div class="container">
-            <div class="title-review text-center mb-5">
-                <span class="tit2 px-3">
-                    Khách Hàng Nói
-                </span>
-                <h3 class="tit8 text-center px-3 pt-1">
-                    Đánh Giá
-                </h3>
-            </div>
 
-            <div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- Review 1 -->
-                    <div class="carousel-item active">
-                        <div class="text-center">
-                            <div class="pic-review mb-4 mx-auto">
-                                <img src="assets/images/avatar-01.jpg" alt="IGM-AVATAR" class="rounded-circle">
-                            </div>
-                            <div class="content-review">
-                                <p class="txt12 mb-4">
-                                    "We are lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem,
-                                    mattis in pre-tium nec, fermentum viverra dui"
-                                </p>
-                                <div class="star-review mb-3">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="more-review txt4">
-                                    Marie Simmons - New York
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Thêm các review khác -->
-                </div>
-
-                <!-- Carousel Controls -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </section>
 
     <!-- Video Modal -->
     <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
@@ -451,124 +310,124 @@
     </div>
 
     <!-- Video -->
-    {{-- <section class="section-video parallax100" style="background-image: url(assets/images/bg-cover-video-02.jpg);">
-    <div class="content-video text-center py-5">
-        <span class="tit2 px-3">
-            Discover
-        </span>
-        <h3 class="tit4 text-center px-3 pt-1">
-            Our Video
-        </h3>
-        <button class="btn-play mx-auto mt-4" data-bs-toggle="modal" data-bs-target="#videoModal">
-            <div class="circle-btn">
-                <i class="fas fa-play"></i>
-            </div>
-        </button>
-    </div>
-</section> --}}
+    <section class="section-video d-flex align-items-center justify-content-center" style="background-image: url(assets/images/bgintro.png);">
+        <div class="content-video text-center w-100 h-100">
+            <span class="tit2 px-3">
+                Bật mí
+            </span>
+            <h3 class="tit4 text-center px-3 pt-1">
+                Video Nhà Hàng
+            </h3>
+            <button class="btn-play mx-auto mt-4" data-bs-toggle="modal" data-bs-target="#videoModal">
+                <div class="circle-btn">
+                    <i class="fas fa-play"></i>
+                </div>
+            </button>
+        </div>
+    </section>
 
     <!-- Blog -->
     {{-- <section class="section-blog bg-white py-5">
-    <div class="container">
-        <div class="title-section-ourmenu text-center mb-5">
-            <span class="tit2 text-center">
-                Tin Tức Mới Nhất
-            </span>
-            <h3 class="tit5 text-center mt-1">
-                Blog
-            </h3>
+        <div class="container">
+            <div class="title-section-ourmenu text-center mb-5">
+                <span class="tit2 text-center">
+                    Tin Tức Mới Nhất
+                </span>
+                <h3 class="tit5 text-center mt-1">
+                    Blog
+                </h3>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <!-- Block1 -->
+                    <div class="blo1">
+                        <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
+                            <a href="blog-detail.html">
+                                <img src="assets/images/blog-01.jpg" alt="IMG-INTRO" class="img-fluid w-100">
+                            </a>
+                            <div class="time-blog">
+                                21 Dec 2017
+                            </div>
+                        </div>
+
+                        <div class="wrap-text-blo1 pt-4">
+                            <a href="blog-detail.html" class="text-decoration-none">
+                                <h4 class="txt5 color0-hov mb-3">
+                                    Những địa điểm tốt nhất để thưởng thức Mì Cay
+                                </h4>
+                            </a>
+                            <p class="mb-3">
+                                Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
+                            </p>
+                            <a href="blog-detail.html" class="txt4 text-decoration-none">
+                                Đọc Tiếp
+                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <!-- Block1 -->
+                    <div class="blo1">
+                        <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
+                            <a href="blog-detail.html">
+                                <img src="assets/images/blog-02.jpg" alt="IMG-INTRO" class="img-fluid w-100">
+                            </a>
+                            <div class="time-blog">
+                                15 Dec 2017
+                            </div>
+                        </div>
+
+                        <div class="wrap-text-blo1 pt-4">
+                            <a href="blog-detail.html" class="text-decoration-none">
+                                <h4 class="txt5 color0-hov mb-3">
+                                    Eggs and Cheese
+                                </h4>
+                            </a>
+                            <p class="mb-3">
+                                Duis elementum, risus sit amet lobortis nunc justo condimentum ligula, vitae feugiat
+                            </p>
+                            <a href="blog-detail.html" class="txt4 text-decoration-none">
+                                Continue Reading
+                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <!-- Block1 -->
+                    <div class="blo1">
+                        <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
+                            <a href="blog-detail.html">
+                                <img src="assets/images/blog-03.jpg" alt="IMG-INTRO" class="img-fluid w-100">
+                            </a>
+                            <div class="time-blog">
+                                12 Dec 2017
+                            </div>
+                        </div>
+
+                        <div class="wrap-text-blo1 pt-4">
+                            <a href="blog-detail.html" class="text-decoration-none">
+                                <h4 class="txt5 color0-hov mb-3">
+                                    Style the Wedding Party
+                                </h4>
+                            </a>
+                            <p class="mb-3">
+                                Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
+                            </p>
+                            <a href="blog-detail.html" class="txt4 text-decoration-none">
+                                Đọc Tiếp
+                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="row g-4">
-            <div class="col-md-4">
-                <!-- Block1 -->
-                <div class="blo1">
-                    <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
-                        <a href="blog-detail.html">
-                            <img src="assets/images/blog-01.jpg" alt="IMG-INTRO" class="img-fluid w-100">
-                        </a>
-                        <div class="time-blog">
-                            21 Dec 2017
-                        </div>
-                    </div>
-
-                    <div class="wrap-text-blo1 pt-4">
-                        <a href="blog-detail.html" class="text-decoration-none">
-                            <h4 class="txt5 color0-hov mb-3">
-                                Best Places for Wine
-                            </h4>
-                        </a>
-                        <p class="mb-3">
-                            Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
-                        </p>
-                        <a href="blog-detail.html" class="txt4 text-decoration-none">
-                            Đọc Tiếp
-                            <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <!-- Block1 -->
-                <div class="blo1">
-                    <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
-                        <a href="blog-detail.html">
-                            <img src="assets/images/blog-02.jpg" alt="IMG-INTRO" class="img-fluid w-100">
-                        </a>
-                        <div class="time-blog">
-                            15 Dec 2017
-                        </div>
-                    </div>
-
-                    <div class="wrap-text-blo1 pt-4">
-                        <a href="blog-detail.html" class="text-decoration-none">
-                            <h4 class="txt5 color0-hov mb-3">
-                                Eggs and Cheese
-                            </h4>
-                        </a>
-                        <p class="mb-3">
-                            Duis elementum, risus sit amet lobortis nunc justo condimentum ligula, vitae feugiat
-                        </p>
-                        <a href="blog-detail.html" class="txt4 text-decoration-none">
-                            Continue Reading
-                            <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <!-- Block1 -->
-                <div class="blo1">
-                    <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
-                        <a href="blog-detail.html">
-                            <img src="assets/images/blog-03.jpg" alt="IMG-INTRO" class="img-fluid w-100">
-                        </a>
-                        <div class="time-blog">
-                            12 Dec 2017
-                        </div>
-                    </div>
-
-                    <div class="wrap-text-blo1 pt-4">
-                        <a href="blog-detail.html" class="text-decoration-none">
-                            <h4 class="txt5 color0-hov mb-3">
-                                Style the Wedding Party
-                            </h4>
-                        </a>
-                        <p class="mb-3">
-                            Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
-                        </p>
-                        <a href="blog-detail.html" class="txt4 text-decoration-none">
-                            Đọc Tiếp
-                            <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
+    </section> --}}
 
 
 

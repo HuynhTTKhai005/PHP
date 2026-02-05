@@ -3,7 +3,7 @@
 @section('content')
     <!-- Header -->
     <section class="titles text-center text-white"
-        style="background: url({{ asset('assets/images/bg-title-page-01.jpg') }}) center/cover no-repeat; min-height: 400px;">
+        style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 400px;">
         <div class="container">
             <h2 class="tit">Sincay Menu</h2>
         </div>
