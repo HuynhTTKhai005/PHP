@@ -2,14 +2,15 @@
 
 @section('content')
     <section>
-      <section class="titles text-center text-white"
-            style="background:   url({{ asset('assets/images/bg-title-page-01.jpg') }}) center/cover no-repeat; min-height: 400px;">
+        <section class="titles text-center text-white"
+            style="background:   url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 400px;">
             <div class="container">
-                <h2 class="tit">Sincay Menu</h2>
+                <h2 class="tit">Bài viết Sincay
+                </h2>
             </div>
         </section>
 
-       
+
         <!-- Nội dung chính -->
         <div class="container">
             <div class="row">
