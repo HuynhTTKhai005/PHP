@@ -4,7 +4,7 @@
     <div class="content-area">
         <div class="section-header">
             <h2>Thêm vai trò mới</h2>
-            <div class="table-actions"><a class="btn btn-secondary" href="{{ route('admin.users', ['tab' => 'roles']) }}"><i class="fas fa-arrow-left"></i> Quay lai</a></div>
+            <div class="table-actions"><a class="btn btn-secondary" href="{{ route('admin.users', ['tab' => 'roles']) }}"><i class="fas fa-arrow-left"></i> Quay lại</a></div>
         </div>
 
         <div class="card products-container">
@@ -12,7 +12,7 @@
                 @csrf
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Ten vai trò <span class="required">*</span></label>
+                        <label>Tên vai trò <span class="required">*</span></label>
                         <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                     </div>
                 </div>

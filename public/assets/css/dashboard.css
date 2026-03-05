@@ -1099,6 +1099,9 @@ body {
 .icon-completed {
     background: linear-gradient(135deg, #2ecc71, #27ae60);
 }
+.icon-cancelled {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
 
 .stat-info h3 {
     font-size: 24px;

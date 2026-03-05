@@ -1,4 +1,4 @@
-﻿@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('title', 'Blog - Sincay')
 
