@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::table('categories', function (Blueprint $table) {
             $table->string('icon', 100)->nullable()->after('image_url');
-         });
+        });
     }
 
     public function down(): void

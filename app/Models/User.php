@@ -2,12 +2,23 @@
 
 namespace App\Models;
 
- use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    use HasFactory;
+    use Notifiable;
+
+    public const ROLE_ADMIN = 1;
+
+    public const ROLE_STAFF = 2;
+
+    public const ROLE_CUSTOMER = 3;
 
     protected $fillable = [
         'full_name',
@@ -22,36 +33,64 @@ class User extends Authenticatable
 
     protected $hidden = [
         'password_hash',
-        'remember_token',   
+        'remember_token',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'last_login_at'     => 'datetime',
-        'is_active'         => 'boolean',
-        'loyalty_point'     => 'integer',
+        'last_login_at' => 'datetime',
+        'is_active' => 'boolean',
+        'loyalty_point' => 'integer',
     ];
 
-     public function getAuthPassword()
+    public function getAuthPassword(): ?string
     {
         return $this->password_hash;
     }
 
-     public function setPasswordAttribute($value)
+    public function setPasswordAttribute(string $value): void
     {
         $this->attributes['password_hash'] = bcrypt($value);
     }
 
-    // Quan hệ với Role
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
- 
-    public function addresses()
+    public function addresses(): HasMany
     {
-         
-        return $this->hasMany(Useraddresses::class, 'user_id', 'id');
+        return $this->hasMany(UserAddress::class, 'user_id', 'id');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+
+    public function wishlists(): HasMany
+    {
+        return $this->hasMany(Wishlist::class, 'user_id', 'id');
+    }
+
+    public function wishlistProducts(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'wishlists', 'user_id', 'product_id')
+            ->withPivot('created_at');
+    }
+
+    public function isAdmin(): bool
+    {
+        return (int) $this->role_id === self::ROLE_ADMIN;
+    }
+
+    public function isStaff(): bool
+    {
+        return (int) $this->role_id === self::ROLE_STAFF;
+    }
+
+    public function isCustomer(): bool
+    {
+        return (int) $this->role_id === self::ROLE_CUSTOMER;
     }
 }

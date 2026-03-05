@@ -46,55 +46,56 @@
         </div>
 
         <!-- Filter Section -->
-        <div class="filter-section">
-            <div class="filter-group">
-                <label>Trạng thái</label>
-                <select class="filter-select" id="statusFilter">
-                    <option value="">Tất cả</option>
-                    <option value="pending">Chờ xử lý</option>
-                    <option value="processing">Đang xử lý</option>
-                    <option value="shipped">Đang giao</option>
-                    <option value="completed">Hoàn thành</option>
-                    <option value="cancelled">Đã hủy</option>
-                </select>
-            </div>
+        <form action="{{ route('admin.orders') }}" method="GET" class="filter-form">
 
-            <div class="filter-group">
-                <label>Từ ngày</label>
-                <input type="date" name="date_from" value="{{ request('date_from') }}" class="filter-input">
-            </div>
+            <div class="filter-section">
+                <div class="filter-group">
+                    <label>Trạng thái</label>
+                    <select name="status" class="filter-select" id="statusFilter">
+                        <option value="">Tất cả</option>
+                        <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Đang chờ xử lý
+                        </option>
+                        <option value="confirmed" {{ request('status') == 'confirmed' ? 'selected' : '' }}>Đã xác nhận
+                        </option>
+                        <option value="preparing" {{ request('status') == 'preparing' ? 'selected' : '' }}>Đã chuẩn bị
+                        </option>
+                        <option value="delivering" {{ request('status') == 'delivering' ? 'selected' : '' }}>Đang giao
+                        </option>
+                        <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Hoàn thành
+                        </option>
+                        <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Đã hủy</option>
+                    </select>
 
-            <div class="filter-group">
-                <label>Đến ngày</label>
-                <input type="date" name="date_to" value="{{ request('date_to') }}" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label>Từ ngày</label>
+                    <input type="date" name="date_from" value="{{ request('date_from') }}" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label>Đến ngày</label>
+                    <input type="date" name="date_to" value="{{ request('date_to') }}" class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <label>Tìm kiếm</label>
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Mã đơn, tên KH..."
+                        class="filter-input">
+                </div>
+                <div class="filter-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-filter"></i> Lọc
+                    </button>
+                    <a href="{{ route('admin.orders') }}" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Đặt lại
+                    </a>
+                </div>
             </div>
-
-            <div class="filter-group">
-                <label>Tìm kiếm</label>
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Mã đơn, tên KH..."
-                    class="filter-input">
-            </div>
-
-
-            <div class="filter-actions">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-filter"></i> Lọc
-                </button>
-                <a href="{{ route('admin.orders') }}" class="btn btn-secondary">
-                    <i class="fas fa-redo"></i> Đặt lại
-                </a>
-            </div>
-        </div>
+        </form>
 
         <!-- Orders Table -->
         <div class="orders-container">
             <div class="section-header">
                 <h2>Danh sách đơn hàng</h2>
-                <button class="btn btn-primary" onclick="addNewOrder()">
-                    <i class="fas fa-plus"></i> Thêm đơn hàng
-                </button>
             </div>
-
             <div class="table-container">
                 <table>
                     <thead>
@@ -118,18 +119,21 @@
                                 <td>{{ number_format($order->total_amount_cents, 0, ',', '.') }}đ</td>
                                 <td>
                                     <span class="status-badge status-{{ $order->status }}">
-                                        {{ ucfirst(trans('order.status.' . $order->status)) }}
+                                        {{ ucfirst(trans($order->status_text)) }}
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('orders.show', $order) }}" class="action-btn" title="Xem">
+                                    <span class="status-badge {{ $order->payment_status_class }}">{{ $order->payment_status_text }}</span>
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.orders.show', $order) }}" class="action-btn" title="Xem">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="text-center">Không có đơn hàng nào</td>
+                                <td colspan="7" class="text-center">Không có đơn hàng nào</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -142,15 +146,5 @@
             </div>
         </div>
 
-
-
-
-
     </div>
-
-    <script>
-        function addNewOrder() {
-            window.location.href = '{{ route('admin.orders.create') }}';
-        }
-    </script>
 @endsection

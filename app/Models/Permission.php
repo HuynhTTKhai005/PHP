@@ -33,9 +33,6 @@ class Permission extends Model
 
     /**
      * Kiểm tra permission có được gán cho role nào đó không
-     *
-     * @param string $roleName
-     * @return bool
      */
     public function isAssignedToRole(string $roleName): bool
     {
@@ -44,8 +41,6 @@ class Permission extends Model
 
     /**
      * Kiểm tra permission có được gán cho bất kỳ role nào không
-     *
-     * @return bool
      */
     public function isUsed(): bool
     {

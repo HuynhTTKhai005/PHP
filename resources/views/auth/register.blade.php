@@ -5,7 +5,7 @@
         <div class="login-wrapper">
             <div class="login-container">
                 <div class="panel">
-                    <form id="registerForm" method="POST" action="{{ route('register') }}">
+                    <form id="registerForm" method="POST" action="{{ route('register.submit') }}">
                         @csrf
 
                         <h1 class="login-title">Đăng ký tài khoản</h1>
@@ -73,18 +73,4 @@
         </div>
     </div>
 
-    <script>
-        function togglePassword(id) {
-            const field = document.getElementById(id);
-            const icon = field.parentElement.querySelector('.password-toggle i');
-
-            if (field.type === 'password') {
-                field.type = 'text';
-                icon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                field.type = 'password';
-                icon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        }
-    </script>
 @endsection

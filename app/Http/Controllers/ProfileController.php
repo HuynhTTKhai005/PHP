@@ -2,76 +2,114 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 
 class ProfileController extends Controller
 {
-     
     public function profile(Request $request): View
     {
-        $user = $request->user()->load(['addresses' => function ($q) {
-            $q->where('is_default', true); // Chỉ lấy địa chỉ mặc định
-        }]);
+        $user = $request->user()->load([
+            'addresses' => function ($query): void {
+                $query->where('is_default', true);
+            },
+        ]);
 
-        return view('frontend.profile', compact('user'));
+        $defaultAddress = $user->addresses->first();
+
+        return view('frontend.profile', [
+            'user' => $user,
+            'defaultAddress' => $defaultAddress,
+        ]);
     }
 
-    
+    public function myOrders(Request $request): View
+    {
+        $orders = $request->user()->orders()
+            ->with('payment')
+            ->withCount('items')
+            ->when($request->filled('status'), function ($query) use ($request): void {
+                $query->where('status', $request->status);
+            })
+            ->when($request->filled('search'), function ($query) use ($request): void {
+                $search = trim((string) $request->search);
+                $query->where('order_number', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        $orders->getCollection()->transform(function (Order $order): Order {
+            $order->payment_status_text = $order->payment?->status === 'success'
+                ? 'Đã thanh toán'
+                : 'Chờ thanh toán';
+
+            return $order;
+        });
+
+        return view('frontend.my_orders', compact('orders'));
+    }
+
+    public function myOrderShow(Request $request, Order $order): View
+    {
+        abort_unless($order->user_id === $request->user()->id, 403);
+
+        $order->load(['items.product', 'payment', 'coupon.coupon']);
+        $order->payment_status_text = $order->payment?->status === 'success'
+            ? 'Đã thanh toán'
+            : 'Chờ thanh toán';
+
+        return view('frontend.my_order_show', compact('order'));
+    }
+
+    public function cancelMyOrder(Request $request, Order $order): RedirectResponse
+    {
+        abort_unless($order->user_id === $request->user()->id, 403);
+
+        if (! in_array($order->status, ['pending', 'confirmed'], true)) {
+            return back()->with('error', 'Đơn hàng không thể hủy ở trạng thái hiện tại.');
+        }
+
+        $order->update(['status' => 'cancelled']);
+
+        return back()->with('success', 'Hủy đơn hàng thành công.');
+    }
+
     public function update(Request $request): RedirectResponse
     {
         $user = $request->user();
 
-         $request->validate([
+        $request->validate([
             'full_name' => ['required', 'string', 'max:255'],
-            'phone'     => ['nullable', 'string', 'max:20'],
-            'avatar'    => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'phone' => ['nullable', 'string', 'max:20'],
         ]);
 
-        // Cập nhật thông tin cơ bản
         $user->full_name = $request->full_name;
         $user->phone = $request->phone;
 
-        // Xử lý upload ảnh đại diện (cột avatar_url trong DB)
-        if ($request->hasFile('avatar')) {
-            // Xóa ảnh cũ nếu có
-            if ($user->avatar_url) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $user->avatar_url));
-            }
-
-            $path = $request->file('avatar')->store('avatars', 'public');
-            $user->avatar_url = '/storage/' . $path;
-        }
-
         $user->save();
 
-        return redirect()->route('profile')->with('status', 'Thông tin đã được cập nhật thành công!');
+        return redirect()->route('profile')->with('status', 'Thông tin đã được cập nhật thành công.');
     }
 
-    /**
-     * Thay đổi mật khẩu (Xử lý trường password_hash trong sơ đồ)
-     */
     public function changePassword(Request $request): RedirectResponse
     {
         $request->validate([
             'current_password' => ['required', 'current_password'],
-            'password'         => ['required', 'confirmed', 'min:8'],
+            'password' => ['required', 'confirmed', 'min:8'],
         ]);
 
         $request->user()->update([
             'password_hash' => Hash::make($request->password),
         ]);
 
-        return back()->with('status', 'Mật khẩu đã được thay đổi!');
+        return back()->with('status', 'Mật khẩu đã được thay đổi.');
     }
 
-    /**
-     * Xóa tài khoản (Nếu cần thiết)
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validate([
@@ -81,7 +119,6 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
-
         $user->delete();
 
         $request->session()->invalidate();
