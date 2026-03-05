@@ -17,7 +17,7 @@ class Coupon extends Model
         'used_count',
         'is_active',
         'starts_at',
-        'expires_at'
+        'expires_at',
     ];
 
     protected $casts = [
@@ -26,17 +26,30 @@ class Coupon extends Model
         'expires_at' => 'datetime',
     ];
 
-    // Kiểm tra mã còn hiệu lực không
+    public function orderCoupons()
+    {
+        return $this->hasMany(OrderCoupon::class, 'coupon_id', 'id');
+    }
+
     public function isValid()
     {
-        if (!$this->is_active) return false;
+        if (! $this->is_active) {
+            return false;
+        }
 
         $now = now();
 
-        if ($this->starts_at && $now->lt($this->starts_at)) return false;
-        if ($this->expires_at && $now->gt($this->expires_at)) return false;
+        if ($this->starts_at && $now->lt($this->starts_at)) {
+            return false;
+        }
 
-        if ($this->usage_limit && $this->used_count >= $this->usage_limit) return false;
+        if ($this->expires_at && $now->gt($this->expires_at)) {
+            return false;
+        }
+
+        if ($this->usage_limit && $this->used_count >= $this->usage_limit) {
+            return false;
+        }
 
         return true;
     }

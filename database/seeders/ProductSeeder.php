@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class ProductSeeder extends Seeder
 {
@@ -21,11 +21,10 @@ class ProductSeeder extends Seeder
 
         foreach ($data as $item) {
 
-
             $categoryMap = [
                 'appetizer' => 1,
-                'spicy'  => 2,
-                'drink'  => 3,
+                'spicy' => 2,
+                'drink' => 3,
                 'hotpot' => 4,
                 'tokbokki' => 5,
             ];
@@ -35,7 +34,7 @@ class ProductSeeder extends Seeder
                 'slug' => Str::slug($item['name']),
                 'description' => $item['description'],
                 'base_price_cents' => $item['price'],
-                'image_url' => 'assets/images/menu/' . basename($item['image']),
+                'image_url' => 'assets/images/menu/'.basename($item['image']),
                 'type' => $item['category'] === 'drink' ? 'drink' : 'food',
                 'category_id' => $categoryMap[$item['category']] ?? 1,
                 'is_spicy' => $item['category'] === 'spicy',

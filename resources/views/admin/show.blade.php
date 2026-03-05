@@ -22,6 +22,7 @@
                 <label>Địa chỉ giao</label>
                 <p>{{ $order->shipping_address }}</p>
             </div>
+
             <div class="detail-group">
                 <label>Ngày đặt</label>
                 <p>{{ $order->created_at->format('d/m/Y H:i') }}</p>
@@ -29,22 +30,42 @@
             <div class="detail-group">
                 <label>Tổng tiền</label>
                 <p style="font-weight: bold; color: var(--primary);">
-                    {{ number_format($order->total_amount_cents / 100, 0, ',', '.') }}đ
+                    {{ number_format($order->total_amount_cents, 0, ',', '.') }}đ
                 </p>
             </div>
             <div class="detail-group">
                 <label>Trạng thái</label>
-                <form action="{{ route('orders.updateStatus', $order) }}" method="POST" style="display: inline;">
+                <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <select name="status" onchange="this.form.submit()">
-                        <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Chờ xử lý</option>
-                        <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>Đang xử lý</option>
-                        <option value="shipped" {{ $order->status == 'shipped' ? 'selected' : '' }}>Đang giao</option>
-                        <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Hoàn thành</option>
-                        <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Đã hủy</option>
+                    <select name="status" class="filter-select" style="margin-bottom:8px;">
+                        <option value="pending" {{ $order->status === 'pending' ? 'selected' : '' }}>Đang chờ xử lý</option>
+                        <option value="confirmed" {{ $order->status === 'confirmed' ? 'selected' : '' }}>Đã xác nhận</option>
+                        <option value="preparing" {{ $order->status === 'preparing' ? 'selected' : '' }}>Đang chuẩn bị</option>
+                        <option value="delivering" {{ $order->status === 'delivering' ? 'selected' : '' }}>Đang giao</option>
+                        <option value="completed" {{ $order->status === 'completed' ? 'selected' : '' }}>Hoàn thành</option>
+                        <option value="cancelled" {{ $order->status === 'cancelled' ? 'selected' : '' }}>Đã hủy</option>
                     </select>
+                    <textarea name="note" class="filter-input" placeholder="Ghi chú khi đổi trạng thái (không bắt buộc)"></textarea>
+                    <button type="submit" class="btn btn-primary" style="margin-top:8px;">
+                        <i class="fas fa-save"></i> Cập nhật trạng thái
+                    </button>
                 </form>
+            </div>
+
+            @if ($order->total_discount_cents > 0)
+                <div class="detail-group">
+                    <label>Giảm giá</label>
+                    <p style="color: #28a745;">-{{ number_format($order->total_discount_cents, 0, ',', '.') }}đ</p>
+                </div>
+            @endif
+            <div class="detail-group">
+                <label>Phí giao hàng</label>
+                <p>{{ number_format($order->shipping_fee_cents ?? 0, 0, ',', '.') }}đ</p>
+            </div>
+            <div class="detail-group">
+                <label>VAT (10%)</label>
+                <p>{{ number_format($order->vat_cents, 0, ',', '.') }}đ</p>
             </div>
         </div>
 
@@ -60,14 +81,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($order->items as $item)
+                    @foreach ($order->items as $item)
                         <tr>
                             <td>{{ $item->product?->name ?? 'Sản phẩm đã xóa' }}</td>
-                            <td>{{ number_format($item->price_cents / 100, 0, ',', '.') }}đ</td>
+                            <td>{{ number_format($item->unit_price_cents, 0, ',', '.') }}đ</td>
                             <td>{{ $item->quantity }}</td>
-                            <td>{{ number_format(($item->price_cents * $item->quantity) / 100, 0, ',', '.') }}đ</td>
+                            <td>{{ number_format($item->total_cents, 0, ',', '.') }}đ</td>
                         </tr>
                     @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <h4 style="margin: 30px 0 15px;">Lịch sử thay đổi trạng thái</h4>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thời gian</th>
+                        <th>Trạng thái</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($order->statusHistories as $history)
+                        <tr>
+                            <td>{{ optional($history->timestamp)->format('d/m/Y H:i:s') ?: '-' }}</td>
+                            <td>{{ $history->status }}</td>
+                            <td>{{ $history->note ?: '-' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="text-center">Chưa có lịch sử trạng thái</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

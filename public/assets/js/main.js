@@ -1,8 +1,27 @@
+window.togglePassword = function (id) {
+    var fieldId = id || 'password';
+    var field = document.getElementById(fieldId);
+    if (!field) {
+        return;
+    }
 
-// Load Isotope từ CDN
-$.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", function () {
-    initIsotope();
-}); (function ($) {
+    var wrapper = field.closest('.form-group') || field.parentElement;
+    var icon = wrapper ? wrapper.querySelector('.password-toggle i') : null;
+
+    if (field.type === 'password') {
+        field.type = 'text';
+        if (icon) {
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        }
+    } else {
+        field.type = 'password';
+        if (icon) {
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+};
+
+(function ($) {
     "use strict";
 
     /*[ Load page ]
@@ -13,7 +32,7 @@ $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", funct
         inDuration: 1500,
         outDuration: 800,
         linkElement: '.animsition-link',
-        loading: true,
+        loading: false,
         loadingParentElement: 'html',
         loadingClass: 'animsition-loading-1',
         loadingInner: '<div class="cp-spinner cp-meter"></div>',
@@ -29,17 +48,22 @@ $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", funct
 
     /*[ Back to top ]
     ===========================================================*/
+    var $backToTop = $('#myBtn');
     var windowH = $(window).height() / 2;
 
-    $(window).on('scroll', function () {
-        if ($(this).scrollTop() > windowH) {
-            $("#myBtn").css('display', 'flex');
+    function toggleBackToTop() {
+        if ($(window).scrollTop() > windowH) {
+            $backToTop.addClass('show-back-to-top');
         } else {
-            $("#myBtn").css('display', 'none');
+            $backToTop.removeClass('show-back-to-top');
         }
-    });
+    }
 
-    $('#myBtn').on("click", function () {
+    toggleBackToTop();
+    $(window).on('scroll', toggleBackToTop);
+
+    $backToTop.on('click', function (e) {
+        e.preventDefault();
         $('html, body').animate({ scrollTop: 0 }, 300);
     });
 
@@ -93,22 +117,44 @@ $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", funct
     });
 
 
-    /*[ Play video 01]
+    /*[ Video modal: stop audio when closed ]
     ===========================================================*/
-    var srcOld = $('.video-mo-01').children('iframe').attr('src');
+    function bindVideoModal(modalSelector) {
+        var $modal = $(modalSelector);
+        if (!$modal.length) {
+            return;
+        }
 
-    $('[data-target="#modal-video-01"]').on('click', function () {
-        $('.video-mo-01').children('iframe')[0].src += "&autoplay=1";
+        var $iframe = $modal.find('iframe').first();
+        if (!$iframe.length) {
+            return;
+        }
 
-        setTimeout(function () {
-            $('.video-mo-01').css('opacity', '1');
-        }, 300);
-    });
+        var baseSrc = $iframe.attr('data-src') || $iframe.attr('src') || '';
+        $iframe.attr('data-src', baseSrc);
 
-    $('[data-dismiss="modal"]').on('click', function () {
-        $('.video-mo-01').children('iframe')[0].src = srcOld;
-        $('.video-mo-01').css('opacity', '0');
-    });
+        $modal.on('show.bs.modal', function () {
+            if (!baseSrc) {
+                return;
+            }
+
+            var videoSrc = baseSrc;
+            if (videoSrc.indexOf('autoplay=1') === -1) {
+                videoSrc += (videoSrc.indexOf('?') === -1 ? '?' : '&') + 'autoplay=1';
+            }
+
+            $iframe.attr('src', videoSrc);
+        });
+
+        $modal.on('hidden.bs.modal', function () {
+            // Force-stop video to prevent background audio
+            $iframe.attr('src', '');
+            $iframe.attr('src', baseSrc);
+        });
+    }
+
+    bindVideoModal('#videoModal');
+    bindVideoModal('#modal-video-01');
 
 
     /*[ Fixed Header ]
@@ -118,18 +164,23 @@ $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", funct
     var linkLogo1 = $(logo).attr('src');
     var linkLogo2 = $(logo).data('logofixed');
 
+    function syncHeaderFixedState() {
+        var shouldFix = $(window).scrollTop() > 20 && $(window).width() > 992;
 
-    $(window).on('scroll', function () {
-        if ($(this).scrollTop() > 5 && $(this).width() > 992) {
-            $(logo).attr('src', linkLogo2);
+        if (shouldFix) {
+            if (linkLogo2) {
+                $(logo).attr('src', linkLogo2);
+            }
             $(header).addClass('header-fixed');
-        }
-        else {
-            $(header).removeClass('header-fixed');
-            $(logo).attr('src', linkLogo1);
+            return;
         }
 
-    });
+        $(header).removeClass('header-fixed');
+        $(logo).attr('src', linkLogo1);
+    }
+
+    syncHeaderFixedState();
+    $(window).on('scroll resize', syncHeaderFixedState);
 
     /*[ Show/hide sidebar ]
     ===========================================================*/
@@ -200,26 +251,273 @@ $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", funct
 })(jQuery);/*[ Isotope Init ]
 ===========================================================*/
 function initIsotope() {
-    $(window).on('load', function () {
-        var $grid = $('.grid').isotope({
-            itemSelector: '.all',
-            layoutMode: 'fitRows',
-            percentPosition: true,
-         });
+    var $grid = $('.grid');
+    if (!$grid.length || typeof $.fn.isotope !== 'function') {
+        return;
+    }
+
+    $grid.isotope({
+        itemSelector: '.all',
+        layoutMode: 'fitRows',
+        percentPosition: true,
     });
 }
 
-// Kiểm tra và load Isotope một lần duy nhất
+// Init isotope once after DOM ready (script already loaded in layout)
 $(document).ready(function () {
-    if (typeof $.fn.isotope !== 'function') {
-        $.getScript("https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js", function () {
-            initIsotope();
-        });
-    } else {
+    if (typeof $.fn.isotope === 'function') {
         initIsotope();
     }
 });
-// Chạy khi DOM ready
+// Admin products: xác nhận xóa
+(function () {
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.classList || !form.classList.contains('js-delete-product-form')) {
+            return;
+        }
+
+        var name = form.getAttribute('data-product-name') || 'sản phẩm này';
+        var ok = window.confirm('Bạn có chắc chắn muốn xóa ' + name + '?');
+
+        if (!ok) {
+            event.preventDefault();
+        }
+    });
+})();
+
+// Admin customers: xác nhận xóa
+(function () {
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.classList || !form.classList.contains('js-delete-customer-form')) {
+            return;
+        }
+
+        var name = form.getAttribute('data-customer-name') || 'khách hàng này';
+        var ok = window.confirm('Bạn có chắc chắn muốn xóa ' + name + '?');
+
+        if (!ok) {
+            event.preventDefault();
+        }
+    });
+})();
+
+// Admin coupons: xác nhận xóa
+(function () {
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.classList || !form.classList.contains('js-delete-coupon-form')) {
+            return;
+        }
+
+        var code = form.getAttribute('data-coupon-code') || 'mã giảm giá này';
+        var ok = window.confirm('Bạn có chắc chắn muốn xóa ' + code + '?');
+
+        if (!ok) {
+            event.preventDefault();
+        }
+    });
+})();
+
+// Admin roles: delete confirmation
+(function () {
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.classList || !form.classList.contains('js-delete-role-form')) {
+            return;
+        }
+
+        var roleName = form.getAttribute('data-role-name') || 'vai tro nay';
+        var ok = window.confirm('Ban co chac chan muon xoa vai tro ' + roleName + '?');
+
+        if (!ok) {
+            event.preventDefault();
+        }
+    });
+})();
+
+// Client-side validation for key forms
+(function () {
+    function showError(message) {
+        window.alert(message);
+    }
+
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form || form.tagName !== 'FORM') {
+            return;
+        }
+
+        var action = (form.getAttribute('action') || '').toLowerCase();
+        var method = (form.getAttribute('method') || 'get').toLowerCase();
+
+        // Register form
+        if (form.id === 'registerForm') {
+            var fullName = (form.querySelector('[name="full_name"]') || {}).value || '';
+            var phone = (form.querySelector('[name="phone"]') || {}).value || '';
+            var password = (form.querySelector('[name="password"]') || {}).value || '';
+            var passwordConfirmation = (form.querySelector('[name="password_confirmation"]') || {}).value || '';
+
+            if (fullName.trim().length < 3) {
+                event.preventDefault();
+                showError('Há» vÃ  tÃªn pháº£i cÃ³ Ã­t nháº¥t 3 kÃ½ tá»±.');
+                return;
+            }
+            if (!/^0\d{9}$/.test(phone.trim())) {
+                event.preventDefault();
+                showError('Sá»‘ Ä‘iá»‡n thoáº¡i khÃ´ng há»£p lá»‡. Äá»‹nh dáº¡ng: 0xxxxxxxxx.');
+                return;
+            }
+            if (password.length < 6) {
+                event.preventDefault();
+                showError('Máº­t kháº©u pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±.');
+                return;
+            }
+            if (password !== passwordConfirmation) {
+                event.preventDefault();
+                showError('XÃ¡c nháº­n máº­t kháº©u khÃ´ng khá»›p.');
+                return;
+            }
+        }
+
+        // Checkout form
+        if (method === 'post' && action.indexOf('/checkout') !== -1) {
+            var shippingName = (form.querySelector('[name="shipping_name"]') || {}).value || '';
+            var shippingPhone = (form.querySelector('[name="shipping_phone"]') || {}).value || '';
+            var shippingAddress = (form.querySelector('[name="shipping_address"]') || {}).value || '';
+            var paymentMethod = form.querySelector('input[name="payment_method"]:checked');
+
+            if (shippingName.trim().length < 2) {
+                event.preventDefault();
+                showError('Vui lÃ²ng nháº­p há» vÃ  tÃªn há»£p lá»‡.');
+                return;
+            }
+            if (!/^0\d{9}$/.test(shippingPhone.trim())) {
+                event.preventDefault();
+                showError('Sá»‘ Ä‘iá»‡n thoáº¡i nháº­n hÃ ng khÃ´ng há»£p lá»‡.');
+                return;
+            }
+            if (shippingAddress.trim().length < 10) {
+                event.preventDefault();
+                showError('Äá»‹a chá»‰ giao hÃ ng cáº§n chi tiáº¿t hÆ¡n.');
+                return;
+            }
+            if (!paymentMethod) {
+                event.preventDefault();
+                showError('Vui lÃ²ng chá»n phÆ°Æ¡ng thá»©c thanh toÃ¡n.');
+                return;
+            }
+        }
+
+        // Admin create product form
+        if (method === 'post' && action.indexOf('/admin/products') !== -1 && action.indexOf('/stock-in') === -1) {
+            var name = (form.querySelector('[name="name"]') || {}).value || '';
+            var price = parseInt((form.querySelector('[name="base_price_cents"]') || {}).value || '0', 10);
+            var stock = parseInt((form.querySelector('[name="stock"]') || {}).value || '0', 10);
+
+            if (name.trim().length < 2) {
+                event.preventDefault();
+                showError('TÃªn sáº£n pháº©m pháº£i cÃ³ Ã­t nháº¥t 2 kÃ½ tá»±.');
+                return;
+            }
+            if (isNaN(price) || price < 0) {
+                event.preventDefault();
+                showError('GiÃ¡ sáº£n pháº©m khÃ´ng há»£p lá»‡.');
+                return;
+            }
+            if (isNaN(stock) || stock < 0) {
+                event.preventDefault();
+                showError('Sá»‘ lÆ°á»£ng tá»“n khÃ´ng há»£p lá»‡.');
+            }
+        }
+    });
+})();
+
+// Admin users: delete confirmation
+(function () {
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.classList || !form.classList.contains('js-delete-user-form')) {
+            return;
+        }
+
+        var name = form.getAttribute('data-user-name') || 'tai khoan nay';
+        var ok = window.confirm('Ban co chac chan muon xoa tai khoan ' + name + '?');
+
+        if (!ok) {
+            event.preventDefault();
+        }
+    });
+})();
+
+// Admin categories: delete confirmation
+(function () {
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.classList || !form.classList.contains('js-delete-category-form')) {
+            return;
+        }
+
+        var name = form.getAttribute('data-category-name') || 'danh muc nay';
+        var ok = window.confirm('Ban co chac chan muon xoa danh muc ' + name + '?');
+
+        if (!ok) {
+            event.preventDefault();
+        }
+    });
+})();
+
+// Frontend gallery: horizontal carousel
 $(document).ready(function () {
-    initIsotope();
+    var $gallery = $('.noodle-gallery-slider');
+    if (!$gallery.length || typeof $gallery.slick !== 'function') {
+        return;
+    }
+
+    if ($gallery.hasClass('slick-initialized')) {
+        return;
+    }
+
+    $gallery.slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+        dots: false,
+        autoplay: true,
+        autoplaySpeed: 0,
+        speed: 4500,
+        cssEase: 'linear',
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: { slidesToShow: 3 }
+            },
+            {
+                breakpoint: 576,
+                settings: { slidesToShow: 2 }
+            }
+        ]
+    });
 });
+
+// Admin notifications: delete confirmation
+(function () {
+    document.addEventListener('submit', function (event) {
+        var form = event.target;
+        if (!form.classList || !form.classList.contains('js-delete-notification-form')) {
+            return;
+        }
+
+        var title = form.getAttribute('data-notification-title') || 'thong bao nay';
+        var ok = window.confirm('Ban co chac chan muon xoa thong bao: ' + title + '?');
+
+        if (!ok) {
+            event.preventDefault();
+        }
+    });
+})();
+

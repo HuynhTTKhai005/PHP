@@ -5,8 +5,8 @@
 
 @section('content')
     <!-- Hero Slider (Bootstrap 5 Carousel) -->
-    <section class="hero-slider position-relative">
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <section class="hero-slider position-relative top-0">
+        <div id="heroCarousel" class="carousel carousel-fade" data-bs-ride="carousel">
             <!-- Indicators (dấu chấm dưới) -->
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -22,10 +22,10 @@
                     style="background-image: url('{{ asset('assets/images/slide_1.jpg') }}'); min-height: 80vh; background-size: cover; background-position: center;">
                     <div
                         class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 text-center text-white">
-                        <span class="hero-subtitle h3 mb-3 animate__animated animate__fadeInDown">Chào mừng đến với</span>
+                        <span class="hero-subtitle h3 mb-5 animate__animated animate__fadeInDown">Chào mừng đến với</span>
                         <h2 class="hero-title display-3 fw-bold mb-4 animate__animated animate__fadeInUp">Sincay Place</h2>
                         <a href="{{ url('menu') }}"
-                            class="btn btn-primary btn-lg px-5 py-3 animate__animated animate__zoomIn">Xem Menu</a>
+                            class="btn btn-danger btn-lg px-5 py-3 animate__animated animate__zoomIn">Xem Menu</a>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                         <h2 class="hero-title display-3 fw-bold mb-4 animate__animated animate__lightSpeedIn">Sincay Place
                         </h2>
                         <a href="{{ url('menu') }}"
-                            class="btn btn-primary btn-lg px-5 py-3 animate__animated animate__slideInUp">Xem Menu</a>
+                            class="btn btn-danger btn-lg px-5 py-3 animate__animated animate__slideInUp">Xem Menu</a>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                         <h2 class="hero-title display-3 fw-bold mb-4 animate__animated animate__rotateInUpRight">Sincay
                             Place</h2>
                         <a href="{{ url('menu') }}"
-                            class="btn bg- btn-lg px-5 py-3 animate__animated animate__rotateIn">Xem Menu</a>
+                            class="btn btn-danger bg-btn-lg px-5 py-3 animate__animated animate__rotateIn">Xem Menu</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                             nghiệm tuyệt vời.
                         </p>
 
-                        <a href="{{ route('about') }}" class="btn btn-outline-dark btn-lg">
+                        <a href="{{ route('about') }}" class="btn btn-outline-danger btn-lg">
                             Câu Chuyện Của Chúng Tôi
                             <i class="fas fa-long-arrow-alt-right ms-2"></i>
                         </a>
@@ -96,8 +96,8 @@
                 </div>
 
                 <div class="col-lg-6 order-lg-2 order-1 py-4">
-                    <div class="wrap-pic-welcome overflow-hidden rounded-3">
-                        <img src="assets/images/story_1.jpg" alt="IMG-OUR" class="img-fluid   object-fit-cover">
+                    <div class="wrap-pic-welcome overflow-hidden  ">
+                        <img src="assets/images/story_1.jpg" alt="IMG-OUR" class="img-fluid rounded-3  object-fit-cover">
                     </div>
                 </div>
             </div>
@@ -108,11 +108,11 @@
     <section class="section-intro">
         <div class="header-intro parallax100 text-center py-5" style="background-image: url(assets/images/bgintro.png);">
             <span class="tit2 px-3">
-                Khám phá
+                 Sincay Place
             </span>
 
             <h3 class="tit4 text-center px-3 pt-1">
-                Sincay Place
+                Khám phá
             </h3>
         </div>
 
@@ -138,10 +138,7 @@
                                     Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
                                 </p>
 
-                                {{-- <a href="#" class="txt4 text-decoration-none">
-                                Tìm Hiểu Thêm
-                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                            </a> --}}
+
                             </div>
                         </div>
                     </div>
@@ -165,10 +162,7 @@
                                     Aliquam eget aliquam magna, quis posuere risus ac justo ipsum nibh urna
                                 </p>
 
-                                {{-- <a href="#" class="txt4 text-decoration-none">
-                                Tìm hiểu thêm
-                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                            </a> --}}
+
                             </div>
                         </div>
                     </div>
@@ -192,10 +186,6 @@
                                     Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
                                 </p>
 
-                                {{-- <a href="#" class="txt4 text-decoration-none">
-                                Tìm Hiểu Thêm
-                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                            </a> --}}
                             </div>
                         </div>
                     </div>
@@ -207,37 +197,101 @@
 
 
     <!-- Booking -->
-    <section class="section-booking bg1-pattern py-5">
+    <section id="booking" class="section-booking  py-5">
+        <div class="header-intro parallax100 text-center py-5" style="background-image: url(assets/images/bgintro.png);">
+            <span class="tit2 px-3">
+                Sincay
+            </span>
+
+            <h3 class="tit4 text-center px-3 pt-1">
+                Đặt Bàn 
+            </h3>
+        </div>
         <div class="container">
+
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
-                    <div class="text-center mb-4">
-                        <span class="tit2 text-center">
-                            Đặt Bàn
-                        </span>
-                        <h3 class="tit3 text-center mb-3">
-                            Đặt Bàn
-                        </h3>
-                    </div>
 
-                    <form class="booking-form">
+
+                    <form class="booking-form" action="{{ route('reservation.store') }}" method="POST">
+                        @csrf
+
+                        @if (session('success'))
+                            <div class="alert alert-success mb-4">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger mb-4">
+                                <ul class="mb-0 ps-3">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="row g-4">
                             <div class="col-md-6">
                                 <!-- Date -->
                                 <div class="mb-3">
                                     <label class="txt9 mb-2">Ngày</label>
-                                    <input type="date" class="form-control bo-rad-10 p-3" name="date">
+                                    <input type="date" class="form-control bo-rad-10 p-3" name="date"
+                                        value="{{ old('date') }}">
                                 </div>
 
                                 <!-- Time -->
                                 <div class="mb-3">
                                     <label class="txt9 mb-2">Giờ</label>
                                     <select class="form-select bo-rad-10 p-3" name="time">
-                                        <option>9:00</option>
-                                        <option>9:30</option>
-                                        <option>10:00</option>
-                                        <option>10:30</option>
-                                        <!-- Thêm các option khác -->
+                                        <option value="">Chọn giờ</option>
+                                        <option value="09:00" {{ old('time') === '09:00' ? 'selected' : '' }}>09:00
+                                        </option>
+                                        <option value="09:30" {{ old('time') === '09:30' ? 'selected' : '' }}>09:30
+                                        </option>
+                                        <option value="10:00" {{ old('time') === '10:00' ? 'selected' : '' }}>10:00
+                                        </option>
+                                        <option value="10:30" {{ old('time') === '10:30' ? 'selected' : '' }}>10:30
+                                        </option>
+                                        <option value="11:00" {{ old('time') === '11:00' ? 'selected' : '' }}>11:00
+                                        </option>
+                                        <option value="11:30" {{ old('time') === '11:30' ? 'selected' : '' }}>11:30
+                                        </option>
+                                        <option value="12:00" {{ old('time') === '12:00' ? 'selected' : '' }}>12:00
+                                        </option>
+                                        <option value="12:30" {{ old('time') === '12:30' ? 'selected' : '' }}>12:30
+                                        </option>
+                                        <option value="13:00" {{ old('time') === '13:00' ? 'selected' : '' }}>13:00
+                                        </option>
+                                        <option value="13:30" {{ old('time') === '13:30' ? 'selected' : '' }}>13:30
+                                        </option>
+                                        <option value="14:00" {{ old('time') === '14:00' ? 'selected' : '' }}>14:00
+                                        </option>
+                                        <option value="14:30" {{ old('time') === '14:30' ? 'selected' : '' }}>14:30
+                                        </option>
+                                        <option value="15:00" {{ old('time') === '15:00' ? 'selected' : '' }}>15:00
+                                        </option>
+                                        <option value="15:30" {{ old('time') === '15:30' ? 'selected' : '' }}>15:30
+                                        </option>
+                                        <option value="16:00" {{ old('time') === '16:00' ? 'selected' : '' }}>16:00
+                                        </option>
+                                        <option value="16:30" {{ old('time') === '16:30' ? 'selected' : '' }}>16:30
+                                        </option>
+                                        <option value="17:00" {{ old('time') === '17:00' ? 'selected' : '' }}>17:00
+                                        </option>
+                                        <option value="17:30" {{ old('time') === '17:30' ? 'selected' : '' }}>17:30
+                                        </option>
+                                        <option value="18:00" {{ old('time') === '18:00' ? 'selected' : '' }}>18:00
+                                        </option>
+                                        <option value="18:30" {{ old('time') === '18:30' ? 'selected' : '' }}>18:30
+                                        </option>
+                                        <option value="19:00" {{ old('time') === '19:00' ? 'selected' : '' }}>19:00
+                                        </option>
+                                        <option value="19:30" {{ old('time') === '19:30' ? 'selected' : '' }}>19:30
+                                        </option>
+                                        <option value="20:00" {{ old('time') === '20:00' ? 'selected' : '' }}>20:00
+                                        </option>
                                     </select>
                                 </div>
 
@@ -245,10 +299,13 @@
                                 <div class="mb-3">
                                     <label class="txt9 mb-2">Số Người</label>
                                     <select class="form-select bo-rad-10 p-3" name="people">
-                                        <option>1 người</option>
-                                        <option>2 người</option>
-                                        <option>3 người</option>
-                                        <!-- Thêm các option khác -->
+                                        <option value="">Chọn số người</option>
+                                        @for ($i = 1; $i <= 20; $i++)
+                                            <option value="{{ $i }}"
+                                                {{ (string) old('people') === (string) $i ? 'selected' : '' }}>
+                                                {{ $i }} người
+                                            </option>
+                                        @endfor
                                     </select>
                                 </div>
                             </div>
@@ -258,21 +315,26 @@
                                 <div class="mb-3">
                                     <label class="txt9 mb-2">Tên</label>
                                     <input type="text" class="form-control bo-rad-10 p-3" name="name"
-                                        placeholder="Tên">
+                                        placeholder="Tên" value="{{ old('name') }}">
                                 </div>
 
                                 <!-- Phone -->
                                 <div class="mb-3">
                                     <label class="txt9 mb-2">Điện Thoại</label>
                                     <input type="tel" class="form-control bo-rad-10 p-3" name="phone"
-                                        placeholder="Số điện thoại">
+                                        placeholder="Số điện thoại" value="{{ old('phone') }}">
                                 </div>
 
                                 <!-- Email -->
                                 <div class="mb-3">
                                     <label class="txt9 mb-2">Email</label>
                                     <input type="email" class="form-control bo-rad-10 p-3" name="email"
-                                        placeholder="Email">
+                                        placeholder="Email" value="{{ old('email') }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="txt9 mb-2">Ghi chú</label>
+                                    <textarea class="form-control bo-rad-10 p-3" name="note" rows="3" placeholder="Yêu cầu thêm (nếu có)">{{ old('note') }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +364,8 @@
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Video" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/onE9lph5pzo?si=K2XqwLdVavFT-PxU" title="Video"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -310,7 +373,8 @@
     </div>
 
     <!-- Video -->
-    <section class="section-video d-flex align-items-center justify-content-center" style="background-image: url(assets/images/bgintro.png);">
+    <section class="section-video d-flex align-items-center justify-content-center"
+        style="background-image: url(assets/images/bgintro.png);">
         <div class="content-video text-center w-100 h-100">
             <span class="tit2 px-3">
                 Bật mí
@@ -325,112 +389,5 @@
             </button>
         </div>
     </section>
-
-    <!-- Blog -->
-    {{-- <section class="section-blog bg-white py-5">
-        <div class="container">
-            <div class="title-section-ourmenu text-center mb-5">
-                <span class="tit2 text-center">
-                    Tin Tức Mới Nhất
-                </span>
-                <h3 class="tit5 text-center mt-1">
-                    Blog
-                </h3>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <!-- Block1 -->
-                    <div class="blo1">
-                        <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
-                            <a href="blog-detail.html">
-                                <img src="assets/images/blog-01.jpg" alt="IMG-INTRO" class="img-fluid w-100">
-                            </a>
-                            <div class="time-blog">
-                                21 Dec 2017
-                            </div>
-                        </div>
-
-                        <div class="wrap-text-blo1 pt-4">
-                            <a href="blog-detail.html" class="text-decoration-none">
-                                <h4 class="txt5 color0-hov mb-3">
-                                    Những địa điểm tốt nhất để thưởng thức Mì Cay
-                                </h4>
-                            </a>
-                            <p class="mb-3">
-                                Phasellus lorem enim, luctus ut velit eget, con-vallis egestas eros.
-                            </p>
-                            <a href="blog-detail.html" class="txt4 text-decoration-none">
-                                Đọc Tiếp
-                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <!-- Block1 -->
-                    <div class="blo1">
-                        <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
-                            <a href="blog-detail.html">
-                                <img src="assets/images/blog-02.jpg" alt="IMG-INTRO" class="img-fluid w-100">
-                            </a>
-                            <div class="time-blog">
-                                15 Dec 2017
-                            </div>
-                        </div>
-
-                        <div class="wrap-text-blo1 pt-4">
-                            <a href="blog-detail.html" class="text-decoration-none">
-                                <h4 class="txt5 color0-hov mb-3">
-                                    Eggs and Cheese
-                                </h4>
-                            </a>
-                            <p class="mb-3">
-                                Duis elementum, risus sit amet lobortis nunc justo condimentum ligula, vitae feugiat
-                            </p>
-                            <a href="blog-detail.html" class="txt4 text-decoration-none">
-                                Continue Reading
-                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <!-- Block1 -->
-                    <div class="blo1">
-                        <div class="wrap-pic-blo1 bo-rad-10 overflow-hidden position-relative">
-                            <a href="blog-detail.html">
-                                <img src="assets/images/blog-03.jpg" alt="IMG-INTRO" class="img-fluid w-100">
-                            </a>
-                            <div class="time-blog">
-                                12 Dec 2017
-                            </div>
-                        </div>
-
-                        <div class="wrap-text-blo1 pt-4">
-                            <a href="blog-detail.html" class="text-decoration-none">
-                                <h4 class="txt5 color0-hov mb-3">
-                                    Style the Wedding Party
-                                </h4>
-                            </a>
-                            <p class="mb-3">
-                                Sed ornare ligula eget tortor tempor, quis porta tellus dictum.
-                            </p>
-                            <a href="blog-detail.html" class="txt4 text-decoration-none">
-                                Đọc Tiếp
-                                <i class="fas fa-long-arrow-alt-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-
-
-
 
 @endsection

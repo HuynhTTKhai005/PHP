@@ -9,7 +9,7 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
- 
+
         $categories = [
             ['name' => 'Khai Vị', 'slug' => 'appetizer'],
             ['name' => 'Mì Cay', 'slug' => 'spicy'],

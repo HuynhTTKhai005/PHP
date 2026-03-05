@@ -1,60 +1,146 @@
-# Dự Án Sincay Website
+# Sincay Restaurant (Laravel)
 
-## Mô Tả Dự Án
-## Hướng Dẫn Cài Đặt và Chạy Dự Án
+Dự án website nhà hàng gồm frontend đặt món/đặt bàn và admin quản trị sản phẩm, đơn hàng, khách hàng, danh mục, khuyến mãi.
 
-1. **Clone repository** (nếu có):
+## 1. Yêu cầu hệ thống
 
-2. **Cài đặt dependencies PHP**:
+- PHP >= 8.1 (khuyến nghị 8.2)
+- Composer >= 2
+- MySQL/MariaDB
+- Node.js >= 18
+- NPM
 
-    ```
-    composer install
-    ```
+Extension PHP cần bật:
+- `openssl`, `pdo`, `mbstring`, `tokenizer`, `xml`, `ctype`, `json`, `fileinfo`
 
-3. **Cài đặt dependencies JavaScript**:
+## 2. Cài đặt nhanh
 
-    ```
-    npm install
-    ```
+```bash
+git clone <repo-url>
+cd php
+composer install
+npm install
+```
 
-4. **Thiết lập môi trường**:
-    - Sao chép file `.env.example` thành `.env`:
-        ```
-        cp .env.example .env
-        ```
-    - Tạo application key:
-        ```
-        php artisan key:generate
-        ```
+## 3. Cấu hình môi trường
 
-5. **Thiết lập database**:
-    - Tạo database mới trong MySQL.
+Tạo file `.env` từ mẫu:
 
-    - Cập nhật thông tin database trong file `.env`.
+```bash
+cp .env.example .env
+```
 
-    - Chạy migrations:
-      php artisan migrate
-    - Chạy seeders:
-      php artisan db:seed
+Nếu dùng Windows PowerShell:
 
-6. **Build assets**:
+```powershell
+Copy-Item .env.example .env
+```
 
-    npm run build
+Kiểm tra lại thông tin DB trong `.env` (mặc định từ project):
 
-7. **Chạy ứng dụng**:
-    - Chạy server:
-      php artisan serve
-    - Chạy development server cho assets:
-      npm run dev
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=restaurant
+DB_USERNAME=root
+DB_PASSWORD=123456
+```
 
-Ứng dụng sẽ chạy tại `http://localhost:8000`.
+Tạo key ứng dụng:
 
-### Lệnh Hữu Ích
+```bash
+php artisan key:generate
+```
 
-- **Chạy tất cả setup một lần**: `composer run setup`
-- **Chạy development với concurrent servers**: `composer run dev`
-- **Chạy tests**: `composer run test`
- 
-## License
+## 4. Khởi tạo database
 
-Dự án này sử dụng license MIT.
+Tạo database `restaurant` trong MySQL trước, sau đó chạy:
+
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+Nếu cần làm mới toàn bộ dữ liệu:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+## 5. Chạy dự án
+
+### Cách 1: Chạy tách 2 terminal
+
+Terminal 1:
+```bash
+php artisan serve
+```
+
+Terminal 2:
+```bash
+npm run dev
+```
+
+### Cách 2: Build assets production
+
+```bash
+npm run build
+php artisan serve
+```
+
+Truy cập:
+- Frontend: `http://127.0.0.1:8000`
+- Admin: đăng nhập rồi vào `http://127.0.0.1:8000/dashboard`
+
+## 6. Tài khoản mẫu (sau khi seed)
+
+- Admin:
+  - Email: `admin@example.com`
+  - Mật khẩu: `123456`
+
+- Nhân viên:
+  - `staff1@example.com` / `123456`
+  - `staff2@example.com` / `123456`
+
+## 7. Lệnh hữu ích
+
+```bash
+php artisan route:list
+php artisan optimize:clear
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+```
+
+## 8. Troubleshooting
+
+### Lỗi không kết nối được database
+- Kiểm tra DB đã tạo chưa (`restaurant`)
+- Kiểm tra lại `DB_USERNAME`, `DB_PASSWORD` trong `.env`
+- Chạy lại:
+
+```bash
+php artisan config:clear
+```
+
+### Lỗi không load CSS/JS
+- Chạy `npm install` và `npm run dev`
+- Hard refresh trình duyệt (`Ctrl + F5`)
+
+### Lỗi migration do bảng đã tồn tại
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+### Lỗi quyền truy cập ảnh (nếu dùng storage)
+
+```bash
+php artisan storage:link
+```
+
+## 9. Ghi chú
+
+- Dự án dùng Laravel MVC, dữ liệu chính qua Eloquent + Migration/Seeder.
+- Khi chỉnh sửa tiếng Việt trong file, nên lưu UTF-8 để tránh lỗi phông chữ.

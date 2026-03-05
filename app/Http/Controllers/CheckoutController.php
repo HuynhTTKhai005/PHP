@@ -2,58 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\OrderCoupon;
+use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\Order;
+use App\Models\OrderCoupon;
+use App\Models\OrderItem;
 use App\Models\Payment;
+use App\Models\Product;
+use App\Models\User;
+use App\Services\InventoryService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
-    /**
-     * Hiển thị form checkout
-     */
-    public function index()
-    {
-        $cart = session('cart', []);
+    public function __construct(
+        private readonly InventoryService $inventoryService,
+        private readonly Cart $cart
+    ) {}
 
+    public function index(): View|RedirectResponse
+    {
+        $cart = $this->cart->items();
         if (empty($cart)) {
             return redirect()->route('cart')->with('error', 'Giỏ hàng của bạn đang trống!');
         }
 
-        // Tính toán tiền
-        $subtotalCents = 0;
-        foreach ($cart as $item) {
-            $subtotalCents += $item['base_price_cents'] * $item['quantity'];
-        }
+        $summary = $this->cart->summary();
+        /** @var Coupon|null $coupon */
+        $coupon = $this->cart->coupon();
 
-        $discountCents = 0;
-        $coupon = session('coupon');
-        if ($coupon) {
-            if ($coupon->discount_type === 'percent') {
-                $discountCents = ($subtotalCents * $coupon->discount_value) / 100;
-                if ($coupon->max_discount_amount_cents) {
-                    $discountCents = min($discountCents, $coupon->max_discount_amount_cents);
-                }
-            } elseif ($coupon->discount_type === 'fixed') {
-                $discountCents = $coupon->discount_value;
+        $subtotalCents = $summary['subtotal'];
+        $discountCents = $summary['discount'];
+        $shippingFeeCents = $summary['shipping_fee'];
+        $vatCents = $summary['vat'];
+        $totalCents = $summary['total'];
+
+        $defaultAddressText = '';
+        if (Auth::check()) {
+            /** @var User $authUser */
+            $authUser = Auth::user();
+
+            $defaultAddress = $authUser
+                ->addresses()
+                ->where('is_default', true)
+                ->first();
+
+            if ($defaultAddress) {
+                $defaultAddressText = implode(', ', array_filter([
+                    $defaultAddress->address_detail,
+                    $defaultAddress->ward,
+                    $defaultAddress->district,
+                    $defaultAddress->city,
+                ]));
             }
-            $discountCents = min($discountCents, $subtotalCents);
         }
-
-        // Phí ship: miễn phí từ 200k
-        $shippingFeeCents = ($subtotalCents >= 200000) ? 0 : 30000;
-
-        // VAT 10% tính trên tiền sau giảm
-        $afterDiscountCents = $subtotalCents - $discountCents;
-        $vatCents = $afterDiscountCents * 0.1;
-
-        $totalCents = $afterDiscountCents + $vatCents + $shippingFeeCents;
 
         return view('frontend.checkout', compact(
             'cart',
+            'defaultAddressText',
             'subtotalCents',
             'discountCents',
             'shippingFeeCents',
@@ -63,100 +75,109 @@ class CheckoutController extends Controller
         ));
     }
 
-    /**
-     * Xử lý đặt hàng
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $cart = session('cart', []);
-
+        $cart = $this->cart->items();
         if (empty($cart)) {
             return redirect()->route('cart');
         }
 
-        // Validate thông tin khách hàng
         $request->validate([
-            'shipping_name'     => 'required|string|max:255',
-            'shipping_phone'    => 'required|string|regex:/^0[0-9]{9}$/',
-            'shipping_address'  => 'required|string|max:500',
-            'note'              => 'nullable|string|max:1000',
+            'shipping_name' => 'required|string|max:255',
+            'shipping_phone' => 'required|string|regex:/^0[0-9]{9}$/',
+            'shipping_address' => 'required|string|max:500',
+            'note' => 'nullable|string|max:1000',
             'payment_method' => 'required|in:cash,bank_transfer,online',
         ]);
 
-        // Tính lại tiền (tránh khách sửa frontend)
-        $subtotalCents = 0;
-        foreach ($cart as $item) {
-            $subtotalCents += $item['base_price_cents'] * $item['quantity'];
-        }
+        $summary = $this->cart->summary();
+        /** @var Coupon|null $coupon */
+        $coupon = $this->cart->coupon();
 
-        $discountCents = 0;
-        $coupon = session('coupon');
-        if ($coupon) {
-            if ($coupon->discount_type === 'percent') {
-                $discountCents = ($subtotalCents * $coupon->discount_value) / 100;
-                if ($coupon->max_discount_amount_cents) {
-                    $discountCents = min($discountCents, $coupon->max_discount_amount_cents);
+        $subtotalCents = (int) $summary['subtotal'];
+        $discountCents = (int) $summary['discount'];
+        $shippingFeeCents = (int) $summary['shipping_fee'];
+        $vatCents = (int) $summary['vat'];
+        $totalCents = (int) $summary['total'];
+
+        try {
+            /** @var Order $order */
+            $order = DB::transaction(function () use (
+                $request,
+                $cart,
+                $subtotalCents,
+                $discountCents,
+                $shippingFeeCents,
+                $vatCents,
+                $totalCents,
+                $coupon,
+            ) {
+                /** @var Order $order */
+                $order = Order::create([
+                    'user_id' => Auth::id(),
+                    'order_number' => 'DH'.strtoupper(Str::random(8)),
+                    'status' => 'pending',
+                    'subtotal_cents' => $subtotalCents,
+                    'total_discount_cents' => $discountCents,
+                    'shipping_fee_cents' => $shippingFeeCents,
+                    'vat_cents' => $vatCents,
+                    'total_amount_cents' => $totalCents,
+                    'shipping_name' => $request->shipping_name,
+                    'shipping_phone' => $request->shipping_phone,
+                    'shipping_address' => $request->shipping_address,
+                    'note' => $request->note ?? null,
+                ]);
+
+                foreach ($cart as $productId => $item) {
+                    $product = Product::lockForUpdate()->findOrFail((int) $productId);
+                    $quantity = (int) $item['quantity'];
+
+                    $this->inventoryService->stockOutForOrder(
+                        $product,
+                        $quantity,
+                        'order',
+                        'Xuất kho cho đơn hàng '.$order->order_number
+                    );
+
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_id' => (int) $productId,
+                        'quantity' => $quantity,
+                        'unit_price_cents' => (int) $item['base_price_cents'],
+                        'total_cents' => (int) $item['base_price_cents'] * $quantity,
+                    ]);
                 }
-            } elseif ($coupon->discount_type === 'fixed') {
-                $discountCents = $coupon->discount_value;
-            }
-            $discountCents = min($discountCents, $subtotalCents);
+
+                Payment::create([
+                    'order_id' => $order->id,
+                    'payment_method' => $request->payment_method,
+                    'amount_cents' => $totalCents,
+                    'transaction_code' => null,
+                    'status' => 'pending',
+                    'payment_date' => null,
+                ]);
+
+                if ($coupon) {
+                    OrderCoupon::create([
+                        'order_id' => $order->id,
+                        'coupon_id' => $coupon->id,
+                        'discount_amount_cents' => $discountCents,
+                    ]);
+
+                    $coupon->increment('used_count');
+                }
+
+                return $order;
+            });
+        } catch (ValidationException $e) {
+            return redirect()->route('cart')->withErrors($e->errors());
         }
 
-        $shippingFeeCents = ($subtotalCents >= 200000) ? 0 : 30000;
-        $afterDiscountCents = $subtotalCents - $discountCents;
-        $vatCents = $afterDiscountCents * 0.1;
-        $totalCents = $afterDiscountCents + $vatCents + $shippingFeeCents;
+        $this->cart->clear();
+        $this->cart->removeCoupon();
 
-        // Tạo đơn hàng
-        $order = Order::create([
-            'user_id'               => auth()->id() ?? null,
-            'order_number'          => 'DH' . strtoupper(Str::random(8)), // Ví dụ: DHABCD1234
-            'status'                => 'pending',
-            'subtotal_cents'        => $subtotalCents,
-            'total_discount_cents'  => $discountCents,
-            'shipping_fee_cents'    => $shippingFeeCents,
-            'total_amount_cents'    => $totalCents,
-            'shipping_name'         => $request->shipping_name,
-            'shipping_phone'        => $request->shipping_phone,
-            'shipping_address'      => $request->shipping_address,
-            'note'                  => $request->note ?? null,
-        ]);
-
-        // Lưu chi tiết món ăn
-        foreach ($cart as $productId => $item) {
-            OrderItem::create([
-                'order_id'         => $order->id,
-                'product_id'       => $productId,
-                'quantity'         => $item['quantity'],
-                'unit_price_cents' => $item['base_price_cents'],
-                'total_cents'      => $item['base_price_cents'] * $item['quantity'],
-            ]);
-        }
-        Payment::create([
-            'order_id'          => $order->id,
-            'payment_method'    => $request->payment_method,
-            'amount_cents'      => $totalCents, // tổng tiền đơn
-            'transaction_code'  => null, // để trống nếu COD/chuyển khoản
-            'status'            => 'pending', // chờ thanh toán
-            'payment_date'      => null,
-        ]);
-
-        // Lưu coupon đã dùng (nếu có)
-        if ($coupon) {
-            OrderCoupon::create([
-                'order_id'              => $order->id,
-                'coupon_id'             => $coupon->id,
-                'discount_amount_cents' => $discountCents,
-            ]);
-
-            // Tăng số lần sử dụng coupon
-            $coupon->increment('used_count');
-        }
-
-        // Xóa giỏ hàng và coupon khỏi session
-        session()->forget(['cart', 'coupon']);
-
-        return redirect()->route('cart')->with('success', 'Đặt hàng thành công! Mã đơn hàng của bạn là ' . $order->order_number);
+        return redirect()
+            ->route('cart')
+            ->with('success', 'Đặt hàng thành công! Mã đơn hàng của bạn là '.$order->order_number);
     }
 }

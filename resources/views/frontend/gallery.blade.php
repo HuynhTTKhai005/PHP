@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <section class="titles text-center text-white"
+    <section class="titles text-center text-white "
         style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 400px;">
         <div class="container">
             <h2 class="tit">Thư viện Sincay</h2>
@@ -12,10 +12,8 @@
     <!-- Gallery Section -->
     <section class="noodle-gallery-section">
         <div class="container">
-
-
-            <!-- Gallery Grid -->
-            <div class="noodle-gallery-grid">
+            <!-- Gallery Slider -->
+            <div class="noodle-gallery-slider">
                 <div class="noodle-gallery-item">
                     <img src="assets/images/gallery/gallery-1.jpg" alt="Sự kiện nhà hàng" class="noodle-gallery-img">
                     <div class="noodle-gallery-overlay">
@@ -52,6 +50,14 @@
                     </div>
                 </div>
                 <div class="noodle-gallery-item">
+                    <img src="assets/images/gallery/gallery-6.jpg" alt="Món ăn Hàn Quốc" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/gallery/gallery-6.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="noodle-gallery-item">
                     <img src="assets/images/gallery/gallery-1.jpg" alt="Sự kiện nhà hàng" class="noodle-gallery-img">
                     <div class="noodle-gallery-overlay">
                         <a href="assets/images/gallery/gallery-1.jpg" class="noodle-gallery-view" target="_blank">
@@ -82,6 +88,15 @@
                     <img src="assets/images/gallery/gallery-4.jpg" alt="Món ăn Hàn Quốc" class="noodle-gallery-img">
                     <div class="noodle-gallery-overlay">
                         <a href="assets/images/gallery/gallery-4.jpg" class="noodle-gallery-view" target="_blank">
+                            <i class="fas fa-search"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="noodle-gallery-item">
+                    <img src="assets/images/gallery/gallery-6.jpg" alt="Món ăn Hàn Quốc" class="noodle-gallery-img">
+                    <div class="noodle-gallery-overlay">
+                        <a href="assets/images/gallery/gallery-6.jpg" class="noodle-gallery-view" target="_blank">
                             <i class="fas fa-search"></i>
                         </a>
                     </div>

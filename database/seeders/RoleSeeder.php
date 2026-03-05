@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Role;
+use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
 {
@@ -14,22 +14,22 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
-                'name'        => 'admin',
+                'name' => 'admin',
                 'description' => 'Quản trị viên - Có toàn quyền truy cập và quản lý hệ thống',
             ],
             [
-                'name'        => 'staff',
+                'name' => 'staff',
                 'description' => 'Nhân viên - Quản lý đơn hàng, sản phẩm, tồn kho và phục vụ khách',
             ],
             [
-                'name'        => 'customer',
+                'name' => 'customer',
                 'description' => 'Khách hàng - Đặt món, xem lịch sử đơn hàng và tích điểm',
             ],
         ];
 
         foreach ($roles as $roleData) {
             Role::updateOrCreate(
-                ['name' => $roleData['name']],  
+                ['name' => $roleData['name']],
                 $roleData
             );
         }
