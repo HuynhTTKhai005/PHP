@@ -143,6 +143,7 @@ class DashboardController extends Controller
             ->orderByDesc('created_at')
             ->limit(10)
             ->get()
+            ->toBase()
             ->map(function (Order $order): array {
                 $orderNumber = $order->order_number ?: ('#'.str_pad((string) $order->id, 6, '0', STR_PAD_LEFT));
 
@@ -161,6 +162,7 @@ class DashboardController extends Controller
             ->orderByDesc('created_at')
             ->limit(10)
             ->get()
+            ->toBase()
             ->map(function (User $user): array {
                 return [
                     'icon' => 'user-plus',
@@ -176,6 +178,7 @@ class DashboardController extends Controller
             ->orderByDesc('created_at')
             ->limit(10)
             ->get()
+            ->toBase()
             ->map(function (Product $product): array {
                 return [
                     'icon' => 'box',

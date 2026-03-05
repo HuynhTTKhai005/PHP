@@ -1477,6 +1477,7 @@ p {
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 8px;
+    background-color: #f67a06;
 }
 
 .login-subtitle {
