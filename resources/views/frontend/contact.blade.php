@@ -1,15 +1,15 @@
-﻿@extends('layouts.sincay')
+@extends('layouts.sincay')
 
 @section('content')
-    <!-- Pháº§n Header vá»›i tiÃªu Ä‘á» -->
+    <!-- Phần Header với tiêu đề -->
     <section class="titles text-center text-white"
         style="background:   url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 400px;">
         <div class="container">
-            <h2 class="tit">LiÃªn há»‡ Sincay</h2>
+            <h2 class="tit">Liên hệ Sincay</h2>
         </div>
     </section>
 
-    <!-- Pháº§n chÃ­nh vá»›i map vÃ  form liÃªn há»‡ -->
+    <!-- Phần chính với map và form liên hệ -->
     <section class="spicy-contact-section">
         <div class="container">
             <!-- Google Maps -->
@@ -24,7 +24,7 @@
 
              
            
-            <!-- ThÃ´ng tin liÃªn há»‡ -->
+            <!-- Thông tin liên hệ -->
             <div class="spicy-info-container">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb-4">
@@ -33,10 +33,10 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h4 class="spicy-info-title">Äá»‹a Äiá»ƒm</h4>
+                                <h4 class="spicy-info-title">Địa Điểm</h4>
                                 <p class="spicy-info-text">
-                                    123 ÄÆ°á»ng áº¨m Thá»±c, Quáº­n 1<br>
-                                    ThÃ nh phá»‘ Há»“ ChÃ­ Minh, Viá»‡t Nam
+                                    123 Đường Ẩm Thực, Quận 1<br>
+                                    Thành phố Hồ Chí Minh, Việt Nam
                                 </p>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <i class="fas fa-phone-alt"></i>
                             </div>
                             <div>
-                                <h4 class="spicy-info-title">Gá»i Cho ChÃºng TÃ´i</h4>
+                                <h4 class="spicy-info-title">Gọi Cho Chúng Tôi</h4>
                                 <p class="spicy-info-text">
                                     (+84) 81 234 5678<br>
                                     (+84) 84 273 9991
@@ -63,10 +63,10 @@
                                 <i class="fas fa-clock"></i>
                             </div>
                             <div>
-                                <h4 class="spicy-info-title">Giá» Má»Ÿ Cá»­a</h4>
+                                <h4 class="spicy-info-title">Giờ Mở Cửa</h4>
                                 <p class="spicy-info-text">
-                                    Thá»© 2 - Thá»© 6: 9:00 - 22:00<br>
-                                    Thá»© 7 & CN: 9:00 - 23:00
+                                    Thứ 2 - Thứ 6: 9:00 - 22:00<br>
+                                    Thứ 7 & CN: 9:00 - 23:00
                                 </p>
                             </div>
                         </div>

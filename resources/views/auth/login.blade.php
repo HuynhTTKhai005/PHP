@@ -1,4 +1,4 @@
-﻿@extends('layouts.sincay')
+@extends('layouts.sincay')
 
 @section('content')
     <div class="login p-t-100 p-b-100">
@@ -8,10 +8,10 @@
                     <form id="loginForm" method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <h1 class="login-title" style=" background-color: orangered">ÄÄƒng nháº­p</h1>
-                        <p class="login-subtitle">Nháº­p email vÃ  máº­t kháº©u Ä‘á»ƒ tiáº¿p tá»¥c</p>
+                        <h1 class="login-title" style=" background-color: orangered">Đăng nhập</h1>
+                        <p class="login-subtitle">Nhập email và mật khẩu để tiếp tục</p>
 
-                        {{-- Hiá»ƒn thá»‹ lá»—i chung náº¿u Ä‘Äƒng nháº­p tháº¥t báº¡i --}}
+                        {{-- Hiển thị lỗi chung nếu đăng nhập thất bại --}}
                         @if ($errors->has('login_error'))
                             <div class="error-message" style="color: #e74c3c; margin-bottom: 15px; text-align: center;">
                                 {{ $errors->first('login_error') }}
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="password" class="form-input" id="password" name="password" placeholder="Máº­t kháº©u"
+                            <input type="password" class="form-input" id="password" name="password" placeholder="Mật khẩu"
                                 required>
                             <i class="fas fa-lock input-icon"></i>
                             <button type="button" class="password-toggle" onclick="togglePassword('password')"
@@ -50,12 +50,12 @@
                             style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                             <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
                                 <input type="checkbox" name="remember">
-                                Ghi nhá»› tÃ´i
+                                Ghi nhớ tôi
                             </label>
 
                             @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" style="color: #666; text-decoration: none;">QuÃªn
-                                    máº­t kháº©u?</a>
+                                <a href="{{ route('password.request') }}" style="color: #666; text-decoration: none;">Quên
+                                    mật khẩu?</a>
                             @endif
                         </div>
 
@@ -66,14 +66,14 @@
                         @endif
 
                         <button type="submit" class="submit-btn" style="width: 100%; cursor: pointer;">
-                            ÄÄƒng nháº­p
+                            Đăng nhập
                         </button>
                     </form>
 
                     <div class="register-section" style="text-align: center; margin-top: 25px;">
-                        ChÆ°a cÃ³ tÃ i khoáº£n?
+                        Chưa có tài khoản?
                         <a href="{{ route('register.form') }}" class="register-btn" style="font-weight: bold; color: #f64403;">
-                            ÄÄƒng kÃ½ ngay
+                            Đăng ký ngay
                         </a>
                     </div>
                 </div>
