@@ -1,11 +1,11 @@
-﻿@extends('layouts.sincay')
+@extends('layouts.sincay')
 
 @section('content')
     <!-- Main Container -->
     <section class="titles text-center text-white"
         style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 320px;  ">
         <div class="container">
-            <h2 class="tit">Giá» hÃ ng</h2>
+            <h2 class="tit">Giỏ hàng</h2>
         </div>
     </section>
     <div class="container">
@@ -14,7 +14,7 @@
 
         <!-- Main Layout -->
         <div class="cart-layout">
-            {{-- Cá»™t trÃ¡i --}}
+            {{-- Cột trái --}}
             <div class="cart-items">
                 @if (count($cart) > 0)
                     @foreach ($cart as $id => $item)
@@ -30,7 +30,7 @@
                                     <div class="product-variants">
                                     </div>
 
-                                    {{-- Chá»‰nh sá»‘ lÆ°á»£ng sáº£n pháº©m --}}
+                                    {{-- Chỉnh số lượng sản phẩm --}}
                                     <div class="quantity-controls">
                                         <form action="{{ route('cart.update', $id) }}" method="POST">
                                             @csrf
@@ -58,7 +58,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="action-btn save">
-                                                        <i class="fas fa-heart"></i> YÃªu thÃ­ch
+                                                        <i class="fas fa-heart"></i> Yêu thích
                                                     </button>
                                                 </form>
                                             @else
@@ -66,27 +66,27 @@
                                                     class="d-inline">
                                                     @csrf
                                                     <button type="submit" class="action-btn save">
-                                                        <i class="far fa-heart"></i> YÃªu thÃ­ch
+                                                        <i class="far fa-heart"></i> Yêu thích
                                                     </button>
                                                 </form>
                                             @endif
                                         @else
                                             <a href="{{ route('login') }}" class="action-btn save">
-                                                <i class="far fa-heart"></i> YÃªu thÃ­ch
+                                                <i class="far fa-heart"></i> Yêu thích
                                             </a>
                                         @endauth
-                                        <div class="p-2">Cáº¥p Ä‘á»™ cay: {{ $item['spicy_level'] ?? 'KhÃ´ng' }}</div>
+                                        <div class="p-2">Cấp độ cay: {{ $item['spicy_level'] ?? 'Không' }}</div>
                                     </div>
                                 </div>
 
-                                {{-- GiÃ¡ --}}
+                                {{-- Giá --}}
                                 <div class="price-section">
                                     <div class="price-container">
                                         <span class="current-price">
-                                            {{ number_format($item['base_price_cents'] ?? 0) }}Ä‘
+                                            {{ number_format($item['base_price_cents'] ?? 0) }}đ
                                         </span>
 
-                                        {{-- Dáº¥u X xÃ³a --}}
+                                        {{-- Dấu X xóa --}}
                                     </div>
                                     <a href="{{ route('cart.remove', $id) }}" class="remove-btn">
                                         <i class="fas fa-times"></i>
@@ -97,9 +97,9 @@
                     @endforeach
                 @else
                     <div class="text-center mt-5">
-                        <h3>Giá» hÃ ng cá»§a báº¡n Ä‘ang trá»‘ng</h3> <br>
+                        <h3>Giỏ hàng của bạn đang trống</h3> <br>
                         <a href="{{ route('menu') }}" class="btn3 size13 txt11">
-                            Tiáº¿p tá»¥c mua sáº¯m
+                            Tiếp tục mua sắm
                         </a>
                     </div>
                 @endif
@@ -109,50 +109,50 @@
             <div class="cart-summary">
                 <div class="summary-header">
                     <i class="fas fa-receipt"></i>
-                    <h3>Tá»•ng thanh toÃ¡n</h3>
+                    <h3>Tổng thanh toán</h3>
                 </div>
 
                 <div class="summary-rows">
-                    <!-- Táº¡m tÃ­nh -->
+                    <!-- Tạm tính -->
                     <div class="summary-row">
-                        <span class="label">Táº¡m tÃ­nh</span>
-                        <span class="value">{{ number_format($summary['subtotal']) }}Ä‘</span>
+                        <span class="label">Tạm tính</span>
+                        <span class="value">{{ number_format($summary['subtotal']) }}đ</span>
                     </div>
 
-                    <!-- PhÃ­ váº­n chuyá»ƒn -->
+                    <!-- Phí vận chuyển -->
                     <div class="summary-row">
-                        <span class="label">PhÃ­ váº­n chuyá»ƒn</span>
+                        <span class="label">Phí vận chuyển</span>
                         <span class="value free-shipping">
                             @if ($summary['is_free_ship'])
-                                <i class="fas fa-check-circle"></i> Miá»…n phÃ­
+                                <i class="fas fa-check-circle"></i> Miễn phí
                             @else
-                                {{ number_format($summary['shipping_fee']) }}Ä‘
+                                {{ number_format($summary['shipping_fee']) }}đ
                             @endif
                         </span>
                     </div>
 
-                    <!-- Giáº£m giÃ¡ (náº¿u cÃ³) -->
+                    <!-- Giảm giá (nếu có) -->
                     @if ($summary['discount'] > 0)
                         <div class="summary-row text-success">
-                            <span class="label">Giáº£m giÃ¡
+                            <span class="label">Giảm giá
                                 @if ($coupon)
                                     ({{ strtoupper($coupon->code) }})
                                 @endif
                             </span>
-                            <span class="value">- {{ number_format($summary['discount']) }}Ä‘</span>
+                            <span class="value">- {{ number_format($summary['discount']) }}đ</span>
                         </div>
                     @endif
 
-                    <!-- Thuáº¿ VAT -->
+                    <!-- Thuế VAT -->
                     <div class="summary-row">
-                        <span class="label">Thuáº¿ VAT (10%)</span>
-                        <span class="value">{{ number_format($summary['vat']) }}Ä‘</span>
+                        <span class="label">Thuế VAT (10%)</span>
+                        <span class="value">{{ number_format($summary['vat']) }}đ</span>
                     </div>
 
-                    <!-- Tá»•ng cá»™ng -->
+                    <!-- Tổng cộng -->
                     <div class="summary-row total">
-                        <span class="label">Tá»•ng cá»™ng</span>
-                        <span class="value">{{ number_format($summary['total']) }}Ä‘</span>
+                        <span class="label">Tổng cộng</span>
+                        <span class="value">{{ number_format($summary['total']) }}đ</span>
                     </div>
                 </div>
 
@@ -161,10 +161,10 @@
                     <div class="progress-text">
                         <span>
                             @if ($summary['is_free_ship'])
-                                <strong>Báº¡n Ä‘Ã£ Ä‘á»§ Ä‘iá»u kiá»‡n miá»…n phÃ­ ship!</strong>
+                                <strong>Bạn đã đủ điều kiện miễn phí ship!</strong>
                             @else
-                                ThÃªm {{ number_format($summary['remaining_for_free_ship']) }}Ä‘ Ä‘á»ƒ Ä‘Æ°á»£c miá»…n
-                                phÃ­ ship
+                                Thêm {{ number_format($summary['remaining_for_free_ship']) }}đ để được miễn
+                                phí ship
                             @endif
                         </span>
                         <span>{{ round($summary['progress_percent']) }}%</span>
@@ -174,11 +174,11 @@
                     </div>
                 </div>
 
-                <!-- Promo Code (giá»¯ nguyÃªn pháº§n báº¡n Ä‘Ã£ lÃ m ráº¥t tá»‘t) -->
+                <!-- Promo Code (giữ nguyên phần bạn đã làm rất tốt) -->
                 <div class="promo-section">
                     <div class="promo-header">
                         <i class="fas fa-tag"></i>
-                        <h4>MÃ£ giáº£m giÃ¡</h4>
+                        <h4>Mã giảm giá</h4>
                     </div>
 
                     @if ($coupon)
@@ -186,23 +186,23 @@
                             <div>
                                 <strong>{{ strtoupper($coupon->code) }}</strong>
                                 <small class="d-block">
-                                    Giáº£m
+                                    Giảm
                                     {{ $coupon->discount_type == 'percent'
                                         ? $coupon->discount_value . '%'
-                                        : number_format($coupon->discount_value) . 'Ä‘' }}
+                                        : number_format($coupon->discount_value) . 'đ' }}
                                 </small>
                             </div>
                             <form action="{{ route('cart.removeCoupon') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-danger">XÃ³a</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
                             </form>
                         </div>
                     @else
                         <form action="{{ route('cart.applyCoupon') }}" method="POST" class="promo-input-group mt-3">
                             @csrf
                             <input type="text" name="coupon_code" class="promo-input"
-                                placeholder="Nháº­p mÃ£ giáº£m giÃ¡..." value="{{ old('coupon_code') }}" required>
-                            <button type="submit" class="apply-btn">Ãp dá»¥ng</button>
+                                placeholder="Nhập mã giảm giá..." value="{{ old('coupon_code') }}" required>
+                            <button type="submit" class="apply-btn">Áp dụng</button>
                         </form>
                     @endif
 
@@ -216,7 +216,7 @@
 
                 <!-- Checkout Button -->
                 <a href="{{ route('checkout') }}" class="checkout-btn"> <i class="fas fa-lock"></i>
-                    Thanh toÃ¡n an toÃ n
+                    Thanh toán an toàn
                 </a>
 
                 <!-- Payment Methods -->
@@ -235,7 +235,7 @@
     <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle" id="toast-icon"></i>
-        <span id="toast-message">ÄÃ£ cáº­p nháº­t giá» hÃ ng</span>
+        <span id="toast-message">Đã cập nhật giỏ hàng</span>
         <button class="close-toast" onclick="hideToast()">
             <i class="fas fa-times"></i>
         </button>

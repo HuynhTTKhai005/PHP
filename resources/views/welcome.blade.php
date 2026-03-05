@@ -1,13 +1,13 @@
-﻿@extends('layouts.sincay')
+@extends('layouts.sincay')
 
 
-@section('title', 'Sincay - NhÃ  hÃ ng cao cáº¥p')
+@section('title', 'Sincay - Nhà hàng cao cấp')
 
 @section('content')
     <!-- Hero Slider (Bootstrap 5 Carousel) -->
     <section class="hero-slider position-relative top-0">
         <div id="heroCarousel" class="carousel carousel-fade" data-bs-ride="carousel">
-            <!-- Indicators (dáº¥u cháº¥m dÆ°á»›i) -->
+            <!-- Indicators (dấu chấm dưới) -->
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
                     aria-label="Slide 1"></button>
@@ -22,7 +22,7 @@
                     style="background-image: url('{{ asset('assets/images/slide_1.jpg') }}'); min-height: 80vh; background-size: cover; background-position: center;">
                     <div
                         class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 text-center text-white">
-                        <span class="hero-subtitle h3 mb-5 animate__animated animate__fadeInDown">ChÃ o má»«ng Ä‘áº¿n vá»›i</span>
+                        <span class="hero-subtitle h3 mb-5 animate__animated animate__fadeInDown">Chào mừng đến với</span>
                         <h2 class="hero-title display-3 fw-bold mb-4 animate__animated animate__fadeInUp">Sincay Place</h2>
                         <a href="{{ url('menu') }}"
                             class="btn btn-danger btn-lg px-5 py-3 animate__animated animate__zoomIn">Xem Menu</a>
@@ -34,7 +34,7 @@
                     style="background-image: url('{{ asset('assets/images/slide_2.png') }}'); min-height: 80vh; background-size: cover; background-position: center;">
                     <div
                         class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 text-center text-white">
-                        <span class="hero-subtitle h3 mb-3 animate__animated animate__rollIn">ChÃ o má»«ng Ä‘áº¿n vá»›i</span>
+                        <span class="hero-subtitle h3 mb-3 animate__animated animate__rollIn">Chào mừng đến với</span>
                         <h2 class="hero-title display-3 fw-bold mb-4 animate__animated animate__lightSpeedIn">Sincay Place
                         </h2>
                         <a href="{{ url('menu') }}"
@@ -47,8 +47,8 @@
                     style="background-image: url('{{ asset('assets/images/slide_3.png') }}'); min-height: 80vh; background-size: cover; background-position: center;">
                     <div
                         class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100 text-center text-white">
-                        <span class="hero-subtitle h3 mb-3 animate__animated animate__rotateInDownLeft">ChÃ o má»«ng Ä‘áº¿n
-                            vá»›i</span>
+                        <span class="hero-subtitle h3 mb-3 animate__animated animate__rotateInDownLeft">Chào mừng đến
+                            với</span>
                         <h2 class="hero-title display-3 fw-bold mb-4 animate__animated animate__rotateInUpRight">Sincay
                             Place</h2>
                         <a href="{{ url('menu') }}"
@@ -57,7 +57,7 @@
                 </div>
             </div>
 
-            <!-- Controls (nÃºt prev/next) -->
+            <!-- Controls (nút prev/next) -->
             <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -76,20 +76,20 @@
                 <div class="col-lg-6 order-lg-1 order-2 py-4">
                     <div class="wrap-text-welcome text-center text-lg-start">
                         <span class="d-block fs-1 fw-bold text-uppercase mb-2">
-                            NhÃ  HÃ ng Sincay
+                            Nhà Hàng Sincay
                         </span>
 
                         <h3 class="display-4 fw-bold mb-4">
-                            MÃ¬ Cay HÃ n Quá»‘c
+                            Mì Cay Hàn Quốc
                         </h3>
 
                         <p class="lead mb-4">
-                            ChÃ o má»«ng báº¡n Ä‘áº¿n vá»›i nhÃ  hÃ ng cá»§a chÃºng tÃ´i. ChÃºng tÃ´i mang Ä‘áº¿n nhá»¯ng mÃ³n Äƒn ngon vÃ  tráº£i
-                            nghiá»‡m tuyá»‡t vá»i.
+                            Chào mừng bạn đến với nhà hàng của chúng tôi. Chúng tôi mang đến những món ăn ngon và trải
+                            nghiệm tuyệt vời.
                         </p>
 
                         <a href="{{ route('about') }}" class="btn btn-outline-danger btn-lg">
-                            CÃ¢u Chuyá»‡n Cá»§a ChÃºng TÃ´i
+                            Câu Chuyện Của Chúng Tôi
                             <i class="fas fa-long-arrow-alt-right ms-2"></i>
                         </a>
                     </div>
@@ -112,7 +112,7 @@
             </span>
 
             <h3 class="tit4 text-center px-3 pt-1">
-                KhÃ¡m phÃ¡
+                Khám phá
             </h3>
         </div>
 
@@ -130,7 +130,7 @@
                             <div class="wrap-text-blo1 pt-4">
                                 <a href="#" class="text-decoration-none">
                                     <h4 class="txt5 color0-hov m-b-13">
-                                        NhÃ  HÃ ng LÃ£ng Máº¡n
+                                        Nhà Hàng Lãng Mạn
                                     </h4>
                                 </a>
 
@@ -154,7 +154,7 @@
                             <div class="wrap-text-blo1 pt-4">
                                 <a href="#" class="text-decoration-none">
                                     <h4 class="txt5 color0-hov m-b-13">
-                                        MÃ³n Äƒn ngon miá»‡ng
+                                        Món ăn ngon miệng
                                     </h4>
                                 </a>
 
@@ -178,7 +178,7 @@
                             <div class="wrap-text-blo1 pt-4">
                                 <a href="#" class="text-decoration-none">
                                     <h4 class="txt5 color0-hov m-b-13">
-                                        Nhá»¯ng gÃ¬ Báº¡n YÃªu ThÃ­ch
+                                        Những gì Bạn Yêu Thích
                                     </h4>
                                 </a>
 
@@ -204,7 +204,7 @@
             </span>
 
             <h3 class="tit4 text-center px-3 pt-1">
-                Äáº·t BÃ n 
+                Đặt Bàn 
             </h3>
         </div>
         <div class="container">
@@ -236,16 +236,16 @@
                             <div class="col-md-6">
                                 <!-- Date -->
                                 <div class="mb-3">
-                                    <label class="txt9 mb-2">NgÃ y</label>
+                                    <label class="txt9 mb-2">Ngày</label>
                                     <input type="date" class="form-control bo-rad-10 p-3" name="date"
                                         value="{{ old('date') }}">
                                 </div>
 
                                 <!-- Time -->
                                 <div class="mb-3">
-                                    <label class="txt9 mb-2">Giá»</label>
+                                    <label class="txt9 mb-2">Giờ</label>
                                     <select class="form-select bo-rad-10 p-3" name="time">
-                                        <option value="">Chá»n giá»</option>
+                                        <option value="">Chọn giờ</option>
                                         <option value="09:00" {{ old('time') === '09:00' ? 'selected' : '' }}>09:00
                                         </option>
                                         <option value="09:30" {{ old('time') === '09:30' ? 'selected' : '' }}>09:30
@@ -297,13 +297,13 @@
 
                                 <!-- People -->
                                 <div class="mb-3">
-                                    <label class="txt9 mb-2">Sá»‘ NgÆ°á»i</label>
+                                    <label class="txt9 mb-2">Số Người</label>
                                     <select class="form-select bo-rad-10 p-3" name="people">
-                                        <option value="">Chá»n sá»‘ ngÆ°á»i</option>
+                                        <option value="">Chọn số người</option>
                                         @for ($i = 1; $i <= 20; $i++)
                                             <option value="{{ $i }}"
                                                 {{ (string) old('people') === (string) $i ? 'selected' : '' }}>
-                                                {{ $i }} ngÆ°á»i
+                                                {{ $i }} người
                                             </option>
                                         @endfor
                                     </select>
@@ -313,16 +313,16 @@
                             <div class="col-md-6">
                                 <!-- Name -->
                                 <div class="mb-3">
-                                    <label class="txt9 mb-2">TÃªn</label>
+                                    <label class="txt9 mb-2">Tên</label>
                                     <input type="text" class="form-control bo-rad-10 p-3" name="name"
-                                        placeholder="TÃªn" value="{{ old('name') }}">
+                                        placeholder="Tên" value="{{ old('name') }}">
                                 </div>
 
                                 <!-- Phone -->
                                 <div class="mb-3">
-                                    <label class="txt9 mb-2">Äiá»‡n Thoáº¡i</label>
+                                    <label class="txt9 mb-2">Điện Thoại</label>
                                     <input type="tel" class="form-control bo-rad-10 p-3" name="phone"
-                                        placeholder="Sá»‘ Ä‘iá»‡n thoáº¡i" value="{{ old('phone') }}">
+                                        placeholder="Số điện thoại" value="{{ old('phone') }}">
                                 </div>
 
                                 <!-- Email -->
@@ -333,15 +333,15 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="txt9 mb-2">Ghi chÃº</label>
-                                    <textarea class="form-control bo-rad-10 p-3" name="note" rows="3" placeholder="YÃªu cáº§u thÃªm (náº¿u cÃ³)">{{ old('note') }}</textarea>
+                                    <label class="txt9 mb-2">Ghi chú</label>
+                                    <textarea class="form-control bo-rad-10 p-3" name="note" rows="3" placeholder="Yêu cầu thêm (nếu có)">{{ old('note') }}</textarea>
                                 </div>
                             </div>
                         </div>
 
                         <div class="text-center mt-4">
                             <button type="submit" class="btn3 btn-lg">
-                                Äáº·t BÃ n
+                                Đặt Bàn
                             </button>
                         </div>
                     </form>
@@ -377,10 +377,10 @@
         style="background-image: url(assets/images/bgintro.png);">
         <div class="content-video text-center w-100 h-100">
             <span class="tit2 px-3">
-                Báº­t mÃ­
+                Bật mí
             </span>
             <h3 class="tit4 text-center px-3 pt-1">
-                Video NhÃ  HÃ ng
+                Video Nhà Hàng
             </h3>
             <button class="btn-play mx-auto mt-4" data-bs-toggle="modal" data-bs-target="#videoModal">
                 <div class="circle-btn">
