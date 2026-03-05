@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+﻿@extends('layouts.sincay')
 
 @section('content')
     <div class="login p-t-100 p-b-100">
@@ -12,14 +12,14 @@
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <h1 class="login-title" style="background-color: orangered">
-                            Đặt lại mật khẩu
+                            Äáº·t láº¡i máº­t kháº©u
                         </h1>
 
                         <p class="login-subtitle">
-                            Nhập mật khẩu mới để hoàn tất quá trình
+                            Nháº­p máº­t kháº©u má»›i Ä‘á»ƒ hoÃ n táº¥t quÃ¡ trÃ¬nh
                         </p>
 
-                        {{-- Lỗi tổng --}}
+                        {{-- Lá»—i tá»•ng --}}
                         @if ($errors->any())
                             <div class="error-message" style="margin-bottom: 15px; text-align: center;">
                                 {{ $errors->first() }}
@@ -37,13 +37,13 @@
                             <i class="fas fa-envelope input-icon"></i>
                         </div>
 
-                        {{-- Mật khẩu mới --}}
+                        {{-- Máº­t kháº©u má»›i --}}
                         <div class="form-group">
                             <input type="password"
                                    class="form-input"
                                    name="password"
                                    id="password"
-                                   placeholder="Mật khẩu mới"
+                                   placeholder="Máº­t kháº©u má»›i"
                                    required>
                             <i class="fas fa-lock input-icon"></i>
 
@@ -54,13 +54,13 @@
                             @enderror
                         </div>
 
-                        {{-- Xác nhận mật khẩu --}}
+                        {{-- XÃ¡c nháº­n máº­t kháº©u --}}
                         <div class="form-group">
                             <input type="password"
                                    class="form-input"
                                    name="password_confirmation"
                                    id="password_confirmation"
-                                   placeholder="Xác nhận mật khẩu"
+                                   placeholder="XÃ¡c nháº­n máº­t kháº©u"
                                    required>
                             <i class="fas fa-lock input-icon"></i>
                         </div>
@@ -68,17 +68,17 @@
                         <button type="submit"
                                 class="submit-btn"
                                 style="width: 100%; cursor: pointer;">
-                            Cập nhật mật khẩu
+                            Cáº­p nháº­t máº­t kháº©u
                         </button>
                     </form>
 
                     <div class="register-section"
                          style="text-align: center; margin-top: 25px;">
-                        Quay lại
+                        Quay láº¡i
                         <a href="{{ route('login') }}"
                            class="register-btn"
                            style="font-weight: bold; color: #f64403;">
-                            Đăng nhập
+                            ÄÄƒng nháº­p
                         </a>
                     </div>
 
@@ -87,3 +87,4 @@
         </div>
     </div>
 @endsection
+

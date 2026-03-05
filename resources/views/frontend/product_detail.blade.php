@@ -1,12 +1,12 @@
-@extends('layouts.pato')
+﻿@extends('layouts.sincay')
 
-@section('title', $product->name . ' - Chi tiết sản phẩm')
+@section('title', $product->name . ' - Chi tiáº¿t sáº£n pháº©m')
 
 @section('content')
     <section class="titles text-center text-white"
         style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 320px;">
         <div class="container">
-            <h2 class="tit">Chi tiết sản phẩm</h2>
+            <h2 class="tit">Chi tiáº¿t sáº£n pháº©m</h2>
         </div>
     </section>
 
@@ -18,7 +18,7 @@
 
             <div class="mb-4">
                 <a href="{{ route('menu') }}" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Quay lại menu
+                    <i class="fas fa-arrow-left"></i> Quay láº¡i menu
                 </a>
             </div>
 
@@ -29,19 +29,19 @@
 
                 <div class="col-md-6 mb-4">
                     <h2 class="mb-3">{{ $product->name }}</h2>
-                    <p class="text-muted mb-2">Danh mục: {{ $product->category?->name ?? 'Chưa phân loại' }}</p>
-                    <h4 class="text-danger fw-bold mb-3">{{ number_format($product->base_price_cents) }}đ</h4>
-                    <p class="mb-3">{{ $product->description ?: 'Chưa có mô tả.' }}</p>
+                    <p class="text-muted mb-2">Danh má»¥c: {{ $product->category?->name ?? 'ChÆ°a phÃ¢n loáº¡i' }}</p>
+                    <h4 class="text-danger fw-bold mb-3">{{ number_format($product->base_price_cents) }}Ä‘</h4>
+                    <p class="mb-3">{{ $product->description ?: 'ChÆ°a cÃ³ mÃ´ táº£.' }}</p>
 
                     <div class="mb-3">
                         @if (($product->stock ?? 0) > 0)
-                            <span class="badge bg-success">Còn hàng ({{ $product->stock }})</span>
+                            <span class="badge bg-success">CÃ²n hÃ ng ({{ $product->stock }})</span>
                         @else
-                            <span class="badge bg-danger">Hết hàng</span>
+                            <span class="badge bg-danger">Háº¿t hÃ ng</span>
                         @endif
 
                         @if ($product->is_spicy)
-                            <span class="badge bg-warning text-dark">Có cay</span>
+                            <span class="badge bg-warning text-dark">CÃ³ cay</span>
                         @endif
                     </div>
 
@@ -52,20 +52,20 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger">
-                                        <i class="fas fa-heart"></i> Đã yêu thích
+                                        <i class="fas fa-heart"></i> ÄÃ£ yÃªu thÃ­ch
                                     </button>
                                 </form>
                             @else
                                 <form action="{{ route('wishlist.store', $product) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-outline-danger">
-                                        <i class="far fa-heart"></i> Thêm vào yêu thích
+                                        <i class="far fa-heart"></i> ThÃªm vÃ o yÃªu thÃ­ch
                                     </button>
                                 </form>
                             @endif
                         @else
                             <a href="{{ route('login') }}" class="btn btn-outline-danger">
-                                <i class="far fa-heart"></i> Đăng nhập để yêu thích
+                                <i class="far fa-heart"></i> ÄÄƒng nháº­p Ä‘á»ƒ yÃªu thÃ­ch
                             </a>
                         @endauth
                     </div>
@@ -76,17 +76,17 @@
 
                             @if ($product->is_spicy)
                                 <div class="mb-3">
-                                    <label for="spicy_level" class="form-label">Chọn cấp độ cay</label>
+                                    <label for="spicy_level" class="form-label">Chá»n cáº¥p Ä‘á»™ cay</label>
                                     <select name="spicy_level" id="spicy_level" class="form-control">
                                         @for ($i = 0; $i <= 7; $i++)
-                                            <option value="{{ $i }}" {{ $i === 3 ? 'selected' : '' }}>Cấp {{ $i }}</option>
+                                            <option value="{{ $i }}" {{ $i === 3 ? 'selected' : '' }}>Cáº¥p {{ $i }}</option>
                                         @endfor
                                     </select>
                                 </div>
                             @endif
 
                             <button type="submit" class="btn btn-danger">
-                                <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                                <i class="fas fa-cart-plus"></i> ThÃªm vÃ o giá» hÃ ng
                             </button>
                         </form>
                     @endif

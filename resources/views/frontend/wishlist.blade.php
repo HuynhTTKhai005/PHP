@@ -1,12 +1,12 @@
-@extends('layouts.pato')
+﻿@extends('layouts.sincay')
 
-@section('title', 'Danh sách yêu thích')
+@section('title', 'Danh sÃ¡ch yÃªu thÃ­ch')
 
 @section('content')
     <section class="titles text-center text-white"
         style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 320px;">
         <div class="container">
-            <h2 class="tit">Danh sách yêu thích</h2>
+            <h2 class="tit">Danh sÃ¡ch yÃªu thÃ­ch</h2>
         </div>
     </section>
 
@@ -18,18 +18,18 @@
 
             <div class="wishlist-header">
                 <div>
-                    <h3 class="wishlist-title">Sản phẩm bạn đã lưu</h3>
-                    <p class="wishlist-subtitle">Theo dõi món bạn thích và thêm nhanh vào giỏ hàng.</p>
+                    <h3 class="wishlist-title">Sáº£n pháº©m báº¡n Ä‘Ã£ lÆ°u</h3>
+                    <p class="wishlist-subtitle">Theo dÃµi mÃ³n báº¡n thÃ­ch vÃ  thÃªm nhanh vÃ o giá» hÃ ng.</p>
                 </div>
-                <div class="wishlist-count">{{ $wishlists->total() }} sản phẩm</div>
+                <div class="wishlist-count">{{ $wishlists->total() }} sáº£n pháº©m</div>
             </div>
 
             @if ($wishlists->isEmpty())
                 <div class="wishlist-empty">
                     <i class="fas fa-heart-broken"></i>
-                    <h4>Chưa có sản phẩm yêu thích nào</h4>
-                    <p>Hãy khám phá thực đơn và lưu lại món bạn muốn gọi sau.</p>
-                    <a href="{{ route('menu') }}" class="btn btn-danger">Đi đến thực đơn</a>
+                    <h4>ChÆ°a cÃ³ sáº£n pháº©m yÃªu thÃ­ch nÃ o</h4>
+                    <p>HÃ£y khÃ¡m phÃ¡ thá»±c Ä‘Æ¡n vÃ  lÆ°u láº¡i mÃ³n báº¡n muá»‘n gá»i sau.</p>
+                    <a href="{{ route('menu') }}" class="btn btn-danger">Äi Ä‘áº¿n thá»±c Ä‘Æ¡n</a>
                 </div>
             @else
                 <div class="row g-4">
@@ -52,9 +52,9 @@
 
                                     <div class="wishlist-meta">
                                         <span class="wishlist-price">{{ number_format($item->product->base_price_cents) }}
-                                            đ</span>
+                                            Ä‘</span>
                                         <span class="wishlist-stock {{ ($item->product->stock ?? 0) > 0 ? 'in' : 'out' }}">
-                                            {{ ($item->product->stock ?? 0) > 0 ? 'Còn hàng' : 'Hết hàng' }}
+                                            {{ ($item->product->stock ?? 0) > 0 ? 'CÃ²n hÃ ng' : 'Háº¿t hÃ ng' }}
                                         </span>
                                     </div>
 
@@ -63,7 +63,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                <i class="fas fa-trash"></i> Bỏ yêu thích
+                                                <i class="fas fa-trash"></i> Bá» yÃªu thÃ­ch
                                             </button>
                                         </form>
 
@@ -71,7 +71,7 @@
                                             <form action="{{ route('cart.add', $item->product->id) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-cart-plus"></i> Thêm giỏ hàng
+                                                    <i class="fas fa-cart-plus"></i> ThÃªm giá» hÃ ng
                                                 </button>
                                             </form>
                                         @endif
@@ -89,3 +89,4 @@
         </div>
     </section>
 @endsection
+
