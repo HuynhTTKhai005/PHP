@@ -1,6 +1,6 @@
-﻿@extends('layouts.pato')
+﻿@extends('layouts.sincay')
 
-@section('title', 'Menu - Pato Restaurant')
+@section('title', 'Menu - Sincay Restaurant')
 
 @section('content')
     <section class="titles text-center text-white"
@@ -172,3 +172,4 @@
         </div>
     </section>
 @endsection
+

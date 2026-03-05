@@ -1193,7 +1193,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px; /* Giảm gap một chút để menu không bị quá thưa */
+    gap: 10px;  
     margin-bottom: 60px;
     padding: 0;
 }
