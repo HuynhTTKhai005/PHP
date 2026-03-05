@@ -43,7 +43,7 @@ class Role extends Model
      * Gán một hoặc nhiều permission cho role
      * Dễ dùng trong controller hoặc seeder
      *
-     * @param string|array $permissionNames
+     * @param  string|array  $permissionNames
      * @return void
      */
     public function givePermissionTo($permissionNames)
@@ -58,7 +58,7 @@ class Role extends Model
     /**
      * Xóa một hoặc nhiều permission khỏi role
      *
-     * @param string|array $permissionNames
+     * @param  string|array  $permissionNames
      * @return void
      */
     public function revokePermissionTo($permissionNames)
@@ -72,9 +72,6 @@ class Role extends Model
 
     /**
      * Kiểm tra role có permission nào đó không
-     *
-     * @param string $permissionName
-     * @return bool
      */
     public function hasPermissionTo(string $permissionName): bool
     {

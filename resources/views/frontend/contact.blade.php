@@ -22,42 +22,8 @@
                 </div>
             </div>
 
-            <!-- Tiêu đề form -->
-            <h3 class="spicy-section-title">
-                Gửi Tin Nhắn Cho Chúng Tôi
-            </h3>
-
-            <!-- Form liên hệ -->
-            <div class="spicy-form-container">
-                <form class="row g-4">
-                    <div class="col-md-4">
-                        <label class="spicy-form-label">Tên</label>
-                        <input class="spicy-form-input" type="text" name="name" placeholder="Nhập tên của bạn">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="spicy-form-label">Email</label>
-                        <input class="spicy-form-input" type="email" name="email" placeholder="Nhập địa chỉ email">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="spicy-form-label">Điện Thoại</label>
-                        <input class="spicy-form-input" type="text" name="phone" placeholder="Nhập số điện thoại">
-                    </div>
-
-                    <div class="col-12">
-                        <label class="spicy-form-label">Tin Nhắn</label>
-                        <textarea class="spicy-form-textarea" name="message" placeholder="Nhập nội dung tin nhắn"></textarea>
-                    </div>
-
-                    <div class="col-12 text-center">
-                        <button type="submit" class="spicy-btn-submit">
-                            <i class="fas fa-paper-plane me-2"></i> Gửi Tin Nhắn
-                        </button>
-                    </div>
-                </form>
-            </div>
-
+             
+           
             <!-- Thông tin liên hệ -->
             <div class="spicy-info-container">
                 <div class="row">
@@ -84,8 +50,8 @@
                             <div>
                                 <h4 class="spicy-info-title">Gọi Cho Chúng Tôi</h4>
                                 <p class="spicy-info-text">
-                                    (+84) 28 1234 5678<br>
-                                    (+84) 909 123 456
+                                    (+84) 81 234 5678<br>
+                                    (+84) 84 273 9991
                                 </p>
                             </div>
                         </div>

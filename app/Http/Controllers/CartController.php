@@ -2,173 +2,100 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Cart;
 use App\Models\Product;
-use App\Models\Coupon;
-use Carbon\Carbon;
+use App\Models\Wishlist;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index()
+    public function __construct(private readonly Cart $cart) {}
+
+    public function index(Request $request)
     {
-        $cart = session('cart', []);
-        $totals = $this->getTotals();
-        return view('frontend.cart', compact('cart'));
+        $cart = $this->cart->items();
+        $coupon = $this->cart->coupon();
+        $summary = $this->cart->summary();
+        $wishlistProductIds = [];
+
+        if ($request->user()) {
+            $wishlistProductIds = Wishlist::query()
+                ->where('user_id', $request->user()->id)
+                ->pluck('product_id')
+                ->all();
+        }
+
+        return view('frontend.cart', compact('cart', 'wishlistProductIds', 'coupon', 'summary'));
     }
 
-    // Thêm
     public function add(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+        $spicyLevel = (int) $request->input('spicy_level', 0);
+        $this->cart->addProduct($product, $spicyLevel);
 
-        $cart = session('cart', []);
-        $spicyLevel = $request->input('spicy_level', 0);
-
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                'name' => $product->name,
-                'base_price_cents' => $product->base_price_cents,
-                'quantity' => 1,
-                'image_url' => $product->image_url,
-                'spicy_level' => $spicyLevel
-            ];
-        }
-        session(['cart' => $cart]);
         return redirect()->back()->with('success', 'Đã thêm vào giỏ hàng!');
     }
 
-    // Xóa
     public function clear()
     {
-        session()->forget('cart');
-        return redirect('/cart')->with('success', 'Đã làm trống giỏ hàng để test mới!');
-    }
+        $this->cart->clear();
 
-    //cập nhật
+        return redirect('/cart')->with('success', 'Đã làm trống giỏ hàng.');
+    }
 
     public function update(Request $request, $id)
     {
-        $action = $request->input('action');
-        $cart = session('cart', []);
+        $action = (string) $request->input('action');
+        $this->cart->updateQuantity($id, $action);
 
-        if (isset($cart[$id])) {
-            if ($action == 'increase') {
-                $cart[$id]['quantity']++;
-            } elseif ($action == 'decrease') {
-                $cart[$id]['quantity']--;
-                if ($cart[$id]['quantity'] <= 0) {
-                    unset($cart[$id]);
-                }
-            }
-            session(['cart' => $cart]);
+        return redirect()->back();
+    }
+
+    public function remove($id)
+    {
+        if ($this->cart->remove($id)) {
+            return redirect()->back()->with('success', 'Đã xóa sản phẩm khỏi giỏ hàng!');
         }
 
         return redirect()->back();
     }
 
-    //remove
-    public function remove($id)
-    {
-        $cart = session('cart', []);
-        if (isset($cart[$id])) {
-            unset($cart[$id]);
-            session(['cart' => $cart]);
-            return redirect()->back()->with('success', 'Đã xóa sản phẩm khỏi giỏ hàng!');
-        }
-    }
-
-
-    // Áp dụng mã giảm giá
     public function applyCoupon(Request $request)
     {
-        // 1. Kiểm tra người dùng có nhập mã không
         $request->validate([
             'coupon_code' => 'required|string',
         ]);
 
-        $code = strtoupper(trim($request->coupon_code)); // Chuẩn hóa: GIAM10, giam10, " giam10 " đều hợp lệ
-
-        // 2. Tìm mã trong database
-        $coupon = Coupon::where('code', $code)
-            ->where('is_active', true) // nếu bạn có trường này
-            ->where(function ($query) {
-                $query->whereNull('expires_at')
-                    ->orWhere('expires_at', '>=', Carbon::now());
-            })
-            ->first();
-
-        // 3. Nếu không tìm thấy hoặc hết hạn
-        if (!$coupon) {
+        $coupon = $this->cart->applyCouponByCode((string) $request->coupon_code);
+        if (! $coupon) {
             return back()->with('error', 'Mã giảm giá không hợp lệ hoặc đã hết hạn!');
         }
 
-        // 4. Kiểm tra đơn hàng tối thiểu (nếu có)
-        $subtotal = $this->calculateSubtotal(); // cents
-        if ($coupon->min_order_total_amount_cents && $subtotal < $coupon->min_order_total_amount_cents) {
-            return back()->with('error', 'Đơn hàng phải từ ' . number_format($coupon->min_order_total_amount_cents / 100) . 'đ trở lên!');
+        $subtotal = $this->cart->subtotal();
+        if ($coupon->min_order_total_amount_cents && $subtotal < (int) $coupon->min_order_total_amount_cents) {
+            return back()->with('error', 'Đơn hàng phải từ '.number_format($coupon->min_order_total_amount_cents / 100).'đ trở lên!');
         }
-
-        // 5. Lưu mã giảm vào session để dùng sau
-        session(['coupon' => $coupon]);
 
         return back()->with('success', 'Áp dụng mã giảm giá thành công!');
     }
 
-    // Xóa mã giảm giá
     public function removeCoupon()
     {
-        session()->forget('coupon');
+        $this->cart->removeCoupon();
+
         return back()->with('success', 'Đã xóa mã giảm giá!');
     }
 
-
-
-
-
-
-
-
-
-
-    // Helper tính tạm tính (subtotal)
-    private function calculateSubtotal()
+    public function getTotals(): array
     {
-        $cart = session('cart', []);
-        $total = 0;
-
-        foreach ($cart as $item) {
-            $total += $item['base_price_cents'] * $item['quantity'];
-        }
-        return $total; // trả về cents
-    }
-
-    // Helper tính tất cả tiền (dùng để hiển thị ở giỏ hàng)
-    public function getTotals()
-    {
-        $subtotalCents = $this->calculateSubtotal();
-        $discountCents = 0;
-
-        if ($coupon = session('coupon')) {
-            if ($coupon->discount_type === 'percent') {
-                $discountCents = ($subtotalCents * $coupon->discount_value) / 100;
-            } else {
-                $discountCents = $coupon->discount_value;
-            }
-            if ($discountCents > $subtotalCents) {
-                $discountCents = $subtotalCents;
-            }
-        }
-         $afterDiscount = $subtotalCents - $discountCents;
-        $vatCents = $afterDiscount * 10 / 100; // VAT 10%
-        $totalCents = $afterDiscount + $vatCents ;
+        $summary = $this->cart->summary();
 
         return [
-            'subtotal'  => $subtotalCents / 100,
-            'discount'  => $discountCents / 100,
-            'vat'       => $vatCents / 100,
-            'total'     => $totalCents / 100,
+            'subtotal' => $summary['subtotal'],
+            'discount' => $summary['discount'],
+            'vat' => $summary['vat'],
+            'total' => $summary['total'],
         ];
     }
 }

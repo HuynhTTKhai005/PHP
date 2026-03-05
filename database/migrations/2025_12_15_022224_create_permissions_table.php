@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id(); // id khóa chính (bigint unsigned auto_increment)
 
             $table->string('name')->unique();
-            
+
             $table->text('description')->nullable();
-           
 
             $table->timestamps(); // created_at và updated_at
         });

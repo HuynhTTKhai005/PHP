@@ -7,12 +7,10 @@
     <title>@yield('title', 'Sincay Restaurant - Nhà hàng ngon nhất')</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/icons/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/icons/logo.png') }}" />
 
     <!-- CSS Libraries -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/themify/themify-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/animate/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css-hamburgers/hamburgers.min.css') }}">
@@ -25,42 +23,28 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/cart.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Isotope CDN -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     @stack('styles')
 </head>
-
 <body class="animsition">
-
     <!-- Header -->
     @include('partials.header')
-
-
-
-    <!-- Nội dung chính -->
-    @yield('content')
-
-    <!-- Footer -->
-    @include('partials.footer')
-
+     @yield('content')
+     @include('partials.footer')
     <!-- Back to top -->
-    <div class="btn-back-to-top bg0-hov" id="myBtn">
-        <span class="symbol-btn-back-to-top">
+    <div class="btn-back-to-top bg0-hov" id="myBtn" >
+        <span class="symbol-btn-back-to-top ">
             <i class="fa fa-angle-double-up" aria-hidden="true"></i>
         </span>
     </div>
-
     <!-- JS Libraries -->
     <script src="{{ asset('assets/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/animsition/js/animsition.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/popper.js') }}"></script>
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/daterangepicker/moment.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/daterangepicker/daterangepicker.js') }}"></script>
@@ -70,8 +54,6 @@
     <script src="{{ asset('assets/vendor/countdowntime/countdowntime.js') }}"></script>
     <script src="{{ asset('assets/vendor/lightbox2/js/lightbox.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-
     @stack('scripts')
 </body>
-
 </html>

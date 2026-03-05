@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-     
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -20,8 +19,8 @@ return new class extends Migration
             $table->string('type', 50)->nullable();
             $table->boolean('is_spicy')->default(false);
             $table->boolean('is_available')->default(true);
-            $table->timestamps();  
-            
+            $table->timestamps();
+
         });
     }
 

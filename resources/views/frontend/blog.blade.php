@@ -1,354 +1,116 @@
-@extends('layouts.pato')
+﻿@extends('layouts.pato')
+
+@section('title', 'Blog - Sincay')
 
 @section('content')
-    <section>
-        <section class="titles text-center text-white"
-            style="background:   url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 400px;">
-            <div class="container">
-                <h2 class="tit">Bài viết Sincay
-                </h2>
-            </div>
-        </section>
-
-
-        <!-- Nội dung chính -->
+    <section class="titles text-center text-white"
+        style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 360px;">
         <div class="container">
-            <div class="row">
-                <!-- Cột bài viết -->
-                <div class="col-lg-8 col-md-7">
-                    <div class="spicy-blog-main">
-                        <!-- Bài viết 1 -->
-                        <div class="spicy-blog-post">
-                            <div class="spicy-blog-image">
-                                <a href="blog-detail.html">
-                                    <img src="assets/images/blog-05.jpg" alt="IMG-BLOG">
-                                </a>
-                                <div class="spicy-blog-date">
-                                    <span class="spicy-blog-day">28</span>
-                                    <span class="spicy-blog-month">Dec, 2018</span>
-                                </div>
-                            </div>
+            <h2 class="tit">Blog Sincay</h2>
+         </div>
+    </section>
 
-                            <div class="spicy-blog-content">
-                                <h3 class="spicy-blog-post-title">
-                                    <a href="blog-detail.html">Công Thức Nấu Ăn Ngon</a>
-                                </h3>
+    <section class="section-mainmenu p-t-110 p-b-70  ">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 order-lg-2">
+                    
 
-                                <div class="spicy-blog-meta">
-                                    <span><i class="fas fa-user"></i> bởi Admin</span>
-                                    <span><i class="fas fa-calendar"></i> 28 tháng 12, 2018</span>
-                                    <span><i class="fas fa-tags"></i> Nấu Ăn, Đồ Ăn</span>
-                                    <span><i class="fas fa-comments"></i> 8 Bình Luận</span>
-                                </div>
-
-                                <p class="spicy-blog-excerpt">
-                                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                    himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-                                </p>
-
-                                <a href="blog-detail.html" class="spicy-blog-readmore">
-                                    Đọc Tiếp
-                                    <i class="fas fa-long-arrow-alt-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Bài viết 2 -->
-                        <div class="spicy-blog-post">
-                            <div class="spicy-blog-image">
-                                <a href="blog-detail.html">
-                                    <img src="assets/images/blog-06.jpg" alt="IMG-BLOG">
-                                </a>
-                                <div class="spicy-blog-date">
-                                    <span class="spicy-blog-day">20</span>
-                                    <span class="spicy-blog-month">Dec, 2018</span>
-                                </div>
-                            </div>
-
-                            <div class="spicy-blog-content">
-                                <h3 class="spicy-blog-post-title">
-                                    <a href="blog-detail.html">Pizza Được Chuẩn Bị Tươi</a>
-                                </h3>
-
-                                <div class="spicy-blog-meta">
-                                    <span><i class="fas fa-user"></i> bởi Admin</span>
-                                    <span><i class="fas fa-calendar"></i> 20 tháng 12, 2018</span>
-                                    <span><i class="fas fa-tags"></i> Nấu Ăn, Đồ Ăn</span>
-                                    <span><i class="fas fa-comments"></i> 8 Bình Luận</span>
-                                </div>
-
-                                <p class="spicy-blog-excerpt">
-                                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                    himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-                                </p>
-
-                                <a href="blog-detail.html" class="spicy-blog-readmore">
-                                    Đọc Tiếp
-                                    <i class="fas fa-long-arrow-alt-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Bài viết 3 -->
-                        <div class="spicy-blog-post">
-                            <div class="spicy-blog-image">
-                                <a href="blog-detail.html">
-                                    <img src="assets/images/blog-04.jpg" alt="IMG-BLOG">
-                                </a>
-                                <div class="spicy-blog-date">
-                                    <span class="spicy-blog-day">16</span>
-                                    <span class="spicy-blog-month">Dec, 2018</span>
-                                </div>
-                            </div>
-
-                            <div class="spicy-blog-content">
-                                <h3 class="spicy-blog-post-title">
-                                    <a href="blog-detail.html">Phong Cách Tiệc Cưới</a>
-                                </h3>
-
-                                <div class="spicy-blog-meta">
-                                    <span><i class="fas fa-user"></i> bởi Admin</span>
-                                    <span><i class="fas fa-calendar"></i> 16 tháng 12, 2018</span>
-                                    <span><i class="fas fa-tags"></i> Nấu Ăn, Đồ Ăn</span>
-                                    <span><i class="fas fa-comments"></i> 8 Bình Luận</span>
-                                </div>
-
-                                <p class="spicy-blog-excerpt">
-                                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                    himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-                                </p>
-
-                                <a href="blog-detail.html" class="spicy-blog-readmore">
-                                    Đọc Tiếp
-                                    <i class="fas fa-long-arrow-alt-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Bài viết 4 -->
-                        <div class="spicy-blog-post">
-                            <div class="spicy-blog-image">
-                                <a href="blog-detail.html">
-                                    <img src="assets/images/blog-07.jpg" alt="IMG-BLOG">
-                                </a>
-                                <div class="spicy-blog-date">
-                                    <span class="spicy-blog-day">15</span>
-                                    <span class="spicy-blog-month">Dec, 2018</span>
-                                </div>
-                            </div>
-
-                            <div class="spicy-blog-content">
-                                <h3 class="spicy-blog-post-title">
-                                    <a href="blog-detail.html">Nơi Tốt Nhất Cho Rượu Vang</a>
-                                </h3>
-
-                                <div class="spicy-blog-meta">
-                                    <span><i class="fas fa-user"></i> bởi Admin</span>
-                                    <span><i class="fas fa-calendar"></i> 15 tháng 12, 2018</span>
-                                    <span><i class="fas fa-tags"></i> Nấu Ăn, Đồ Ăn</span>
-                                    <span><i class="fas fa-comments"></i> 8 Bình Luận</span>
-                                </div>
-
-                                <p class="spicy-blog-excerpt">
-                                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                    himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-                                </p>
-
-                                <a href="blog-detail.html" class="spicy-blog-readmore">
-                                    Đọc Tiếp
-                                    <i class="fas fa-long-arrow-alt-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Bài viết 5 -->
-                        <div class="spicy-blog-post">
-                            <div class="spicy-blog-image">
-                                <a href="blog-detail.html">
-                                    <img src="assets/images/blog-10.jpg" alt="IMG-BLOG">
-                                </a>
-                                <div class="spicy-blog-date">
-                                    <span class="spicy-blog-day">12</span>
-                                    <span class="spicy-blog-month">Dec, 2018</span>
-                                </div>
-                            </div>
-
-                            <div class="spicy-blog-content">
-                                <h3 class="spicy-blog-post-title">
-                                    <a href="blog-detail.html">Nơi Tốt Nhất Cho Rượu Vang</a>
-                                </h3>
-
-                                <div class="spicy-blog-meta">
-                                    <span><i class="fas fa-user"></i> bởi Admin</span>
-                                    <span><i class="fas fa-calendar"></i> 12 tháng 12, 2018</span>
-                                    <span><i class="fas fa-tags"></i> Nấu Ăn, Đồ Ăn</span>
-                                    <span><i class="fas fa-comments"></i> 8 Bình Luận</span>
-                                </div>
-
-                                <p class="spicy-blog-excerpt">
-                                    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                    himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-                                </p>
-
-                                <a href="blog-detail.html" class="spicy-blog-readmore">
-                                    Đọc Tiếp
-                                    <i class="fas fa-long-arrow-alt-right"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Pagination -->
-                        <div class="spicy-pagination">
-                            <a href="#" class="spicy-pagination-link active">1</a>
-                            <a href="#" class="spicy-pagination-link">2</a>
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="mb-3">Sincay hôm nay</h5>
+                            <p class="text-muted mb-3">
+                                Mở cửa mỗi ngày 9:00 - 22:00. Đặt món nhanh qua menu online hoặc ghé quán để thưởng thức nóng
+                                hổi.
+                            </p>
+                            <a href="{{ route('menu') }}" class="btn btn-outline-danger w-100">Xem thực đơn</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sidebar -->
-                <div class="col-lg-4 col-md-5">
-                    <div class="spicy-sidebar">
-                        <!-- Search -->
-                        <div class="spicy-search-form">
-                            <input class="spicy-search-input" type="text" placeholder="Tìm Kiếm">
-                            <button class="spicy-search-button">
-                                <i class="fas fa-search"></i>
-                            </button>
+                <div class="col-lg-8 order-lg-1">
+                    <article class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-5">
+                                <img src="{{ asset('assets/images/intro_1.png') }}" class="img-fluid w-100 h-100"
+                                    style="object-fit: cover;" alt="Mì cay Sincay">
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body p-4">
+                                    <span class="badge bg-danger mb-3">Bài nổi bật</span>
+                                    <h3 class="mb-3">Mì cay chuẩn vị Hàn, điều gì làm nên sự khác biệt?</h3>
+                                    <p class="text-muted mb-3">
+                                        Tại Sincay, nước dùng được nấu nhiều giờ từ xương và rau củ, kết hợp 7 cấp độ cay để
+                                        phù hợp mọi khẩu vị. Đây là bí quyết giữ vị đậm, thơm và hậu vị ngọt tự nhiên.
+                                    </p>
+                                 </div>
+                            </div>
                         </div>
+                    </article>
 
-                        <!-- Categories -->
-                        <div class="spicy-categories">
-                            <h4 class="spicy-sidebar-title">Danh Mục</h4>
-                            <ul class="spicy-categories-list">
-                                <li class="spicy-categories-item">
-                                    <a href="#" class="spicy-categories-link">Công Thức Nấu Ăn</a>
-                                </li>
-                                <li class="spicy-categories-item">
-                                    <a href="#" class="spicy-categories-link">Món Ngon</a>
-                                </li>
-                                <li class="spicy-categories-item">
-                                    <a href="#" class="spicy-categories-link">Thiết Kế Sự Kiện</a>
-                                </li>
-                                <li class="spicy-categories-item">
-                                    <a href="#" class="spicy-categories-link">Địa Điểm Nhà Hàng</a>
-                                </li>
-                                <li class="spicy-categories-item">
-                                    <a href="#" class="spicy-categories-link">WordPress</a>
-                                </li>
-                            </ul>
+                    <article class="card border-0 shadow-sm mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/images/intro_2.jpg') }}" class="img-fluid w-100 h-100"
+                                    style="object-fit: cover;" alt="Topping mì cay">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="mb-2">5 loại topping được gọi nhiều nhất</h5>
+                                    <p class="text-muted mb-2">Bò Mỹ, xúc xích, nấm kim châm, phô mai và tôm là combo được
+                                        khách hàng chọn nhiều nhất.</p>
+                                </div>
+                            </div>
                         </div>
+                    </article>
 
-                        <!-- Most Popular -->
-                        <div class="spicy-popular">
-                            <h4 class="spicy-sidebar-title">Phổ Biến Nhất</h4>
-                            <ul class="spicy-popular-list">
-                                <li class="spicy-popular-item">
-                                    <div class="spicy-popular-image">
-                                        <a href="#">
-                                            <img src="assets/images/blog-11.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-                                    <div class="spicy-popular-content">
-                                        <h5 class="spicy-popular-title">
-                                            <a href="#">Nơi Tốt Nhất Cho Rượu Vang</a>
-                                        </h5>
-                                        <span class="spicy-popular-date">3 ngày trước</span>
-                                    </div>
-                                </li>
-                                <li class="spicy-popular-item">
-                                    <div class="spicy-popular-image">
-                                        <a href="#">
-                                            <img src="assets/images/blog-12.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-                                    <div class="spicy-popular-content">
-                                        <h5 class="spicy-popular-title">
-                                            <a href="#">Trứng Và Phô Mai</a>
-                                        </h5>
-                                        <span class="spicy-popular-date">2 tháng 7, 2017</span>
-                                    </div>
-                                </li>
-                                <li class="spicy-popular-item">
-                                    <div class="spicy-popular-image">
-                                        <a href="#">
-                                            <img src="assets/images/blog-13.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-                                    <div class="spicy-popular-content">
-                                        <h5 class="spicy-popular-title">
-                                            <a href="#">Phong Cách Tiệc Cưới</a>
-                                        </h5>
-                                        <span class="spicy-popular-date">28 tháng 5, 2017</span>
-                                    </div>
-                                </li>
-                                <li class="spicy-popular-item">
-                                    <div class="spicy-popular-image">
-                                        <a href="#">
-                                            <img src="assets/images/blog-14.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-                                    <div class="spicy-popular-content">
-                                        <h5 class="spicy-popular-title">
-                                            <a href="#">Công Thức Nấu Ăn Ngon</a>
-                                        </h5>
-                                        <span class="spicy-popular-date">25 tháng 5, 2017</span>
-                                    </div>
-                                </li>
-                                <li class="spicy-popular-item">
-                                    <div class="spicy-popular-image">
-                                        <a href="#">
-                                            <img src="assets/images/blog-15.jpg" alt="IMG-BLOG">
-                                        </a>
-                                    </div>
-                                    <div class="spicy-popular-content">
-                                        <h5 class="spicy-popular-title">
-                                            <a href="#">Pizza Được Chuẩn Bị Tươi</a>
-                                        </h5>
-                                        <span class="spicy-popular-date">2 tháng 5, 2017</span>
-                                    </div>
-                                </li>
-                            </ul>
+                    <article class="card border-0 shadow-sm mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/images/intro_3.png') }}" class="img-fluid w-100 h-100"
+                                    style="object-fit: cover;" alt="Không gian quán">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="mb-2">Không gian quán cho nhóm bạn cuối tuần</h5>
+                                    <p class="text-muted mb-2">Thiết kế ấm cúng, bàn nhóm rộng rãi và khu vực riêng tư giúp
+                                        bạn thoải mái tụ họp.</p>
+                                </div>
+                            </div>
                         </div>
+                    </article>
 
-                        <!-- Archive -->
-                        <div class="spicy-archive">
-                            <h4 class="spicy-sidebar-title">Lưu Trữ</h4>
-                            <ul class="spicy-archive-list">
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 7 2018</a>
-                                    <span class="spicy-archive-count">9</span>
-                                </li>
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 6 2018</a>
-                                    <span class="spicy-archive-count">39</span>
-                                </li>
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 5 2018</a>
-                                    <span class="spicy-archive-count">29</span>
-                                </li>
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 4 2018</a>
-                                    <span class="spicy-archive-count">35</span>
-                                </li>
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 3 2018</a>
-                                    <span class="spicy-archive-count">22</span>
-                                </li>
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 2 2018</a>
-                                    <span class="spicy-archive-count">32</span>
-                                </li>
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 1 2018</a>
-                                    <span class="spicy-archive-count">21</span>
-                                </li>
-                                <li class="spicy-archive-item">
-                                    <a href="#" class="spicy-archive-link">Tháng 12 2017</a>
-                                    <span class="spicy-archive-count">26</span>
-                                </li>
-                            </ul>
+                    <article class="card border-0 shadow-sm mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/images/intro_4.jpg') }}" class="img-fluid w-100 h-100"
+                                    style="object-fit: cover;" alt="Mức cay">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="mb-2">Chọn cấp độ cay sao cho hợp khẩu vị?</h5>
+                                    <p class="text-muted mb-2">Người mới nên bắt đầu từ cấp 1-2, còn tín đồ cay có thể thử cấp
+                                        5 trở lên để cảm nhận trọn vị.</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </article>
+
+                    <article class="card border-0 shadow-sm">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ asset('assets/images/intro_1.png') }}" class="img-fluid w-100 h-100"
+                                    style="object-fit: cover;" alt="Khuyến mãi">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="mb-2">Ưu đãi theo khung giờ tại Sincay</h5>
+                                    <p class="text-muted mb-2">Khung giờ trưa và đầu tuần thường có combo tiết kiệm, phù hợp
+                                        cho học sinh sinh viên.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>

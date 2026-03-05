@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -20,23 +20,22 @@ class UserSeeder extends Seeder
         $customerRole = Role::where('name', 'customer')->first();
 
         // Nếu role chưa tồn tại → báo lỗi để bạn chạy RoleSeeder trước
-        if (!$adminRole || !$staffRole || !$customerRole) {
+        if (! $adminRole || ! $staffRole || ! $customerRole) {
             $this->command->error('Vui lòng chạy RoleSeeder trước khi chạy UserSeeder!');
+
             return;
         }
-
-
 
         // === TÀI KHOẢN STAFF (Nhân viên) ===
         User::updateOrCreate(
             ['email' => 'staff1@example.com'],
             [
-                'full_name'     => 'Nhân viên 1',
-                'email'         => 'staff1@example.com',
-                'phone'         => '0902345678',
+                'full_name' => 'Nhân viên 1',
+                'email' => 'staff1@example.com',
+                'phone' => '0902345678',
                 'password_hash' => Hash::make('123456'),
-                'is_active'     => true,
-                'role_id'       => $staffRole->id,
+                'is_active' => true,
+                'role_id' => $staffRole->id,
                 'loyalty_point' => 0,
             ]
         );
@@ -44,12 +43,12 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'staff2@example.com'],
             [
-                'full_name'     => 'Nhân viên 2',
-                'email'         => 'staff2@example.com',
-                'phone'         => '0903456789',
+                'full_name' => 'Nhân viên 2',
+                'email' => 'staff2@example.com',
+                'phone' => '0903456789',
                 'password_hash' => Hash::make('123456'),
-                'is_active'     => true,
-                'role_id'       => $staffRole->id,
+                'is_active' => true,
+                'role_id' => $staffRole->id,
                 'loyalty_point' => 0,
             ]
         );
@@ -67,12 +66,12 @@ class UserSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => $cust[1]],
                 [
-                    'full_name'     => $cust[0],
-                    'email'         => $cust[1],
-                    'phone'         => $cust[2],
+                    'full_name' => $cust[0],
+                    'email' => $cust[1],
+                    'phone' => $cust[2],
                     'password_hash' => Hash::make('123456'),
-                    'is_active'     => true,
-                    'role_id'       => $customerRole->id,
+                    'is_active' => true,
+                    'role_id' => $customerRole->id,
                     'loyalty_point' => 100 * ($index + 1),
                 ]
             );
@@ -80,12 +79,12 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [
-                'full_name'     => 'Quản trị viên',
-                'email'         => 'admin@example.com',
-                'phone'         => '0901112223',
+                'full_name' => 'Quản trị viên',
+                'email' => 'admin@example.com',
+                'phone' => '0901112223',
                 'password_hash' => Hash::make('123456'),
-                'is_active'     => true,
-                'role_id'       => $adminRole->id,
+                'is_active' => true,
+                'role_id' => $adminRole->id,
                 'loyalty_point' => 0,
             ]
         );

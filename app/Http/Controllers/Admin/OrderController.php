@@ -4,49 +4,49 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\Product;
+use App\Models\OrderStatusHistory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
-    /**
-     * Danh sách đơn hàng admin
-     */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
-        $query = Order::with(['user'])->orderBy('created_at', 'desc');
+        $query = Order::with(['user', 'payment'])->orderByDesc('created_at');
 
-        // Lọc theo trạng thái
-        if ($request->filled('status') && $request->status !== '') {
+        if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
-        // Lọc theo ngày
         if ($request->filled('date_from')) {
             $query->whereDate('created_at', '>=', $request->date_from);
         }
+
         if ($request->filled('date_to')) {
             $query->whereDate('created_at', '<=', $request->date_to);
         }
 
-        // Tìm kiếm theo mã đơn hoặc tên khách
         if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('id', 'like', "%{$search}%")
-                    ->orWhere('order_number', 'like', "%{$search}%")
+            $search = (string) $request->search;
+            $query->where(function ($q) use ($search): void {
+                $q->where('order_number', 'like', "%{$search}%")
                     ->orWhere('shipping_name', 'like', "%{$search}%")
-                    ->orWhereHas('user', function ($uq) use ($search) {
+                    ->orWhereHas('user', function ($uq) use ($search): void {
                         $uq->where('full_name', 'like', "%{$search}%")
                             ->orWhere('email', 'like', "%{$search}%");
                     });
             });
         }
 
-        // Phân trang
         $orders = $query->paginate(20)->withQueryString();
+        $orders->getCollection()->transform(function (Order $order): Order {
+            $order->payment_status_text = $this->mapPaymentStatusText($order->payment?->status);
+            $order->payment_status_class = $this->mapPaymentStatusClass($order->payment?->status);
 
-        // Thống kê nhanh
+            return $order;
+        });
+
         $totalOrdersThisMonth = Order::whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->count();
@@ -56,7 +56,7 @@ class OrderController extends Controller
             ->whereYear('created_at', now()->year)
             ->count();
 
-        $processingOrders = Order::where('status', 'processing')
+        $processingOrders = Order::whereIn('status', ['confirmed', 'preparing', 'delivering'])
             ->whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->count();
@@ -66,85 +66,52 @@ class OrderController extends Controller
             ->whereYear('created_at', now()->year)
             ->count();
 
-        return view('admin.orders', compact('orders', 'totalOrdersThisMonth', 'pendingOrders', 'processingOrders', 'completedOrders'));
+        return view(
+            'admin.orders',
+            compact('orders', 'totalOrdersThisMonth', 'pendingOrders', 'processingOrders', 'completedOrders')
+        );
     }
 
-    /**
-     * Xem chi tiết đơn hàng
-     */
-    public function show(Order $order)
+    public function show(Order $order): View
     {
-        $order->load(['items.product', 'user']);
+        $order->load(['items.product', 'user', 'statusHistories']);
+
         return view('admin.show', compact('order'));
     }
 
-    /**
-     * Hiển thị form tạo đơn hàng mới
-     */
-    public function create()
+    public function updateStatus(Request $request, Order $order): RedirectResponse
     {
-        // Có thể load danh sách sản phẩm, khách hàng nếu cần
-        return view('admin.orders.create');
-    }
-
-    /**
-     * Lưu đơn hàng mới
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'shipping_name' => 'required|string|max:255',
-            'shipping_phone' => 'required|string|max:20',
-            'shipping_address' => 'required|string',
-            'items' => 'required|array|min:1',
-            'items.*.product_id' => 'required|exists:products,id',
-            'items.*.quantity' => 'required|integer|min:1',
-            'items.*.price_cents' => 'required|integer|min:0',
+        $validated = $request->validate([
+            'status' => 'required|in:pending,confirmed,preparing,delivering,completed,cancelled',
+            'note' => 'nullable|string|max:500',
         ]);
 
-        // Tạo đơn hàng
-        $order = Order::create([
-            'order_number' => 'ORD-' . time() . '-' . rand(100, 999),
-            'status' => 'pending',
-            'shipping_name' => $request->shipping_name,
-            'shipping_phone' => $request->shipping_phone,
-            'shipping_address' => $request->shipping_address,
-            'total_amount_cents' => 0, // Tính sau
-            'subtotal_cents' => 0,
-        ]);
+        $newStatus = (string) $validated['status'];
+        $oldStatus = (string) $order->status;
 
-        $total = 0;
-        foreach ($request->items as $itemData) {
-            $itemTotal = $itemData['quantity'] * $itemData['price_cents'];
-            $total += $itemTotal;
-
-            $order->items()->create([
-                'product_id' => $itemData['product_id'],
-                'quantity' => $itemData['quantity'],
-                'unit_price_cents' => $itemData['price_cents'],
-                'total_cents' => $itemTotal,
-            ]);
+        if ($newStatus === $oldStatus) {
+            return back()->with('success', 'Trạng thái đơn hàng không thay đổi.');
         }
 
-        $order->update([
-            'total_amount_cents' => $total,
-            'subtotal_cents' => $total,
+        $order->update(['status' => $newStatus]);
+
+        OrderStatusHistory::create([
+            'order_id' => $order->id,
+            'status' => $newStatus,
+            'note' => $validated['note'] ?? null,
+            'timestamp' => now(),
         ]);
 
-        return redirect()->route('admin.orders')->with('success', 'Đơn hàng đã được tạo thành công!');
+        return back()->with('success', 'Cập nhật trạng thái thành công và đã lưu lịch sử.');
     }
 
-    /**
-     * Cập nhật trạng thái đơn hàng
-     */
-    public function updateStatus(Request $request, Order $order)
+    private function mapPaymentStatusText(?string $status): string
     {
-        $request->validate([
-            'status' => 'required|in:pending,processing,shipped,completed,cancelled'
-        ]);
+        return $status === 'success' ? 'Đã thanh toán' : 'Chờ thanh toán';
+    }
 
-        $order->update(['status' => $request->status]);
-
-        return back()->with('success', 'Cập nhật trạng thái thành công!');
+    private function mapPaymentStatusClass(?string $status): string
+    {
+        return $status === 'success' ? 'status-completed' : 'status-pending';
     }
 }

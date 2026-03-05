@@ -1,28 +1,27 @@
 @extends('layouts.pato')
 
-
 @section('content')
     <!-- Main Container -->
+    <section class="titles text-center text-white"
+        style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 320px;  ">
+        <div class="container">
+            <h2 class="tit">Giỏ hàng</h2>
+        </div>
+    </section>
     <div class="container">
         <!-- Cart Header -->
-        <div class="cart-header">
-        </div>
+
 
         <!-- Main Layout -->
         <div class="cart-layout">
             {{-- Cột trái --}}
             <div class="cart-items">
-                @php
-                    $cart = session('cart', []);
-                @endphp
-
                 @if (count($cart) > 0)
                     @foreach ($cart as $id => $item)
                         <div class="cart-item">
                             <div class="product-grid">
                                 <div class="product-image">
                                     <img src="{{ asset($item['image_url'] ?? 'default.jpg') }}" alt="{{ $item['name'] }}">
-                                    <span class="stock-badge in-stock">Còn hàng</span>
                                 </div>
 
                                 <div class="product-details">
@@ -52,9 +51,30 @@
                                     </div>
 
                                     <div class="product-actions">
-                                        <button class="action-btn save">
-                                            <i class="far fa-bookmark"></i> Lưu sau
-                                        </button>
+                                        @auth
+                                            @if (in_array((int) $id, $wishlistProductIds ?? [], true))
+                                                <form action="{{ route('wishlist.destroy', $id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="action-btn save">
+                                                        <i class="fas fa-heart"></i> Yêu thích
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('wishlist.store', $id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="action-btn save">
+                                                        <i class="far fa-heart"></i> Yêu thích
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        @else
+                                            <a href="{{ route('login') }}" class="action-btn save">
+                                                <i class="far fa-heart"></i> Yêu thích
+                                            </a>
+                                        @endauth
                                         <div class="p-2">Cấp độ cay: {{ $item['spicy_level'] ?? 'Không' }}</div>
                                     </div>
                                 </div>
@@ -76,9 +96,9 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="text-center p-t-100 p-b-100">
-                        <h3>Giỏ hàng của bạn đang trống</h3>
-                        <a href="{{ route('menu') }}" class="btn3 flex-c-m size13 txt11 trans-0-4 m-t-30">
+                    <div class="text-center mt-5">
+                        <h3>Giỏ hàng của bạn đang trống</h3> <br>
+                        <a href="{{ route('menu') }}" class="btn3 size13 txt11">
                             Tiếp tục mua sắm
                         </a>
                     </div>
@@ -92,87 +112,47 @@
                     <h3>Tổng thanh toán</h3>
                 </div>
 
-                @php
-                    // Lấy giỏ hàng từ session
-                    $cart = session('cart', []);
-
-                    // Tính subtotal (tạm tính)
-                    $subtotalCents = 0;
-                    foreach ($cart as $item) {
-                        $subtotalCents += $item['base_price_cents'] * $item['quantity'];
-                    }
-                    $subtotal = $subtotalCents;
-
-                    // Tính giảm giá từ coupon
-                    $discount = 0;
-                    $coupon = session('coupon');
-                    if ($coupon) {
-                        if ($coupon->discount_type === 'percent') {
-                            $discount = $subtotalCents * $coupon->discount_value;
-                        } elseif ($coupon->discount_type === 'fixed') {
-                            $discount = $coupon->discount_value;
-                        }
-                        // Không giảm quá subtotal
-                        $discount = min($discount, $subtotalCents);
-                    }
-                    $discount = $discount;
-
-                    // Tiền sau giảm
-                    $afterDiscount = $subtotal - $discount;
-
-                    // VAT 10% tính trên tiền sau giảm
-                    $vat = $afterDiscount * 0.1;
-                    $shippingFeeCents = $subtotalCents >= 200000 ? 0 : 30000;
-                    // Tổng cộng cuối cùng
-                    $total = $afterDiscount + $vat + $shippingFeeCents;
-
-                    // Logic miễn phí ship (ví dụ: miễn phí từ 200.000đ trở lên)
-                    $freeShipThreshold = 200000; // 200k
-                    $isFreeShip = $subtotalCents >= $freeShipThreshold;
-                    $progressPercent = min(100, $subtotalCents / $freeShipThreshold);
-                @endphp
-
                 <div class="summary-rows">
                     <!-- Tạm tính -->
                     <div class="summary-row">
                         <span class="label">Tạm tính</span>
-                        <span class="value">{{ number_format($subtotal) }}đ</span>
+                        <span class="value">{{ number_format($summary['subtotal']) }}đ</span>
                     </div>
 
                     <!-- Phí vận chuyển -->
                     <div class="summary-row">
                         <span class="label">Phí vận chuyển</span>
                         <span class="value free-shipping">
-                            @if ($isFreeShip)
+                            @if ($summary['is_free_ship'])
                                 <i class="fas fa-check-circle"></i> Miễn phí
                             @else
-                                30.000đ
+                                {{ number_format($summary['shipping_fee']) }}đ
                             @endif
                         </span>
                     </div>
 
                     <!-- Giảm giá (nếu có) -->
-                    @if ($discount > 0)
+                    @if ($summary['discount'] > 0)
                         <div class="summary-row text-success">
                             <span class="label">Giảm giá
                                 @if ($coupon)
                                     ({{ strtoupper($coupon->code) }})
                                 @endif
                             </span>
-                            <span class="value">- {{ number_format($discount) }}đ</span>
+                            <span class="value">- {{ number_format($summary['discount']) }}đ</span>
                         </div>
                     @endif
 
                     <!-- Thuế VAT -->
                     <div class="summary-row">
                         <span class="label">Thuế VAT (10%)</span>
-                        <span class="value">{{ number_format($vat) }}đ</span>
+                        <span class="value">{{ number_format($summary['vat']) }}đ</span>
                     </div>
 
                     <!-- Tổng cộng -->
                     <div class="summary-row total">
                         <span class="label">Tổng cộng</span>
-                        <span class="value">{{ number_format($total) }}đ</span>
+                        <span class="value">{{ number_format($summary['total']) }}đ</span>
                     </div>
                 </div>
 
@@ -180,17 +160,17 @@
                 <div class="shipping-progress-container">
                     <div class="progress-text">
                         <span>
-                            @if ($isFreeShip)
+                            @if ($summary['is_free_ship'])
                                 <strong>Bạn đã đủ điều kiện miễn phí ship!</strong>
                             @else
-                                Thêm {{ number_format($freeShipThreshold - $subtotalCents) }}đ để được miễn
+                                Thêm {{ number_format($summary['remaining_for_free_ship']) }}đ để được miễn
                                 phí ship
                             @endif
                         </span>
-                        <span>{{ round($progressPercent) }}%</span>
+                        <span>{{ round($summary['progress_percent']) }}%</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: {{ $progressPercent }}%"></div>
+                        <div class="progress-fill" style="width: {{ $summary['progress_percent'] }}%"></div>
                     </div>
                 </div>
 
@@ -201,15 +181,15 @@
                         <h4>Mã giảm giá</h4>
                     </div>
 
-                    @if (session('coupon'))
+                    @if ($coupon)
                         <div class="alert alert-success mt-3 d-flex justify-content-between align-items-center">
                             <div>
-                                <strong>{{ strtoupper(session('coupon.code')) }}</strong>
+                                <strong>{{ strtoupper($coupon->code) }}</strong>
                                 <small class="d-block">
                                     Giảm
-                                    {{ session('coupon.discount_type') == 'percent'
-                                        ? session('coupon.discount_value') . '%'
-                                        : number_format(session('coupon.discount_value')) . 'đ' }}
+                                    {{ $coupon->discount_type == 'percent'
+                                        ? $coupon->discount_value . '%'
+                                        : number_format($coupon->discount_value) . 'đ' }}
                                 </small>
                             </div>
                             <form action="{{ route('cart.removeCoupon') }}" method="POST">
@@ -220,8 +200,8 @@
                     @else
                         <form action="{{ route('cart.applyCoupon') }}" method="POST" class="promo-input-group mt-3">
                             @csrf
-                            <input type="text" name="coupon_code" class="promo-input" placeholder="Nhập mã giảm giá..."
-                                value="{{ old('coupon_code') }}" required>
+                            <input type="text" name="coupon_code" class="promo-input"
+                                placeholder="Nhập mã giảm giá..." value="{{ old('coupon_code') }}" required>
                             <button type="submit" class="apply-btn">Áp dụng</button>
                         </form>
                     @endif

@@ -5,7 +5,7 @@
     <section class="titles text-center text-white"
         style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 400px;">
         <div class="container">
-            <h2 class="tit">Sincay Menu</h2>
+            <h2 class="tit">Câu chuyện Sincay</h2>
         </div>
     </section>
 
@@ -14,8 +14,6 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <span class="noodle-about-subtitle">Nhà Hàng Mỳ Cay Hàn Quốc</span>
-                    <h2 class="noodle-about-section-title">Câu Chuyện Của Chúng Tôi</h2>
                     <p class="noodle-about-section-text">
                         Chúng tôi bắt đầu hành trình của mình với niềm đam mê ẩm thực Hàn Quốc đích thực. Từ những ngày đầu
                         tiên, chúng tôi đã cam kết mang đến những món mỳ cay tươi ngon, nguyên liệu chất lượng cao và trải
@@ -30,15 +28,38 @@
     </section>
 
     <!-- Video Section -->
-    <section class="noodle-about-video-section">
-        <div class="container text-center">
-            <span class="noodle-about-subtitle">Khám Phá</span>
-            <h2 class="noodle-about-section-title">Video Của Chúng Tôi</h2>
-            <button class="noodle-about-play-button">
-                <i class="fas fa-play fa-2x"></i>
+    <!-- Video Modal -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/onE9lph5pzo?si=K2XqwLdVavFT-PxU" title="Video"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video -->
+    <section class="section-video d-flex align-items-center justify-content-center"
+        style="background-image: url(assets/images/bgintro.png);">
+        <div class="content-video text-center w-100 h-100">
+            <span class="tit2 px-3">
+                Khám phá nhà hàng
+            </span>
+            <h3 class="tit4 text-center px-3 pt-1">
+                Video Nhà Hàng
+            </h3>
+            <button class="btn-play mx-auto mt-4" data-bs-toggle="modal" data-bs-target="#videoModal">
+                <div class="circle-btn">
+                    <i class="fas fa-play"></i>
+                </div>
             </button>
         </div>
     </section>
+
 
     <!-- Features Section -->
     <section class="noodle-about-section noodle-about-bg-light">
@@ -59,8 +80,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="noodle-about-feature-image">
-                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&auto=format&fit=crop&w=1436&q=80"
-                            alt="Công thức nấu ăn">
+                        <img src="assets/images/intro_3.jpg" alt="Công thức nấu ăn">
                     </div>
                 </div>
             </div>
@@ -82,16 +102,13 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="noodle-about-feature-image">
-                        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
-                            alt="Không gian nhà hàng">
+                        <img src="assets/images/intro_1.png" alt="Không gian nhà hàng">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Banner Section -->
-    <section class="noodle-about-banner-section"></section>
 
     <!-- Chef Section -->
     <section class="noodle-about-section">

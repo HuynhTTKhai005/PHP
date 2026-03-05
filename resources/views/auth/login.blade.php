@@ -8,7 +8,7 @@
                     <form id="loginForm" method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <h1 class="login-title">Đăng nhập</h1>
+                        <h1 class="login-title" style=" background-color: orangered">Đăng nhập</h1>
                         <p class="login-subtitle">Nhập email và mật khẩu để tiếp tục</p>
 
                         {{-- Hiển thị lỗi chung nếu đăng nhập thất bại --}}
@@ -34,7 +34,7 @@
                             <input type="password" class="form-input" id="password" name="password" placeholder="Mật khẩu"
                                 required>
                             <i class="fas fa-lock input-icon"></i>
-                            <button type="button" class="password-toggle" onclick="togglePassword()"
+                            <button type="button" class="password-toggle" onclick="togglePassword('password')"
                                 style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer;">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -72,30 +72,13 @@
 
                     <div class="register-section" style="text-align: center; margin-top: 25px;">
                         Chưa có tài khoản?
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="register-btn"
-                                style="font-weight: bold; color: #f64403;">Đăng ký ngay</a>
-                        @else
-                            <span style="color: #999;">(Tính năng đăng ký đang khóa)</span>
-                        @endif
+                        <a href="{{ route('register.form') }}" class="register-btn" style="font-weight: bold; color: #f64403;">
+                            Đăng ký ngay
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function togglePassword() {
-            const passwordField = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle i');
-
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        }
-    </script>
 @endsection
