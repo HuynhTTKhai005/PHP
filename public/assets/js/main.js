@@ -361,22 +361,22 @@ $(document).ready(function () {
 
             if (fullName.trim().length < 3) {
                 event.preventDefault();
-                showError('Há» vÃ  tÃªn pháº£i cÃ³ Ã­t nháº¥t 3 kÃ½ tá»±.');
+                showError('Họ và tên phải có ít nhất 3 ký tự.');
                 return;
             }
             if (!/^0\d{9}$/.test(phone.trim())) {
                 event.preventDefault();
-                showError('Sá»‘ Ä‘iá»‡n thoáº¡i khÃ´ng há»£p lá»‡. Äá»‹nh dáº¡ng: 0xxxxxxxxx.');
+                showError('Số điện thoại không hợp lệ. Định dạng: 0xxxxxxxxx.');
                 return;
             }
             if (password.length < 6) {
                 event.preventDefault();
-                showError('Máº­t kháº©u pháº£i cÃ³ Ã­t nháº¥t 6 kÃ½ tá»±.');
+                showError('Mật khẩu phải có ít nhất 6 ký tự.');
                 return;
             }
             if (password !== passwordConfirmation) {
                 event.preventDefault();
-                showError('XÃ¡c nháº­n máº­t kháº©u khÃ´ng khá»›p.');
+                showError('Xác nhận mật khẩu không khớp.');
                 return;
             }
         }
@@ -390,22 +390,22 @@ $(document).ready(function () {
 
             if (shippingName.trim().length < 2) {
                 event.preventDefault();
-                showError('Vui lÃ²ng nháº­p há» vÃ  tÃªn há»£p lá»‡.');
+                showError('Vui lòng nhập họ và tên hợp lệ.');
                 return;
             }
             if (!/^0\d{9}$/.test(shippingPhone.trim())) {
                 event.preventDefault();
-                showError('Sá»‘ Ä‘iá»‡n thoáº¡i nháº­n hÃ ng khÃ´ng há»£p lá»‡.');
+                showError('Số điện thoại nhận hàng không hợp lệ.');
                 return;
             }
             if (shippingAddress.trim().length < 10) {
                 event.preventDefault();
-                showError('Äá»‹a chá»‰ giao hÃ ng cáº§n chi tiáº¿t hÆ¡n.');
+                showError('Địa chỉ giao hàng cần chi tiết hơn.');
                 return;
             }
             if (!paymentMethod) {
                 event.preventDefault();
-                showError('Vui lÃ²ng chá»n phÆ°Æ¡ng thá»©c thanh toÃ¡n.');
+                showError('Vui lòng chọn phương thức thanh toán.');
                 return;
             }
         }
@@ -418,17 +418,17 @@ $(document).ready(function () {
 
             if (name.trim().length < 2) {
                 event.preventDefault();
-                showError('TÃªn sáº£n pháº©m pháº£i cÃ³ Ã­t nháº¥t 2 kÃ½ tá»±.');
+                showError('Tên sản phẩm phải có ít nhất 2 ký tự.');
                 return;
             }
             if (isNaN(price) || price < 0) {
                 event.preventDefault();
-                showError('GiÃ¡ sáº£n pháº©m khÃ´ng há»£p lá»‡.');
+                showError('Giá sản phẩm không hợp lệ.');
                 return;
             }
             if (isNaN(stock) || stock < 0) {
                 event.preventDefault();
-                showError('Sá»‘ lÆ°á»£ng tá»“n khÃ´ng há»£p lá»‡.');
+                showError('Số lượng tồn không hợp lệ.');
             }
         }
     });
@@ -504,20 +504,4 @@ $(document).ready(function () {
     });
 });
 
-// Admin notifications: delete confirmation
-(function () {
-    document.addEventListener('submit', function (event) {
-        var form = event.target;
-        if (!form.classList || !form.classList.contains('js-delete-notification-form')) {
-            return;
-        }
-
-        var title = form.getAttribute('data-notification-title') || 'thong bao nay';
-        var ok = window.confirm('Ban co chac chan muon xoa thong bao: ' + title + '?');
-
-        if (!ok) {
-            event.preventDefault();
-        }
-    });
-})();
 
