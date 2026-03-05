@@ -5,7 +5,6 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\ReservationsController;
@@ -92,15 +91,6 @@ Route::middleware(['auth', 'role:admin,staff'])->group(function () {
         ->whereNumber('reservation')
         ->name('admin.reservations.updateStatus');
 
-    Route::get('/admin/notifications', [NotificationsController::class, 'index'])->name('admin.notifications');
-    Route::get('/admin/notifications/create', [NotificationsController::class, 'create'])->name('admin.notifications.create');
-    Route::post('/admin/notifications', [NotificationsController::class, 'store'])->name('admin.notifications.store');
-    Route::get('/admin/notifications/{notification}', [NotificationsController::class, 'show'])
-        ->whereNumber('notification')
-        ->name('admin.notifications.show');
-    Route::patch('/admin/notifications/{notification}/read', [NotificationsController::class, 'markRead'])
-        ->whereNumber('notification')
-        ->name('admin.notifications.read');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -160,9 +150,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/admin/users/roles/{role}', [UsersController::class, 'updateRole'])->name('admin.users.roles.update');
     Route::delete('/admin/users/roles/{role}', [UsersController::class, 'destroyRole'])->name('admin.users.roles.destroy');
 
-    Route::delete('/admin/notifications/{notification}', [NotificationsController::class, 'destroy'])
-        ->whereNumber('notification')
-        ->name('admin.notifications.destroy');
 });
 
 Route::get('/api/revenue-by-month', [DashboardController::class, 'revenueByMonth']);
