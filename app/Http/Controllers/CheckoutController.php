@@ -162,6 +162,6 @@ class CheckoutController extends Controller
         session()->forget('checkout_items');
         $this->cart->removeCoupon();
 
-        return redirect()->route('cart')->with('success', 'Đặt hàng thành công! Mã đơn hàng của bạn là '.$order->order_number);
+        return redirect()->route('my-orders')->with('success', 'Đặt hàng thành công! Mã đơn hàng của bạn là '.$order->order_number);
     }
 }
