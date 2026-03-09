@@ -216,11 +216,11 @@
                     <form class="booking-form" action="{{ route('reservation.store') }}" method="POST">
                         @csrf
 
-                        @if (session('success'))
+                        {{-- @if (session('success'))
                             <div class="alert alert-success mb-4">
                                 {{ session('success') }}
                             </div>
-                        @endif
+                        @endif --}}
 
                         @if ($errors->any())
                             <div class="alert alert-danger mb-4">

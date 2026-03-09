@@ -12,9 +12,9 @@
 
     <section class="wishlist-page p-t-80 p-b-80">
         <div class="container">
-            @if (session('success'))
+            {{-- @if (session('success'))
                 <div class="alert alert-success mb-4">{{ session('success') }}</div>
-            @endif
+            @endif --}}
 
             <div class="wishlist-header">
                 <div>

@@ -31,13 +31,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     @stack('styles')
 </head>
+
 <body class="animsition">
     <!-- Header -->
     @include('partials.header')
-     @yield('content')
-     @include('partials.footer')
+    @yield('content')
+    @include('partials.footer')
     <!-- Back to top -->
-    <div class="btn-back-to-top bg0-hov" id="myBtn" >
+    <div class="btn-back-to-top bg0-hov" id="myBtn">
         <span class="symbol-btn-back-to-top ">
             <i class="fa fa-angle-double-up" aria-hidden="true"></i>
         </span>
@@ -55,5 +56,48 @@
     <script src="{{ asset('assets/vendor/lightbox2/js/lightbox.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Cấu hình chung cho Toast (thông báo nhỏ góc phải)
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            // Nếu có thông báo thành công
+            @if (session('success'))
+                Toast.fire({
+                    icon: 'success',
+                    title: '{{ session('success') }}'
+                });
+            @endif
+
+            // Nếu có thông báo lỗi
+            @if (session('error'))
+                Toast.fire({
+                    icon: 'error',
+                    title: '{{ session('error') }}'
+                });
+            @endif
+
+            // Nếu có lỗi validate form (ví dụ: quên nhập sđt khi đặt bàn)
+            @if ($errors->any())
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Vui lòng kiểm tra lại thông tin nhập!'
+                });
+            @endif
+        });
+    </script>
 </body>
+
 </html>

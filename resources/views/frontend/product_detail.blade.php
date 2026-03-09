@@ -12,9 +12,9 @@
 
     <section class="section-mainmenu p-t-110 p-b-70  ">
         <div class="container">
-            @if (session('success'))
+            {{-- @if (session('success'))
                 <div class="alert alert-success mb-4">{{ session('success') }}</div>
-            @endif
+            @endif --}}
 
             <div class="mb-4">
                 <a href="{{ route('menu') }}" class="btn btn-secondary">
