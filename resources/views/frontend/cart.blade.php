@@ -203,7 +203,7 @@
                     @endif
                 </div>
 
-                <a href="{{ route('checkout') }}" class="checkout-btn"> <i class="fas fa-lock"></i>
+                <a href="{{ route('checkout') }}" id="btn-checkout" class="checkout-btn"> <i class="fas fa-lock"></i>
                     Thanh toán an toàn
                 </a>
 
@@ -241,5 +241,29 @@
             });
         }
     });
+
+    // Thêm vào cuối script hiện tại
+document.getElementById('btn-checkout').addEventListener('click', function(e) {
+    e.preventDefault();
+    let selectedItems = [];
+    
+    // Gom tất cả các ID của món ăn đang được tích chọn
+    document.querySelectorAll('.item-check:checked').forEach(function(checkbox) {
+        selectedItems.push(checkbox.value);
+    });
+
+    // Nếu khách không chọn món nào mà đòi thanh toán
+    if (selectedItems.length === 0) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Chưa chọn món',
+            text: 'Vui lòng tích chọn ít nhất một món ăn để thanh toán nhé!'
+        });
+        return;
+    }
+
+    // Nối các ID vào đuôi URL và chuyển trang
+    window.location.href = this.href + '?items=' + selectedItems.join(',');
+});
 </script>
 @endpush
