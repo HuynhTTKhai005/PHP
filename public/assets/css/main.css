@@ -6,6 +6,20 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,700");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
 
+:root {
+    --primary: #ea5313;
+    --primary-dark: #cf4610;
+    --secondary: #f6805c;
+    --dark: #1f2937;
+    --gray: #6b7280;
+    --border: #e5e7eb;
+    --light: #f9fafb;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: all 0.25s ease;
+    --shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+
 @font-face {
     font-family: Montserrat-Regular;
     src: url("../fonts/montserrat/Montserrat-Regular.ttf");
@@ -1193,7 +1207,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px; /* Giảm gap một chút để menu không bị quá thưa */
+    gap: 10px;  
     margin-bottom: 60px;
     padding: 0;
 }
@@ -1461,8 +1475,9 @@ p {
 .login-title {
     font-size: 28px;
     font-weight: 700;
-    color: var(--dark);
+    color: var(--primary);
     margin-bottom: 8px;
+    background-color: #f67a06;
 }
 
 .login-subtitle {
@@ -1549,7 +1564,7 @@ p {
     width: 100%;
     padding: 14px;
     background: var(--primary);
-    color: white;
+    color: #fff !important;
     border: none;
     border-radius: var(--radius-sm);
     font-size: 16px;

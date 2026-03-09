@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 
 @section('title', 'Sincay - Nhà hàng cao cấp')
@@ -391,3 +391,4 @@
     </section>
 
 @endsection
+

@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('content')
     <!-- Phần Header với tiêu đề -->
@@ -75,3 +75,4 @@
             </div>
         </div>
     @endsection
+

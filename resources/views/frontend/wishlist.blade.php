@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('title', 'Danh sách yêu thích')
 
@@ -89,3 +89,4 @@
         </div>
     </section>
 @endsection
+

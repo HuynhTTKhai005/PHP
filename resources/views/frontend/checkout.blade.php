@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/cart.css') }}">
@@ -128,3 +128,4 @@
         </form>
     </div>
 @endsection
+

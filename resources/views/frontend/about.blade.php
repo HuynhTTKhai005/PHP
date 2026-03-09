@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('content')
     <!-- Header -->
@@ -181,3 +181,4 @@
         </div>
     </section>
 @endsection
+

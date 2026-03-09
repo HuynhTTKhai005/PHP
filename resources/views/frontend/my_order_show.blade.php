@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('title', 'Chi tiết đơn hàng')
 
@@ -26,7 +26,7 @@
             </div>
 
             <div class="row g-3 mb-4">
-                <div class="col-md-4"><strong>Mã đơn:</strong> {{ $order->order_number ?? '#' . str_pad($order->id, 6, '0', STR_PAD_LEFT) }}</div>
+                <div class="col-md-4"><strong>M? don:</strong> {{ $order->order_number ?? '#' . str_pad($order->id, 6, '0', STR_PAD_LEFT) }}</div>
                 <div class="col-md-4"><strong>Ngày đặt:</strong> {{ $order->created_at->format('d/m/Y H:i') }}</div>
                 <div class="col-md-4"><strong>Trạng thái:</strong> {{ $order->status_text }}</div>
                 <div class="col-md-4"><strong>Thanh toán:</strong> {{ $order->payment_status_text }}</div>
@@ -71,4 +71,5 @@
         </div>
     </section>
 @endsection
+
 

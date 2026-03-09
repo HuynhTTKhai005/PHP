@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('content')
     <!-- Main Container -->
@@ -246,3 +246,4 @@
         <div class="loader"></div>
     </div>
 @endsection
+

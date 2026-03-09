@@ -105,7 +105,6 @@
                             <th>Ngày đặt</th>
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
-                            <th>Thanh toán</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
@@ -123,9 +122,6 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <span class="status-badge {{ $order->payment_status_class }}">{{ $order->payment_status_text }}</span>
-                                </td>
-                                <td>
                                     <a href="{{ route('admin.orders.show', $order) }}" class="action-btn" title="Xem">
                                         <i class="fas fa-eye"></i>
                                     </a>
@@ -133,7 +129,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">Không có đơn hàng nào</td>
+                                <td colspan="6" class="text-center">Không có đơn hàng nào</td>
                             </tr>
                         @endforelse
                     </tbody>

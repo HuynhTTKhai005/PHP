@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('title', $product->name . ' - Chi tiết sản phẩm')
 

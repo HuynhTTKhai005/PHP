@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('title', 'Đơn hàng của tôi')
 
@@ -48,7 +48,7 @@
                     <table class="table align-middle mb-0">
                         <thead>
                             <tr>
-                                <th>Mã đơn</th>
+                                <th>M? don</th>
                                 <th>Ngày đặt</th>
                                 <th>Số món</th>
                                 <th>Tổng tiền</th>
@@ -89,3 +89,4 @@
         </div>
     </section>
 @endsection
+

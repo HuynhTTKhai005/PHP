@@ -1,4 +1,4 @@
-@extends('layouts.pato')
+@extends('layouts.sincay')
 
 @section('content')
     <div class="login">
@@ -74,3 +74,4 @@
     </div>
 
 @endsection
+
