@@ -32,7 +32,7 @@ class DashboardController extends Controller
             ->sum('total_amount_cents');
 
         $growthPercentage = $this->calculateGrowth($totalRevenueThisMonth, $previousMonthRevenue);
-        $monthDisplay = 'Tháng '.$month.', '.$year;
+        $monthDisplay = 'Tháng ' . $month . ', ' . $year;
 
         $totalOrdersThisMonth = Order::query()
             ->whereMonth('created_at', $month)
@@ -92,7 +92,7 @@ class DashboardController extends Controller
             ->get()
             ->map(function (Order $order): array {
                 return [
-                    'order_number' => $order->order_number ?: ('#'.str_pad((string) $order->id, 6, '0', STR_PAD_LEFT)),
+                    'order_number' => $order->order_number ?: ('#' . str_pad((string) $order->id, 6, '0', STR_PAD_LEFT)),
                     'customer' => $order->shipping_name ?: 'Khách lẻ',
                     'date' => $order->created_at?->format('d/m/Y H:i') ?? '-',
                     'amount' => (int) $order->total_amount_cents,
@@ -145,13 +145,13 @@ class DashboardController extends Controller
             ->get()
             ->toBase()
             ->map(function (Order $order): array {
-                $orderNumber = $order->order_number ?: ('#'.str_pad((string) $order->id, 6, '0', STR_PAD_LEFT));
+                $orderNumber = $order->order_number ?: ('#' . str_pad((string) $order->id, 6, '0', STR_PAD_LEFT));
 
                 return [
                     'icon' => 'shopping-cart',
-                    'title' => 'Đơn hàng mới '.$orderNumber,
-                    'description' => 'Khách hàng: '.($order->shipping_name ?: 'Khách lẻ').
-                        ' - Tổng: '.number_format((int) $order->total_amount_cents, 0, ',', '.').'đ',
+                    'title' => 'Đơn hàng mới ' . $orderNumber,
+                    'description' => 'Khách hàng: ' . ($order->shipping_name ?: 'Khách lẻ') .
+                        ' - Tổng: ' . number_format((int) $order->total_amount_cents, 0, ',', '.') . 'đ',
                     'time_ago' => $order->created_at?->diffForHumans() ?? '-',
                     'timestamp' => $order->created_at?->getTimestamp() ?? 0,
                 ];
@@ -167,7 +167,7 @@ class DashboardController extends Controller
                 return [
                     'icon' => 'user-plus',
                     'title' => 'Khách hàng mới đăng ký',
-                    'description' => $user->full_name.' - '.$user->email,
+                    'description' => $user->full_name . ' - ' . $user->email,
                     'time_ago' => $user->created_at?->diffForHumans() ?? '-',
                     'timestamp' => $user->created_at?->getTimestamp() ?? 0,
                 ];
@@ -183,7 +183,7 @@ class DashboardController extends Controller
                 return [
                     'icon' => 'box',
                     'title' => 'Sản phẩm mới được thêm',
-                    'description' => $product->name.' - Danh mục: '.($product->category?->name ?: 'Không rõ'),
+                    'description' => $product->name . ' - Danh mục: ' . ($product->category?->name ?: 'Không rõ'),
                     'time_ago' => $product->created_at?->diffForHumans() ?? '-',
                     'timestamp' => $product->created_at?->getTimestamp() ?? 0,
                 ];
