@@ -115,4 +115,57 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function showToast(message) {
+            var toast = document.createElement('div');
+            toast.className = 'toast-notification show';
+            toast.innerHTML = '<i class="fas fa-check-circle mr-2"></i> ' + message;
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(function() {
+                toast.classList.remove('show');
+                setTimeout(function() { toast.remove(); }, 500);
+            }, 3000);
+        }
+
+        function savePost(postId, btnElement) {
+            fetch('{{ route('blog.save') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ id: postId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status === 'success') {
+                    showToast(data.message);                    
+                    const archiveList = document.getElementById('spicy-archive-list');
+                    if (archiveList) {
+                        archiveList.innerHTML = data.archiveHtml;
+                    }
+                    
+                    const mainBtn = document.querySelector(`.btn-save-post[data-id="${postId}"]`);
+                    
+                    if (mainBtn) {
+                        const icon = mainBtn.querySelector('i');
+                        if(data.action === 'added') {
+                            mainBtn.classList.add('saved');
+                            icon.classList.remove('far'); icon.classList.add('fas');
+                            mainBtn.innerHTML = '<i class="fas fa-heart"></i> Đã lưu';
+                        } else {                           
+                            mainBtn.classList.remove('saved');
+                            icon.classList.remove('fas'); icon.classList.add('far');
+                            mainBtn.innerHTML = '<i class="far fa-heart"></i> Lưu';
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Có lỗi xảy ra, vui lòng thử lại.');
+            });
+        }
+    </script>
 @endsection

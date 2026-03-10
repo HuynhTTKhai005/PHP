@@ -89,11 +89,13 @@ class Cart
         session()->forget(self::CART_SESSION_KEY);
     }
 
-    public function subtotal(): int
+    public function subtotal(array $customItems = null): int
     {
         $subtotal = 0;
+        // Nếu có truyền mảng custom thì dùng mảng đó, không thì dùng toàn bộ giỏ hàng
+        $items = $customItems !== null ? $customItems : $this->items();
 
-        foreach ($this->items() as $item) {
+        foreach ($items as $item) {
             $subtotal += ((int) ($item['base_price_cents'] ?? 0)) * ((int) ($item['quantity'] ?? 0));
         }
 
@@ -148,9 +150,10 @@ class Cart
         session()->forget([self::COUPON_ID_SESSION_KEY, self::COUPON_LEGACY_SESSION_KEY]);
     }
 
-    public function summary(): array
+    public function summary(array $customItems = null): array
     {
-        $subtotalCents = $this->subtotal();
+        // Truyền $customItems vào subtotal để tính giá tạm tính
+        $subtotalCents = $this->subtotal($customItems);
         $coupon = $this->coupon();
         $discountCents = 0;
 

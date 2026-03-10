@@ -12,9 +12,9 @@
 
     <section class="food_section layout_padding">
         <div class="container">
-            @if (session('success'))
+            {{-- @if (session('success'))
                 <div class="alert alert-success mb-4">{{ session('success') }}</div>
-            @endif
+            @endif --}}
 
             <div class="row justify-content-center mb-5">
                 <div class="col-md-6">

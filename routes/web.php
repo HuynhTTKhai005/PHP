@@ -31,7 +31,9 @@ Route::get('/reservation', [ReservationController::class, 'index'])->name('reser
 Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.detail');
+Route::post('/blog/save', [BlogController::class, 'savePost'])->name('blog.save');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
