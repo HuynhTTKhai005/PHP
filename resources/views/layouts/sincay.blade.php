@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Sincay Restaurant - Nhà hàng ngon nhất')</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('assets/images/icons/logo.png') }}" />
 
     <!-- CSS Libraries -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/themify/themify-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/animate/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/css-hamburgers/hamburgers.min.css') }}">
@@ -31,13 +33,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     @stack('styles')
 </head>
-<body class="animsition">
+
+<body class="animsition" data-use-reload="1" data-reload-url="{{ route('reload') }}">
+    {{-- <div id="page-loader" class="page-loader is-hidden" aria-hidden="true">
+        <div class="page-loader__spinner"></div>
+        <p class="page-loader__text">Đang tải trang...</p>
+    </div> --}}
     <!-- Header -->
     @include('partials.header')
-     @yield('content')
-     @include('partials.footer')
+    @if (session('success'))
+        <div id="app-notice" data-type="success" data-message="{{ session('success') }}"></div>
+    @endif
+    @if (session('error'))
+        <div id="app-notice" data-type="error" data-message="{{ session('error') }}"></div>
+    @endif
+    @if (!session('success') && !session('error') && $errors->any())
+        <div id="app-notice" data-type="error" data-message="Vui lòng kiểm tra lại thông tin nhập!"></div>
+    @endif
+    <div id="app-notification" class="app-notification app-notification--hidden" aria-live="assertive">
+        <div class="app-notification__backdrop"></div>
+        <div class="app-notification__card" role="alertdialog" aria-modal="true">
+            <div class="app-notification__icon" aria-hidden="true"></div>
+            <div class="app-notification__content">
+                <p class="app-notification__message"></p>
+            </div>
+            <button type="button" class="app-notification__close" aria-label="Đóng thông báo">Đóng</button>
+        </div>
+    </div>
+    @yield('content')
+    @include('partials.footer')
     <!-- Back to top -->
-    <div class="btn-back-to-top bg0-hov" id="myBtn" >
+    <div class="btn-back-to-top bg0-hov" id="myBtn">
         <span class="symbol-btn-back-to-top ">
             <i class="fa fa-angle-double-up" aria-hidden="true"></i>
         </span>
@@ -55,5 +81,7 @@
     <script src="{{ asset('assets/vendor/lightbox2/js/lightbox.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @stack('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
+
 </html>

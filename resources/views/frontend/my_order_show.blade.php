@@ -10,26 +10,30 @@
         </div>
     </section>
 
-    <section class="section-mainmenu p-t-110 p-b-70  ">
+    <section class="section-mainmenu p-t-110 p-b-70">
         <div class="container">
-            <div class="mb-4 d-flex gap-2">
+            <div class="mb-4 d-flex gap-2" id="order-actions" data-order-id="{{ $order->id }}">
                 <a href="{{ route('my-orders') }}" class="btn btn-secondary">
                     <i class="fa fa-arrow-left"></i> Quay lại đơn hàng của tôi
                 </a>
                 @if (in_array($order->status, ['pending', 'confirmed'], true))
-                    <form action="{{ route('my-orders.cancel', $order) }}" method="POST">
+                    <form action="{{ route('my-orders.cancel', $order) }}" method="POST" class="js-cancel-order-form"
+                        data-order-id="{{ $order->id }}">
                         @csrf
                         @method('PATCH')
-                        <button type="submit" class="btn btn-outline-danger">Hủy đơn hàng</button>
+                        <button type="submit" class="btn btn-outline-danger">Yêu cầu hủy</button>
                     </form>
                 @endif
             </div>
 
             <div class="row g-3 mb-4">
-                <div class="col-md-4"><strong>M? don:</strong> {{ $order->order_number ?? '#' . str_pad($order->id, 6, '0', STR_PAD_LEFT) }}</div>
+                <div class="col-md-4"><strong>Mã đơn:</strong>
+                    {{ $order->order_number ?? '#' . str_pad($order->id, 6, '0', STR_PAD_LEFT) }}</div>
                 <div class="col-md-4"><strong>Ngày đặt:</strong> {{ $order->created_at->format('d/m/Y H:i') }}</div>
-                <div class="col-md-4"><strong>Trạng thái:</strong> {{ $order->status_text }}</div>
-                <div class="col-md-4"><strong>Thanh toán:</strong> {{ $order->payment_status_text }}</div>
+                <div class="col-md-4"><strong>Trạng thái:</strong> <span data-order-status>{{ $order->status_text }}</span>
+                </div>
+                <div class="col-md-4"><strong>Phương thức thanh toán:</strong>
+                    {{ $order->payment_method_text ?? 'Tiền mặt' }}</div>
                 <div class="col-md-4"><strong>Người nhận:</strong> {{ $order->shipping_name }}</div>
                 <div class="col-md-4"><strong>SĐT:</strong> {{ $order->shipping_phone }}</div>
                 <div class="col-12"><strong>Địa chỉ:</strong> {{ $order->shipping_address }}</div>
@@ -71,5 +75,3 @@
         </div>
     </section>
 @endsection
-
-

@@ -182,6 +182,33 @@ p {
     grid-template-columns: 1fr 400px;
     gap: 2rem;
     margin-bottom: 3rem;
+    align-items: start; /* Căn trên cùng để cột bên phải trượt được */
+}
+
+/* KHUNG CUỘN SẢN PHẨM*/
+.cart-items-scrollable {
+    max-height: 600px; /* Cho cao lên thêm một chút nhìn cho thoáng */
+    overflow-y: auto;
+    padding-right: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Tùy chỉnh thanh cuộn cho đẹp */
+.cart-items-scrollable::-webkit-scrollbar {
+    width: 6px;
+}
+.cart-items-scrollable::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 4px;
+}
+.cart-items-scrollable::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 4px;
+}
+.cart-items-scrollable::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
 }
 
 @media (max-width: 1024px) {
@@ -198,11 +225,12 @@ p {
 }
 
 .cart-item {
+    flex-shrink: 0; /* QUAN TR?NG: Ngan khï¿½ng cho sáº£n pháº©m b? ï¿½p d?p lï¿½p khi cï¿½ nhi?u mï¿½n */
     background: white;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-sm); /* Giảm độ bóng xuống cho dễ rơi mắt */
     padding: 1.5rem;
-    border: 1px solid var(--gray-100);
+    border: 1px solid var(--gray-200);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
@@ -210,24 +238,8 @@ p {
 
 .cart-item:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-md);
     border-color: var(--primary-light);
-}
-
-.cart-item::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: linear-gradient(180deg, var(--primary), var(--secondary));
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.cart-item:hover::before {
-    opacity: 1;
 }
 
 .cart-item.out-of-stock {
@@ -243,33 +255,98 @@ p {
 /* ===== PRODUCT LAYOUT ===== */
 .product-grid {
     display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 1.5rem;
-    align-items: start;
+    /* Chia 4 cột chuẩn: Checkbox(40px) - Ảnh(100px) - Nội dung(giãn tự do) - Giá(tự động) */
+    grid-template-columns: 40px 100px minmax(0, 1fr) minmax(120px, auto);
+    gap: 2rem; /* Khoảng cách rộng rãi giữa các phần */
+    align-items: center;
 }
 
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+/* --- Tùy chỉnh checkbox to, viền đậm và rõ ràng hơn --- */
+.item-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* ===== PRODUCT IMAGE ===== */
+/* ï¿½p d?ng cho c? checkbox Ch?n táº¥t c? vï¿½ checkbox t?ng mï¿½n */
+.item-checkbox .form-check-input,
+.cart-actions-header .form-check-input {
+    width: 1.8rem !important; /* Phóng to hết cỡ */
+    height: 1.8rem !important;
+    cursor: pointer;
+    margin: 0;
+    border: 2px solid var(--primary) !important; /* Áp viền dày 2px và dùng màu đỏ/cam của nhà hàng */
+    background-color: white !important; /* Nền trắng để viền nổi lên */
+    box-shadow: 0 2px 5px rgba(234, 83, 19, 0.3) !important; /* Thêm hiệu ứng đổ bóng màu cam nhẹ */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hiệu ứng khi nhấp chuột vào (Focus) */
+.item-checkbox .form-check-input:focus,
+.cart-actions-header .form-check-input:focus {
+    box-shadow: 0 0 0 4px rgba(234, 83, 19, 0.25) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Hiệu ứng khi được chọn (đánh dấu tick) */
+.item-checkbox .form-check-input:checked,
+.cart-actions-header .form-check-input:checked {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+/* --- Tùy chỉnh ảnh --- */
 .product-image {
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     border-radius: var(--radius);
     overflow: hidden;
-    background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
-    position: relative;
+    background: var(--gray-100);
+    flex-shrink: 0; /* Tuyệt đối không cho ảnh bị bóp méo */
+    margin: 0; /* Xóa margin rác nếu có */
 }
 
 .product-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+}
+
+/* --- Tùy chỉnh phần chữ --- */
+.product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0; /* Bí quyết để text dài tự xuống dòng, không phá vỡ khung grid */
+    padding-right: 1rem;
+}
+
+.product-details .product-title {
+    font-size: 1.1rem;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* --- Tùy chỉnh responsive cho điện thoại --- */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 40px 1fr; 
+        gap: 1.25rem;
+    }
+    
+    .product-grid .product-image {
+        grid-column: 1 / -1;
+        width: 100%;
+        height: 200px;
+    }
+    
+    .item-checkbox {
+        justify-content: flex-start;
+    }
+    
+    .price-section {
+        grid-column: 1 / -1;
+    }
 }
 
 .cart-item:hover .product-image img {

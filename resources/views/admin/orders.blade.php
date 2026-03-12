@@ -46,7 +46,7 @@
         </div>
 
         <!-- Filter Section -->
-        <form action="{{ route('admin.orders') }}" method="GET" class="filter-form">
+        <form action="{{ route('admin.orders') }}" method="GET" class="filter-form js-admin-orders-filter">
 
             <div class="filter-section">
                 <div class="filter-group">
@@ -57,12 +57,14 @@
                         </option>
                         <option value="confirmed" {{ request('status') == 'confirmed' ? 'selected' : '' }}>Đã xác nhận
                         </option>
-                        <option value="preparing" {{ request('status') == 'preparing' ? 'selected' : '' }}>Đã chuẩn bị
+                        <option value="preparing" {{ request('status') == 'preparing' ? 'selected' : '' }}>Đang chuẩn bị
                         </option>
                         <option value="delivering" {{ request('status') == 'delivering' ? 'selected' : '' }}>Đang giao
                         </option>
                         <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Hoàn thành
                         </option>
+                        <option value="cancel_requested" {{ request('status') == 'cancel_requested' ? 'selected' : '' }}>
+                            Chờ duyệt hủy</option>
                         <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Đã hủy</option>
                     </select>
 
@@ -92,54 +94,11 @@
         </form>
 
         <!-- Orders Table -->
-        <div class="orders-container">
+        <div class="orders-container" id="admin-orders-table">
             <div class="section-header">
                 <h2>Danh sách đơn hàng</h2>
             </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Mã đơn</th>
-                            <th>Khách hàng</th>
-                            <th>Ngày đặt</th>
-                            <th>Tổng tiền</th>
-                            <th>Trạng thái</th>
-                            <th>Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($orders as $order)
-                            <tr>
-                                <td><strong>{{ $order->order_number ?? '#' . str_pad($order->id, 6, '0', STR_PAD_LEFT) }}</strong>
-                                </td>
-                                <td>{{ $order->user?->full_name ?? ($order->shipping_name ?? 'Khách lẻ') }}</td>
-                                <td>{{ $order->created_at->format('d/m/Y H:i') }}</td>
-                                <td>{{ number_format($order->total_amount_cents, 0, ',', '.') }}đ</td>
-                                <td>
-                                    <span class="status-badge status-{{ $order->status }}">
-                                        {{ ucfirst(trans($order->status_text)) }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.orders.show', $order) }}" class="action-btn" title="Xem">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="6" class="text-center">Không có đơn hàng nào</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                {{ $orders->appends(request()->query())->links() }}
-            </div>
+            @include('admin.partials.orders_table', ['orders' => $orders])
         </div>
 
     </div>

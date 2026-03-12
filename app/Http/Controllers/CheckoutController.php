@@ -26,15 +26,25 @@ class CheckoutController extends Controller
         private readonly Cart $cart
     ) {}
 
-    public function index(): View|RedirectResponse
+    public function index(Request $request): View|RedirectResponse
     {
-        $cart = $this->cart->items();
-        if (empty($cart)) {
-            return redirect()->route('cart')->with('error', 'Giỏ hàng của bạn đang trống!');
+        // 1. Lấy danh sách ID sản phẩm từ URL và lưu vào session
+        if ($request->has('items')) {
+            session(['checkout_items' => explode(',', $request->items)]);
         }
 
-        $summary = $this->cart->summary();
-        /** @var Coupon|null $coupon */
+        $selectedIds = session('checkout_items', []);
+        $allCartItems = $this->cart->items();
+
+        // 2. Lọc giỏ hàng: chỉ lấy sản phẩm có ID nằm trong danh sách đã chọn
+        $cart = array_intersect_key($allCartItems, array_flip($selectedIds));
+
+        if (empty($cart)) {
+            return redirect()->route('cart')->with('error', 'Vui lòng chọn ít nhất một sản phẩm để thanh toán!');
+        }
+
+        // 3. Tính tiền theo các món đã chọn
+        $summary = $this->cart->summary($cart);
         $coupon = $this->cart->coupon();
 
         $subtotalCents = $summary['subtotal'];
@@ -44,22 +54,21 @@ class CheckoutController extends Controller
         $totalCents = $summary['total'];
 
         $defaultAddressText = '';
-        if (Auth::check()) {
-            /** @var User $authUser */
-            $authUser = Auth::user();
-
-            $defaultAddress = $authUser
+        $user = Auth::user();
+        if ($user instanceof User) {
+            $defaultAddress = $user
                 ->addresses()
                 ->where('is_default', true)
                 ->first();
 
             if ($defaultAddress) {
-                $defaultAddressText = implode(', ', array_filter([
+                $parts = array_filter([
                     $defaultAddress->address_detail,
                     $defaultAddress->ward,
                     $defaultAddress->district,
                     $defaultAddress->city,
-                ]));
+                ]);
+                $defaultAddressText = implode(', ', $parts);
             }
         }
 
@@ -77,9 +86,13 @@ class CheckoutController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $cart = $this->cart->items();
+        // Lấy lại danh sách món đã chọn từ session
+        $selectedIds = session('checkout_items', []);
+        $allCartItems = $this->cart->items();
+        $cart = array_intersect_key($allCartItems, array_flip($selectedIds));
+
         if (empty($cart)) {
-            return redirect()->route('cart');
+            return redirect()->route('cart')->with('error', 'Vui lòng chọn sản phẩm để thanh toán!');
         }
 
         $request->validate([
@@ -90,8 +103,7 @@ class CheckoutController extends Controller
             'payment_method' => 'required|in:cash,bank_transfer,online',
         ]);
 
-        $summary = $this->cart->summary();
-        /** @var Coupon|null $coupon */
+        $summary = $this->cart->summary($cart);
         $coupon = $this->cart->coupon();
 
         $subtotalCents = (int) $summary['subtotal'];
@@ -101,7 +113,6 @@ class CheckoutController extends Controller
         $totalCents = (int) $summary['total'];
 
         try {
-            /** @var Order $order */
             $order = DB::transaction(function () use (
                 $request,
                 $cart,
@@ -110,12 +121,11 @@ class CheckoutController extends Controller
                 $shippingFeeCents,
                 $vatCents,
                 $totalCents,
-                $coupon,
+                $coupon
             ) {
-                /** @var Order $order */
                 $order = Order::create([
                     'user_id' => Auth::id(),
-                    'order_number' => 'DH'.strtoupper(Str::random(8)),
+                    'order_number' => 'DH' . strtoupper(Str::random(8)),
                     'status' => 'pending',
                     'subtotal_cents' => $subtotalCents,
                     'total_discount_cents' => $discountCents,
@@ -136,7 +146,7 @@ class CheckoutController extends Controller
                         $product,
                         $quantity,
                         'order',
-                        'Xuất kho cho đơn hàng '.$order->order_number
+                        'Xuất kho cho đơn hàng ' . $order->order_number
                     );
 
                     OrderItem::create([
@@ -163,7 +173,6 @@ class CheckoutController extends Controller
                         'coupon_id' => $coupon->id,
                         'discount_amount_cents' => $discountCents,
                     ]);
-
                     $coupon->increment('used_count');
                 }
 
@@ -173,11 +182,15 @@ class CheckoutController extends Controller
             return redirect()->route('cart')->withErrors($e->errors());
         }
 
-        $this->cart->clear();
+        // Chỉ xóa các món đã mua khỏi giỏ
+        foreach ($selectedIds as $id) {
+            $this->cart->remove($id);
+        }
+
+        session()->forget('checkout_items');
         $this->cart->removeCoupon();
 
-        return redirect()
-            ->route('cart')
-            ->with('success', 'Đặt hàng thành công! Mã đơn hàng của bạn là '.$order->order_number);
+        return redirect()->route('my-orders')
+            ->with('success', 'Đặt hàng thành công! Mã đơn hàng của bạn là ' . $order->order_number);
     }
 }

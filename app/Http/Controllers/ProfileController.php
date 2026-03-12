@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderStatusHistory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,9 +46,7 @@ class ProfileController extends Controller
             ->withQueryString();
 
         $orders->getCollection()->transform(function (Order $order): Order {
-            $order->payment_status_text = $order->payment?->status === 'success'
-                ? 'Đã thanh toán'
-                : 'Chờ thanh toán';
+            $order->payment_method_text = $this->mapPaymentMethodText($order->payment?->payment_method);
 
             return $order;
         });
@@ -59,24 +59,69 @@ class ProfileController extends Controller
         abort_unless($order->user_id === $request->user()->id, 403);
 
         $order->load(['items.product', 'payment', 'coupon.coupon']);
-        $order->payment_status_text = $order->payment?->status === 'success'
-            ? 'Đã thanh toán'
-            : 'Chờ thanh toán';
+        $order->payment_method_text = $this->mapPaymentMethodText($order->payment?->payment_method);
 
         return view('frontend.my_order_show', compact('order'));
     }
 
-    public function cancelMyOrder(Request $request, Order $order): RedirectResponse
+    public function cancelMyOrder(Request $request, Order $order): RedirectResponse|JsonResponse
     {
         abort_unless($order->user_id === $request->user()->id, 403);
 
         if (! in_array($order->status, ['pending', 'confirmed'], true)) {
-            return back()->with('error', 'Đơn hàng không thể hủy ở trạng thái hiện tại.');
+            return $this->respondCancel(
+                $request,
+                'Đơn hàng không thể yêu cầu hủy ở trạng thái hiện tại.',
+                'error',
+                422
+            );
         }
 
-        $order->update(['status' => 'cancelled']);
+        if ($order->status === 'cancel_requested') {
+            return $this->respondCancel($request, 'Đơn hàng đã được gửi yêu cầu hủy.', 'error', 422);
+        }
 
-        return back()->with('success', 'Hủy đơn hàng thành công.');
+        $order->update(['status' => 'cancel_requested']);
+        OrderStatusHistory::create([
+            'order_id' => $order->id,
+            'status' => 'cancel_requested',
+            'note' => 'Yêu cầu hủy từ khách hàng',
+            'timestamp' => now(),
+        ]);
+
+        return $this->respondCancel(
+            $request,
+            'Đã gửi yêu cầu hủy. Vui lòng chờ admin xác nhận.',
+            'success'
+        );
+    }
+
+    private function respondCancel(
+        Request $request,
+        string $message,
+        string $status,
+        int $code = 200
+    ): RedirectResponse|JsonResponse {
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => $status,
+                'message' => $message,
+                'order_status' => 'cancel_requested',
+                'order_status_text' => 'Chờ duyệt hủy',
+            ], $code);
+        }
+
+        return back()->with($status, $message);
+    }
+
+    private function mapPaymentMethodText(?string $method): string
+    {
+        return match ($method) {
+            'cash' => 'Tiền mặt (COD)',
+            'bank_transfer' => 'Chuyển khoản ngân hàng',
+            'online' => 'Thanh toán online',
+            default => 'Tiền mặt (COD)',
+        };
     }
 
     public function update(Request $request): RedirectResponse
@@ -125,5 +170,20 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function notifications(Request $request): View
+    {
+        $user = $request->user();
+        $orderIds = $user->orders()->select('id');
+
+        $notifications = OrderStatusHistory::query()
+            ->with('order')
+            ->whereIn('order_id', $orderIds)
+            ->orderByDesc('timestamp')
+            ->limit(30)
+            ->get();
+
+        return view('frontend.notifications', compact('notifications'));
     }
 }

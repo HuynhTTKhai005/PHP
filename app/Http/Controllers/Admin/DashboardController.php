@@ -12,7 +12,7 @@ use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function index(): View
+    public function index(): View|JsonResponse
     {
         $now = now();
         $month = (int) $now->month;
@@ -101,6 +101,26 @@ class DashboardController extends Controller
             });
 
         $recentActivities = $this->buildRecentActivities();
+
+        if (request()->expectsJson()) {
+            $html = view('admin.partials.dashboard_content', [
+                'totalRevenueThisMonth' => $totalRevenueThisMonth,
+                'growthPercentage' => $growthPercentage,
+                'totalOrdersThisMonth' => $totalOrdersThisMonth,
+                'ordersGrowth' => $ordersGrowth,
+                'recentOrders' => $recentOrders,
+                'topProducts' => $topProducts,
+                'recentCustomers' => $recentCustomers,
+                'recentActivities' => $recentActivities,
+                'monthDisplay' => $monthDisplay,
+                'lastUpdatedAt' => $now->format('H:i:s d/m/Y'),
+            ])->render();
+
+            return response()->json([
+                'status' => 'success',
+                'html' => $html,
+            ]);
+        }
 
         return view('dashboard', [
             'totalRevenueThisMonth' => $totalRevenueThisMonth,

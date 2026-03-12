@@ -74,7 +74,7 @@
                 <div class="filter-group">
                     <label>Tìm kiếm</label>
                     <input type="text" class="filter-input" name="search" value="{{ request('search') }}"
-                        placeholder="Tên, email, SĐT...">
+                        placeholder="Tên, email, SDT...">
                 </div>
                 <div class="filter-actions">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i> Lọc</button>
@@ -93,7 +93,7 @@
                         <tr>
                             <th>Họ tên</th>
                             <th>Email</th>
-                            <th>SĐT</th>
+                            <th>SDT</th>
                             <th>Quyền hiện tại</th>
                             <th>Trạng thái</th>
                             <th>Tạo lúc</th>
@@ -107,14 +107,16 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone ?: '-' }}</td>
                                 <td><span class="status-badge {{ $user->role_badge }}">{{ $user->role_label }}</span></td>
-                                <td><span class="status-badge {{ $user->status_badge }}">{{ $user->status_label }}</span></td>
+                                <td><span class="status-badge {{ $user->status_badge }}">{{ $user->status_label }}</span>
+                                </td>
                                 <td>{{ $user->created_at?->format('d/m/Y H:i') }}</td>
                                 <td class="action-buttons">
                                     <form action="{{ route('admin.users.updateRole', $user) }}" method="POST"
                                         class="users-inline-form users-action-form">
                                         @csrf
                                         @method('PATCH')
-                                        <select class="filter-select users-role-select" name="role_id" aria-label="Đổi quyền">
+                                        <select class="filter-select users-role-select" name="role_id"
+                                            aria-label="Đổi quyền">
                                             <option value="{{ \App\Models\User::ROLE_ADMIN }}"
                                                 {{ (int) $user->role_id === \App\Models\User::ROLE_ADMIN ? 'selected' : '' }}>
                                                 Admin</option>
@@ -132,7 +134,8 @@
                                         @csrf
                                         @method('PATCH')
                                         <input type="hidden" name="is_active" value="{{ $user->is_active ? 0 : 1 }}">
-                                        <button type="submit" class="action-btn {{ $user->is_active ? 'delete' : 'edit' }}"
+                                        <button type="submit"
+                                            class="action-btn {{ $user->is_active ? 'delete' : 'edit' }}"
                                             title="{{ $user->is_active ? 'Khóa hoạt động' : 'Mở hoạt động' }}">
                                             <i class="fas {{ $user->is_active ? 'fa-user-lock' : 'fa-user-check' }}"></i>
                                         </button>
@@ -150,7 +153,8 @@
 
             <div class="pagination">
                 <div class="pagination-info">
-                    Hiển thị {{ $users->firstItem() ?? 0 }}-{{ $users->lastItem() ?? 0 }} / {{ $users->total() }} tài khoản
+                    Hiển thị {{ $users->firstItem() ?? 0 }}-{{ $users->lastItem() ?? 0 }} / {{ $users->total() }} tài
+                    khoản
                 </div>
                 <div class="pagination-controls">{{ $users->links() }}</div>
             </div>

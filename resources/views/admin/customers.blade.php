@@ -71,35 +71,40 @@
                 <h2>Thống kê phân khúc khách hàng</h2>
             </div>
             <div class="segments-grid">
-                <a class="segment-card" href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'vip'])) }}">
+                <a class="segment-card"
+                    href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'vip'])) }}">
                     <div class="segment-icon segment-vip"><i class="fas fa-crown"></i></div>
                     <div class="segment-info">
                         <h4>VIP</h4>
                         <p>{{ number_format($stats['segments']['vip']) }}</p>
                     </div>
                 </a>
-                <a class="segment-card" href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'regular'])) }}">
+                <a class="segment-card"
+                    href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'regular'])) }}">
                     <div class="segment-icon segment-regular"><i class="fas fa-user"></i></div>
                     <div class="segment-info">
                         <h4>Thường xuyên</h4>
                         <p>{{ number_format($stats['segments']['regular']) }}</p>
                     </div>
                 </a>
-                <a class="segment-card" href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'new'])) }}">
+                <a class="segment-card"
+                    href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'new'])) }}">
                     <div class="segment-icon segment-new"><i class="fas fa-user-plus"></i></div>
                     <div class="segment-info">
                         <h4>Mới</h4>
                         <p>{{ number_format($stats['segments']['new']) }}</p>
                     </div>
                 </a>
-                <a class="segment-card" href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'loyal'])) }}">
+                <a class="segment-card"
+                    href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'loyal'])) }}">
                     <div class="segment-icon segment-loyal"><i class="fas fa-heart"></i></div>
                     <div class="segment-info">
                         <h4>Trung thành</h4>
                         <p>{{ number_format($stats['segments']['loyal']) }}</p>
                     </div>
                 </a>
-                <a class="segment-card" href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'inactive'])) }}">
+                <a class="segment-card"
+                    href="{{ route('admin.customers', array_merge(request()->query(), ['segment' => 'inactive'])) }}">
                     <div class="segment-icon segment-inactive"><i class="fas fa-user-slash"></i></div>
                     <div class="segment-info">
                         <h4>Không hoạt động</h4>
@@ -110,16 +115,19 @@
         </div>
 
         <div class="filter-section fade-in">
-            <form method="GET" action="{{ route('admin.customers') }}" style="display:flex;gap:15px;align-items:flex-end;flex-wrap:wrap;width:100%;">
+            <form method="GET" action="{{ route('admin.customers') }}"
+                style="display:flex;gap:15px;align-items:flex-end;flex-wrap:wrap;width:100%;">
                 <div class="filter-group">
                     <label>Phân khúc</label>
                     <select class="filter-select" name="segment">
                         <option value="">Tất cả phân khúc</option>
                         <option value="vip" {{ request('segment') === 'vip' ? 'selected' : '' }}>VIP</option>
-                        <option value="regular" {{ request('segment') === 'regular' ? 'selected' : '' }}>Thường xuyên</option>
+                        <option value="regular" {{ request('segment') === 'regular' ? 'selected' : '' }}>Thường xuyên
+                        </option>
                         <option value="new" {{ request('segment') === 'new' ? 'selected' : '' }}>Mới</option>
                         <option value="loyal" {{ request('segment') === 'loyal' ? 'selected' : '' }}>Trung thành</option>
-                        <option value="inactive" {{ request('segment') === 'inactive' ? 'selected' : '' }}>Không hoạt động</option>
+                        <option value="inactive" {{ request('segment') === 'inactive' ? 'selected' : '' }}>Không hoạt động
+                        </option>
                     </select>
                 </div>
 
@@ -128,19 +136,22 @@
                     <select class="filter-select" name="status">
                         <option value="">Tất cả trạng thái</option>
                         <option value="active" {{ request('status') === 'active' ? 'selected' : '' }}>Hoạt động</option>
-                        <option value="inactive" {{ request('status') === 'inactive' ? 'selected' : '' }}>Không hoạt động</option>
+                        <option value="inactive" {{ request('status') === 'inactive' ? 'selected' : '' }}>Không hoạt động
+                        </option>
                         <option value="blocked" {{ request('status') === 'blocked' ? 'selected' : '' }}>Đã chặn</option>
                     </select>
                 </div>
 
                 <div class="filter-group">
                     <label>Tìm kiếm</label>
-                    <input type="text" class="filter-input" name="search" value="{{ request('search') }}" placeholder="Tên, email, SĐT...">
+                    <input type="text" class="filter-input" name="search" value="{{ request('search') }}"
+                        placeholder="Tên, email, SDT...">
                 </div>
 
                 <div class="filter-actions">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i> Lọc</button>
-                    <a href="{{ route('admin.customers') }}" class="btn btn-secondary"><i class="fas fa-redo"></i> Đặt lại</a>
+                    <a href="{{ route('admin.customers') }}" class="btn btn-secondary"><i class="fas fa-redo"></i> Đặt
+                        lại</a>
                 </div>
             </form>
         </div>
@@ -149,7 +160,8 @@
             <div class="section-header">
                 <h2>Danh sách khách hàng</h2>
                 <div class="table-actions">
-                    <a class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;" href="{{ route('admin.customers', request()->query()) }}">
+                    <a class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;"
+                        href="{{ route('admin.customers', request()->query()) }}">
                         <i class="fas fa-sync-alt"></i> Làm mới
                     </a>
                 </div>
@@ -185,31 +197,41 @@
                                     <div style="color: var(--gray);">{{ $customer->email }}</div>
                                 </td>
                                 <td>
-                                    <span class="segment-badge {{ $customer->segment_class }}">{{ $customer->segment_text }}</span>
+                                    <span
+                                        class="segment-badge {{ $customer->segment_class }}">{{ $customer->segment_text }}</span>
                                 </td>
                                 <td>
-                                    <span class="status-badge {{ $customer->status_class }}">{{ $customer->status_text }}</span>
+                                    <span
+                                        class="status-badge {{ $customer->status_class }}">{{ $customer->status_text }}</span>
                                 </td>
                                 <td>
                                     <div class="stats-numbers">
-                                        <div><span class="number">{{ number_format($customer->total_orders) }}</span> <span class="label">đơn hàng</span></div>
-                                        <div><span class="number">{{ number_format($customer->total_spent, 0, ',', '.') }}đ</span> <span class="label">tổng chi tiêu</span></div>
+                                        <div><span class="number">{{ number_format($customer->total_orders) }}</span>
+                                            <span class="label">đơn hàng</span></div>
+                                        <div><span
+                                                class="number">{{ number_format($customer->total_spent, 0, ',', '.') }}d</span>
+                                            <span class="label">tổng chi tiêu</span></div>
                                     </div>
                                 </td>
                                 <td>
                                     <div>{{ $customer->join_date }}</div>
-                                    <div style="color: var(--gray); font-size: 12px;">{{ $customer->days_since_join }} ngày</div>
+                                    <div style="color: var(--gray); font-size: 12px;">{{ $customer->days_since_join }}
+                                        ngày</div>
                                 </td>
                                 <td>
                                     <div class="action-buttons">
-                                        <a class="action-btn view" title="Xem chi tiết" href="{{ route('admin.customers.show', array_merge(['customer' => $customer->id], request()->query())) }}">
+                                        <a class="action-btn view" title="Xem chi tiết"
+                                            href="{{ route('admin.customers.show', array_merge(['customer' => $customer->id], request()->query())) }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                         @if (auth()->user()->isAdmin())
-                                            <a class="action-btn edit" title="Sửa" href="{{ route('admin.customers.edit', $customer) }}">
+                                            <a class="action-btn edit" title="Sửa"
+                                                href="{{ route('admin.customers.edit', $customer) }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('admin.customers.destroy', $customer) }}" method="POST" class="js-delete-customer-form" data-customer-name="{{ $customer->full_name }}" style="display:inline;">
+                                            <form action="{{ route('admin.customers.destroy', $customer) }}"
+                                                method="POST" class="js-delete-customer-form"
+                                                data-customer-name="{{ $customer->full_name }}" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="action-btn delete" type="submit" title="Xóa">
@@ -255,8 +277,10 @@
                             <div style="display: flex; align-items: center; gap: 15px;">
                                 <div id="modalAvatar" class="customer-avatar">{{ $selectedCustomer->avatar }}</div>
                                 <div>
-                                    <h4 id="modalName" style="font-size: 18px; margin-bottom: 5px;">{{ $selectedCustomer->full_name }}</h4>
-                                    <p id="modalCustomerId" style="color: var(--gray); font-size: 13px;">{{ $selectedCustomer->customer_code }}</p>
+                                    <h4 id="modalName" style="font-size: 18px; margin-bottom: 5px;">
+                                        {{ $selectedCustomer->full_name }}</h4>
+                                    <p id="modalCustomerId" style="color: var(--gray); font-size: 13px;">
+                                        {{ $selectedCustomer->customer_code }}</p>
                                 </div>
                             </div>
                         </div>
@@ -272,23 +296,28 @@
                         <div class="detail-group">
                             <label>Phân loại</label>
                             <div style="display: flex; gap: 10px; margin-top: 10px;">
-                                <span id="modalSegment" class="segment-badge {{ $selectedCustomer->segment_class }}">{{ $selectedCustomer->segment_text }}</span>
-                                <span id="modalStatus" class="status-badge {{ $selectedCustomer->status_class }}">{{ $selectedCustomer->status_text }}</span>
+                                <span id="modalSegment"
+                                    class="segment-badge {{ $selectedCustomer->segment_class }}">{{ $selectedCustomer->segment_text }}</span>
+                                <span id="modalStatus"
+                                    class="status-badge {{ $selectedCustomer->status_class }}">{{ $selectedCustomer->status_text }}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="customer-stats">
                         <div class="customer-stat">
-                            <div class="value" id="modalTotalOrders">{{ number_format($selectedCustomer->total_orders) }}</div>
+                            <div class="value" id="modalTotalOrders">
+                                {{ number_format($selectedCustomer->total_orders) }}</div>
                             <div class="label">Tổng đơn hàng</div>
                         </div>
                         <div class="customer-stat">
-                            <div class="value" id="modalTotalSpent">{{ number_format($selectedCustomer->total_spent, 0, ',', '.') }}đ</div>
+                            <div class="value" id="modalTotalSpent">
+                                {{ number_format($selectedCustomer->total_spent, 0, ',', '.') }}d</div>
                             <div class="label">Tổng chi tiêu</div>
                         </div>
                         <div class="customer-stat">
-                            <div class="value" id="modalAvgOrder">{{ number_format($selectedCustomer->avg_order, 0, ',', '.') }}đ</div>
+                            <div class="value" id="modalAvgOrder">
+                                {{ number_format($selectedCustomer->avg_order, 0, ',', '.') }}d</div>
                             <div class="label">Giá trị TB/đơn</div>
                         </div>
                         <div class="customer-stat">
@@ -310,8 +339,10 @@
                                         <p>{{ $order->created_at?->format('d/m/Y H:i') }} - {{ $order->status_text }}</p>
                                     </div>
                                     <div style="display:flex; align-items:center; gap:10px;">
-                                        <div class="order-amount">{{ number_format($order->total_amount_cents, 0, ',', '.') }}đ</div>
-                                        <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-secondary" style="padding: 6px 10px; font-size: 12px;">
+                                        <div class="order-amount">
+                                            {{ number_format($order->total_amount_cents, 0, ',', '.') }}d</div>
+                                        <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-secondary"
+                                            style="padding: 6px 10px; font-size: 12px;">
                                             Xem thêm
                                         </a>
                                     </div>
@@ -331,7 +362,8 @@
                             <a class="btn btn-info" href="{{ route('admin.customers.edit', $selectedCustomer->id) }}">
                                 <i class="fas fa-edit"></i> Chỉnh sửa
                             </a>
-                            <form action="{{ route('admin.customers.destroy', $selectedCustomer->id) }}" method="POST" class="js-delete-customer-form" data-customer-name="{{ $selectedCustomer->full_name }}">
+                            <form action="{{ route('admin.customers.destroy', $selectedCustomer->id) }}" method="POST"
+                                class="js-delete-customer-form" data-customer-name="{{ $selectedCustomer->full_name }}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">

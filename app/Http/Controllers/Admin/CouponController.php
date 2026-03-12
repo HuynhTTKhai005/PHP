@@ -100,9 +100,9 @@ class CouponController extends Controller
         }
 
         $coupons = $query->latest('created_at')->paginate(10)->withQueryString();
-        $coupons->getCollection()->transform(fn ($coupon) => $this->decorateCoupon($coupon));
+        $coupons->getCollection()->transform(fn($coupon) => $this->decorateCoupon($coupon));
 
-        $allCoupons = Coupon::all()->map(fn ($coupon) => $this->decorateCoupon($coupon));
+        $allCoupons = Coupon::all()->map(fn($coupon) => $this->decorateCoupon($coupon));
         $stats = [
             'total' => $allCoupons->count(),
             'active' => $allCoupons->where('status_key', 'active')->count(),
@@ -149,14 +149,14 @@ class CouponController extends Controller
         $coupon->type_text = $typeMap[$coupon->discount_type]['text'] ?? $coupon->discount_type;
 
         if ($coupon->discount_type === 'percent') {
-            $coupon->discount_display = ((int) $coupon->discount_value).'%';
+            $coupon->discount_display = ((int) $coupon->discount_value) . '%';
         } else {
-            $coupon->discount_display = number_format((int) $coupon->discount_value, 0, ',', '.').'đ';
+            $coupon->discount_display = number_format((int) $coupon->discount_value, 0, ',', '.') . 'd';
         }
 
         $limit = (int) ($coupon->usage_limit ?? 0);
         $used = (int) ($coupon->used_count ?? 0);
-        $coupon->usage_display = $limit > 0 ? ($used.'/'.$limit) : ($used.'/∞');
+        $coupon->usage_display = $limit > 0 ? ($used . '/' . $limit) : ($used . '/?');
         $coupon->usage_percentage = $limit > 0 ? min(100, (int) round(($used / max($limit, 1)) * 100)) : 0;
 
         return $coupon;
@@ -185,7 +185,7 @@ class CouponController extends Controller
     {
         $codeRule = 'required|string|max:50|unique:coupons,code';
         if ($ignoreId) {
-            $codeRule .= ','.$ignoreId;
+            $codeRule .= ',' . $ignoreId;
         }
 
         $data = $request->validate([

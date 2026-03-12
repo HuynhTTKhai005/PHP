@@ -21,7 +21,7 @@ class WishlistController extends Controller
         return view('frontend.wishlist', compact('wishlists'));
     }
 
-    public function store(Request $request, Product $product): RedirectResponse
+    public function store(Request $request, Product $product): RedirectResponse|\Illuminate\Http\JsonResponse
     {
         Wishlist::firstOrCreate([
             'user_id' => $request->user()->id,
@@ -30,15 +30,33 @@ class WishlistController extends Controller
             'created_at' => now(),
         ]);
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'action' => 'added',
+                'product_id' => $product->id,
+                'message' => 'Đã thêm sản phẩm vào danh sách yêu thích.',
+            ]);
+        }
+
         return back()->with('success', 'Đã thêm sản phẩm vào danh sách yêu thích.');
     }
 
-    public function destroy(Request $request, Product $product): RedirectResponse
+    public function destroy(Request $request, Product $product): RedirectResponse|\Illuminate\Http\JsonResponse
     {
         Wishlist::query()
             ->where('user_id', $request->user()->id)
             ->where('product_id', $product->id)
             ->delete();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'action' => 'removed',
+                'product_id' => $product->id,
+                'message' => 'Đã xóa sản phẩm khỏi danh sách yêu thích.',
+            ]);
+        }
 
         return back()->with('success', 'Đã xóa sản phẩm khỏi danh sách yêu thích.');
     }

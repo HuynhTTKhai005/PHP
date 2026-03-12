@@ -11,7 +11,7 @@ use Illuminate\View\View;
 
 class OrderController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request): View|\Illuminate\Http\JsonResponse
     {
         $query = Order::with(['user', 'payment'])->orderByDesc('created_at');
 
@@ -41,8 +41,7 @@ class OrderController extends Controller
 
         $orders = $query->paginate(20)->withQueryString();
         $orders->getCollection()->transform(function (Order $order): Order {
-            $order->payment_status_text = $this->mapPaymentStatusText($order->payment?->status);
-            $order->payment_status_class = $this->mapPaymentStatusClass($order->payment?->status);
+            $order->payment_method_text = $this->mapPaymentMethodText($order->payment?->payment_method);
 
             return $order;
         });
@@ -66,10 +65,16 @@ class OrderController extends Controller
             ->whereYear('created_at', now()->year)
             ->count();
 
-        return view(
-            'admin.orders',
-            compact('orders', 'totalOrdersThisMonth', 'pendingOrders', 'processingOrders', 'completedOrders')
-        );
+        if ($request->expectsJson()) {
+            $html = view('admin.partials.orders_table', compact('orders'))->render();
+
+            return response()->json([
+                'status' => 'success',
+                'html' => $html,
+            ]);
+        }
+
+        return view('admin.orders', compact('orders', 'totalOrdersThisMonth', 'pendingOrders', 'processingOrders', 'completedOrders'));
     }
 
     public function show(Order $order): View
@@ -79,10 +84,10 @@ class OrderController extends Controller
         return view('admin.show', compact('order'));
     }
 
-    public function updateStatus(Request $request, Order $order): RedirectResponse
+    public function updateStatus(Request $request, Order $order): RedirectResponse|\Illuminate\Http\JsonResponse
     {
         $validated = $request->validate([
-            'status' => 'required|in:pending,confirmed,preparing,delivering,completed,cancelled',
+            'status' => 'required|in:pending,confirmed,preparing,delivering,completed,cancel_requested,cancelled',
             'note' => 'nullable|string|max:500',
         ]);
 
@@ -90,7 +95,16 @@ class OrderController extends Controller
         $oldStatus = (string) $order->status;
 
         if ($newStatus === $oldStatus) {
-            return back()->with('success', 'Trạng thái đơn hàng không thay đổi.');
+            $message = 'Trạng thái đơn hàng không thay đổi.';
+
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'status' => 'success',
+                    'message' => $message,
+                ]);
+            }
+
+            return back()->with('success', $message);
         }
 
         $order->update(['status' => $newStatus]);
@@ -102,16 +116,25 @@ class OrderController extends Controller
             'timestamp' => now(),
         ]);
 
-        return back()->with('success', 'Cập nhật trạng thái thành công và đã lưu lịch sử.');
+        $message = 'Cập nhật trạng thái thành công và đã lưu lịch sử.';
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => $message,
+            ]);
+        }
+
+        return back()->with('success', $message);
     }
 
-    private function mapPaymentStatusText(?string $status): string
+    private function mapPaymentMethodText(?string $method): string
     {
-        return $status === 'success' ? 'Đã thanh toán' : 'Chờ thanh toán';
-    }
-
-    private function mapPaymentStatusClass(?string $status): string
-    {
-        return $status === 'success' ? 'status-completed' : 'status-pending';
+        return match ($method) {
+            'cash' => 'Tiền mặt (COD)',
+            'bank_transfer' => 'Chuyển khoản ngân hàng',
+            'online' => 'Thanh toán online',
+            default => 'Tiền mặt (COD)',
+        };
     }
 }

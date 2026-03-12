@@ -159,7 +159,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">{{ number_format($product->base_price_cents, 0, ',', '.') }}đ</td>
+                                <td class="price">{{ number_format($product->base_price_cents, 0, ',', '.') }}d</td>
                                 <td>
                                     <div class="stock-progress">
                                         <span>{{ $product->stock }}</span>

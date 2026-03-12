@@ -63,6 +63,7 @@ class Order extends Model
             'preparing' => 'Đang chuẩn bị',
             'delivering' => 'Đang giao',
             'completed' => 'Hoàn thành',
+            'cancel_requested' => 'Chờ duyệt hủy',
             'cancelled' => 'Đã hủy',
             default => $this->status,
         };

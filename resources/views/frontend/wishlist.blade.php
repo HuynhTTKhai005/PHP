@@ -12,10 +12,6 @@
 
     <section class="wishlist-page p-t-80 p-b-80">
         <div class="container">
-            @if (session('success'))
-                <div class="alert alert-success mb-4">{{ session('success') }}</div>
-            @endif
-
             <div class="wishlist-header">
                 <div>
                     <h3 class="wishlist-title">Sản phẩm bạn đã lưu</h3>
@@ -28,7 +24,7 @@
                 <div class="wishlist-empty">
                     <i class="fas fa-heart-broken"></i>
                     <h4>Chưa có sản phẩm yêu thích nào</h4>
-                    <p>Hãy khám phá thực đơn và lưu lại món bạn muốn gọi sau.</p>
+                    <p>Hãy khám phá thực đơn và lưu lại món bạn muốn giữ sau.</p>
                     <a href="{{ route('menu') }}" class="btn btn-danger">Đi đến thực đơn</a>
                 </div>
             @else
@@ -52,14 +48,16 @@
 
                                     <div class="wishlist-meta">
                                         <span class="wishlist-price">{{ number_format($item->product->base_price_cents) }}
-                                            đ</span>
+                                            d</span>
                                         <span class="wishlist-stock {{ ($item->product->stock ?? 0) > 0 ? 'in' : 'out' }}">
                                             {{ ($item->product->stock ?? 0) > 0 ? 'Còn hàng' : 'Hết hàng' }}
                                         </span>
                                     </div>
 
                                     <div class="wishlist-actions">
-                                        <form action="{{ route('wishlist.destroy', $item->product) }}" method="POST">
+                                        <form action="{{ route('wishlist.destroy', $item->product) }}" method="POST"
+                                            class="js-wishlist-form" data-product-id="{{ $item->product->id }}"
+                                            data-action="remove">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm">
@@ -68,7 +66,8 @@
                                         </form>
 
                                         @if (($item->product->stock ?? 0) > 0)
-                                            <form action="{{ route('cart.add', $item->product->id) }}" method="POST">
+                                            <form action="{{ route('cart.add', $item->product->id) }}" method="POST"
+                                                class="js-add-to-cart">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm">
                                                     <i class="fas fa-cart-plus"></i> Thêm giỏ hàng
@@ -89,4 +88,3 @@
         </div>
     </section>
 @endsection
-

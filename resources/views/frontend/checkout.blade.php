@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-    <div class="container py-5 checkout-page">
+    <div class="container pb-5 checkout-spacing checkout-page">
         <h2 class="text-center mb-5">Xác nhận thông tin giao hàng</h2>
 
         <form action="{{ route('checkout') }}" method="POST">
@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                         <label>Địa chỉ giao hàng <span class="text-danger">*</span></label>
-                        <textarea name="shipping_address" class="form-control" rows="3" required>{{ old('shipping_address', $defaultAddressText) }}</textarea>
+                        <textarea name="shipping_address" class="form-control" rows="3" required>{{ old('shipping_address', $defaultAddressText ?? '') }}</textarea>
                     </div>
 
                     <div class="form-group">
@@ -44,10 +44,10 @@
 
                         <div class="summary-item d-flex justify-content-between mb-2 pb-3">
                             <span>Tạm tính:</span>
-                            <span>{{ number_format($subtotalCents) }} đ</span>
+                            <span>{{ number_format($subtotalCents ?? 0) }} đ</span>
                         </div>
 
-                        @if ($discountCents > 0)
+                        @if (($discountCents ?? 0) > 0)
                             <div class="summary-item d-flex justify-content-between mb-2 text-success pb-3">
                                 <span>Giảm giá:</span>
                                 <span>-{{ number_format($discountCents) }} đ</span>
@@ -56,19 +56,19 @@
 
                         <div class="summary-item d-flex justify-content-between mb-2 pb-3">
                             <span>Phí vận chuyển:</span>
-                            <span>{{ number_format($shippingFeeCents) }} đ</span>
+                            <span>{{ number_format($shippingFeeCents ?? 0) }} đ</span>
                         </div>
 
                         <div class="summary-item d-flex justify-content-between mb-2 pb-3">
                             <span>VAT (10%):</span>
-                            <span>{{ number_format($vatCents) }} đ</span>
+                            <span>{{ number_format($vatCents ?? 0) }} đ</span>
                         </div>
 
                         <hr>
 
                         <div class="summary-item d-flex justify-content-between mb-3 fw-bold pb-3">
                             <span>Tổng cộng:</span>
-                            <span class="text-danger">{{ number_format($totalCents) }} đ</span>
+                            <span class="text-danger">{{ number_format($totalCents ?? 0) }} đ</span>
                         </div>
                     </div>
 
@@ -93,8 +93,7 @@
 
                         <label
                             class="payment-method-item d-flex align-items-center p-3 mb-3 border rounded cursor-pointer {{ old('payment_method', 'cash') == 'bank_transfer' ? 'border-primary bg-light' : 'border-secondary' }}">
-                            <input type="radio" name="payment_method" value="bank_transfer"
-                                class="form-check-input me-3"
+                            <input type="radio" name="payment_method" value="bank_transfer" class="form-check-input me-3"
                                 {{ old('payment_method', 'cash') == 'bank_transfer' ? 'checked' : '' }} required>
                             <div class="d-flex align-items-center w-100">
                                 <i class="fas fa-university fa-2x text-primary me-3"></i>
@@ -121,11 +120,11 @@
                 </div>
 
                 <div class="col-12 mt-3 checkout-actions">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Xác nhận đặt hàng</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block btn-checkout-primary">Xác nhận đặt
+                        hàng</button>
                     <a href="{{ route('cart') }}" class="btn btn-secondary btn-block">Quay lại giỏ hàng</a>
                 </div>
             </div>
         </form>
     </div>
 @endsection
-

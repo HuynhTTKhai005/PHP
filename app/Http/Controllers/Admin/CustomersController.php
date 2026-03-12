@@ -72,7 +72,7 @@ class CustomersController extends Controller
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.$customer->id,
+            'email' => 'required|email|max:255|unique:users,email,' . $customer->id,
             'phone' => 'nullable|string|max:20',
             'password' => 'nullable|string|min:6|confirmed',
             'is_active' => 'nullable|boolean',
@@ -140,9 +140,9 @@ class CustomersController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        $customers->getCollection()->transform(fn ($customer) => $this->decorateCustomer($customer));
+        $customers->getCollection()->transform(fn($customer) => $this->decorateCustomer($customer));
 
-        $statsData = $this->baseCustomersQuery()->get()->map(fn ($customer) => $this->decorateCustomer($customer));
+        $statsData = $this->baseCustomersQuery()->get()->map(fn($customer) => $this->decorateCustomer($customer));
 
         $stats = [
             'total' => $statsData->count(),
@@ -305,7 +305,7 @@ class CustomersController extends Controller
         $customer->avg_order = $totalOrders > 0 ? (int) round($totalSpent / $totalOrders) : 0;
 
         $customer->avatar = $this->initials($customer->full_name);
-        $customer->customer_code = 'KH-'.str_pad((string) $customer->id, 6, '0', STR_PAD_LEFT);
+        $customer->customer_code = 'KH-' . str_pad((string) $customer->id, 6, '0', STR_PAD_LEFT);
 
         $createdAt = $customer->created_at ? Carbon::parse($customer->created_at) : null;
         $customer->join_date = $createdAt ? $createdAt->format('d/m/Y') : '-';
@@ -360,7 +360,7 @@ class CustomersController extends Controller
         $parts = preg_split('/\s+/', trim($name)) ?: [];
         $letters = collect($parts)
             ->filter()
-            ->map(fn ($part) => mb_substr($part, 0, 1))
+            ->map(fn($part) => mb_substr($part, 0, 1))
             ->take(2)
             ->implode('');
 
