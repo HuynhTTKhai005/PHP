@@ -58,7 +58,7 @@
                             value="{{ old('max_discount_amount_cents', $coupon->max_discount_amount_cents) }}">
                     </div>
                     <div class="form-group">
-                        <label>Giới hạn s? d?ng</label>
+                        <label>Giới hạn sử dụng</label>
                         <input type="number" class="form-control" min="0" name="usage_limit"
                             value="{{ old('usage_limit', $coupon->usage_limit) }}">
                     </div>
