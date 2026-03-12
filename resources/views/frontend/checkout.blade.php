@@ -5,9 +5,14 @@
 @endpush
 
 @section('content')
+<section class="titles text-center text-white"
+        style="background: url({{ asset('assets/images/bgintro.png') }}) center/cover no-repeat; min-height: 320px;">
+        <div class="container">
+            <h2 class="tit">Xác nhận thông tin giao hàng</h2>
+        </div>
+    </section>
     <div class="container pb-5 checkout-spacing checkout-page">
-        <h2 class="text-center mb-5">Xác nhận thông tin giao hàng</h2>
-
+ 
         <form action="{{ route('checkout') }}" method="POST">
             @csrf
             <div class="row">

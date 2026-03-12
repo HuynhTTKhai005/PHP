@@ -46,6 +46,24 @@ DB_DATABASE=restaurant
 DB_USERNAME=root
 DB_PASSWORD=123456
 ```
+mail
+
+MAIL_MAILER=smtp                  
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=sincaysystem@gmail.com
+MAIL_PASSWORD=xzeohrsffevhggye
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=sincaysystem@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+VITE_APP_NAME="${APP_NAME}"
 
 Tạo key ứng dụng:
 

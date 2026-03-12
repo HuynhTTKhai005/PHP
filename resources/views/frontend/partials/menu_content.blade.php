@@ -40,7 +40,7 @@
                             </h5>
                             <p>{{ $product->description }}</p>
                             <div class="options">
-                                <h6>{{ number_format($product->base_price_cents) }} d</h6>
+                                <h6>{{ number_format($product->base_price_cents) }} VNĐ</h6>
                                 @if (($product->stock ?? 0) <= 0)
                                     <button type="button" class="btn-add-cart" disabled title="Sản phẩm đã hết hàng">
                                         <i class="fas fa-ban"></i>
