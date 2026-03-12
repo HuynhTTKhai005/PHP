@@ -92,8 +92,7 @@
 
                 <div class="filter-actions">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i> Lọc</button>
-                    <a class="btn btn-secondary" href="{{ route('admin.coupons') }}"><i class="fas fa-redo"></i> D?t
-                        l?i</a>
+                    <a class="btn btn-secondary" href="{{ route('admin.coupons') }}"><i class="fas fa-redo"></i> Đặt lại</a>
                 </div>
             </form>
         </div>
@@ -161,7 +160,7 @@
                                             @method('PATCH')
                                             <button class="action-btn {{ $coupon->is_active ? 'edit' : 'view' }}"
                                                 type="submit"
-                                                title="{{ $coupon->is_active ? 'Tắt hoạt động' : 'Bật ho?t d?ng' }}">
+                                                title="{{ $coupon->is_active ? 'Tắt hoạt động' : 'Bật hoạt động' }}">
                                                 <i
                                                     class="fas {{ $coupon->is_active ? 'fa-toggle-on' : 'fa-toggle-off' }}"></i>
                                             </button>

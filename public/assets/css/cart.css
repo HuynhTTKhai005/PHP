@@ -225,7 +225,7 @@ p {
 }
 
 .cart-item {
-    flex-shrink: 0; /* QUAN TR?NG: Ngan khï¿½ng cho sáº£n pháº©m b? ï¿½p d?p lï¿½p khi cï¿½ nhi?u mï¿½n */
+    flex-shrink: 0;  
     background: white;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm); /* Giảm độ bóng xuống cho dễ rơi mắt */
@@ -268,8 +268,7 @@ p {
     align-items: center;
 }
 
-/* ï¿½p d?ng cho c? checkbox Ch?n táº¥t c? vï¿½ checkbox t?ng mï¿½n */
-.item-checkbox .form-check-input,
+ .item-checkbox .form-check-input,
 .cart-actions-header .form-check-input {
     width: 1.8rem !important; /* Phóng to hết cỡ */
     height: 1.8rem !important;
