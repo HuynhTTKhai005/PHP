@@ -41,7 +41,6 @@ class AuthController extends Controller
         return redirect()->intended('/menu');
     }
 
-    
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
@@ -56,7 +55,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    //ĐĂng ký
+    //Đăng ký
     public function register(Request $request): RedirectResponse
     {
         $validated = $request->validate([

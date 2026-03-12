@@ -76,11 +76,10 @@
                 <div class="col-lg-6 order-lg-1 order-2 py-4">
                     <div class="wrap-text-welcome text-center text-lg-start">
                         <span class="d-block fs-1 fw-bold text-uppercase mb-2">
-                            Nhà Hàng Sincay
-                        </span>
+                            Nhà hàng Sincay </span>
 
                         <h3 class="display-4 fw-bold mb-4">
-                            Mì Cay Hàn Quốc
+                            Mì cay Hàn Quốc
                         </h3>
 
                         <p class="lead mb-4">
@@ -108,7 +107,7 @@
     <section class="section-intro">
         <div class="header-intro parallax100 text-center py-5" style="background-image: url(assets/images/bgintro.png);">
             <span class="tit2 px-3">
-                 Sincay Place
+                Sincay Place
             </span>
 
             <h3 class="tit4 text-center px-3 pt-1">
@@ -130,7 +129,7 @@
                             <div class="wrap-text-blo1 pt-4">
                                 <a href="#" class="text-decoration-none">
                                     <h4 class="txt5 color0-hov m-b-13">
-                                        Nhà Hàng Lãng Mạn
+                                        Nhà Hàng Lung Linh
                                     </h4>
                                 </a>
 
@@ -178,7 +177,7 @@
                             <div class="wrap-text-blo1 pt-4">
                                 <a href="#" class="text-decoration-none">
                                     <h4 class="txt5 color0-hov m-b-13">
-                                        Những gì Bạn Yêu Thích
+                                        Những Gì Bạn Yêu Thích
                                     </h4>
                                 </a>
 
@@ -204,7 +203,7 @@
             </span>
 
             <h3 class="tit4 text-center px-3 pt-1">
-                Đặt Bàn 
+                Đặt Bàn
             </h3>
         </div>
         <div class="container">
@@ -377,7 +376,7 @@
         style="background-image: url(assets/images/bgintro.png);">
         <div class="content-video text-center w-100 h-100">
             <span class="tit2 px-3">
-                Bật mí
+                Bật máy
             </span>
             <h3 class="tit4 text-center px-3 pt-1">
                 Video Nhà Hàng
@@ -391,4 +390,3 @@
     </section>
 
 @endsection
-

@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ReservationsController extends Controller
 {
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
         $status = $request->string('status')->toString();
         $search = trim($request->string('search')->toString());
@@ -33,9 +34,9 @@ class ReservationsController extends Controller
 
         if ($search !== '') {
             $query->where(function ($q) use ($search): void {
-                $q->where('full_name', 'like', '%'.$search.'%')
-                    ->orWhere('phone', 'like', '%'.$search.'%')
-                    ->orWhere('email', 'like', '%'.$search.'%');
+                $q->where('full_name', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
             });
         }
 
@@ -57,10 +58,18 @@ class ReservationsController extends Controller
             'cancelled' => Reservation::where('status', 'cancelled')->count(),
         ];
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'stats_html' => view('admin.partials.reservations_stats', compact('stats'))->render(),
+                'table_html' => view('admin.partials.reservations_table', compact('reservations'))->render(),
+            ]);
+        }
+
         return view('admin.reservations', compact('reservations', 'stats'));
     }
 
-    public function updateStatus(Request $request, Reservation $reservation): RedirectResponse
+    public function updateStatus(Request $request, Reservation $reservation): RedirectResponse|JsonResponse
     {
         $validated = $request->validate([
             'status' => ['required', 'in:confirmed,cancelled'],
@@ -69,16 +78,28 @@ class ReservationsController extends Controller
         $nextStatus = $validated['status'];
 
         if ($nextStatus === 'confirmed' && $reservation->status !== 'pending') {
+            if ($request->expectsJson()) {
+                return response()->json(['status' => 'error', 'message' => 'Chỉ bàn đang chờ mới có thể xác nhận.'], 422);
+            }
+
             return back()->with('error', 'Chỉ bàn đang chờ mới có thể xác nhận.');
         }
 
         if ($nextStatus === 'cancelled' && ! in_array($reservation->status, ['pending', 'confirmed'], true)) {
+            if ($request->expectsJson()) {
+                return response()->json(['status' => 'error', 'message' => 'Chỉ bàn chờ hoặc đã xác nhận mới có thể hủy.'], 422);
+            }
+
             return back()->with('error', 'Chỉ bàn chờ hoặc đã xác nhận mới có thể hủy.');
         }
 
         $reservation->update(['status' => $nextStatus]);
 
         $message = $nextStatus === 'confirmed' ? 'Đã xác nhận đặt bàn.' : 'Đã hủy đặt bàn.';
+
+        if ($request->expectsJson()) {
+            return response()->json(['status' => 'success', 'message' => $message]);
+        }
 
         return back()->with('success', $message);
     }

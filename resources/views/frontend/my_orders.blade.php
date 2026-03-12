@@ -3,39 +3,6 @@
 @section('title', 'Đơn hàng của tôi')
 
 @push('styles')
-<style>
-    /* CSS cho khung cuộn đơn hàng */
-    .table-scrollable-container {
-        max-height: 450px; /* Chiều cao tối đa của khung cuộn */
-        overflow-y: auto;
-        border-radius: 8px;
-    }
-
-    /* Tùy chỉnh thanh cuộn (Scrollbar) cho đẹp giống trang giỏ hàng */
-    .table-scrollable-container::-webkit-scrollbar {
-        width: 8px;
-    }
-    .table-scrollable-container::-webkit-scrollbar-track {
-        background: #f1f5f9;
-        border-radius: 4px;
-    }
-    .table-scrollable-container::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-    }
-    .table-scrollable-container::-webkit-scrollbar-thumb:hover {
-        background: #ea5313; /* Màu cam đỏ của Sincay */
-    }
-
-    /* Giữ cố định tiêu đề bảng (Header) khi cuộn xuống */
-    .table-scrollable-container thead th {
-        position: sticky;
-        top: 0;
-        background-color: #f8f9fa; /* Màu nền cho header để che đi nội dung cuộn bên dưới */
-        z-index: 1;
-        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho header */
-    }
-</style>
 @endpush
 
 @section('content')
@@ -48,9 +15,6 @@
 
     <section class="section-mainmenu p-t-110 p-b-70">
         <div class="container">
-            {{-- @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif --}}
             @if (session('error'))
                 <div class="alert alert-danger">{{ session('error') }}</div>
             @endif
@@ -63,8 +27,9 @@
                 <div class="col-md-4">
                     <select name="status" class="form-select">
                         <option value="">Tất cả trạng thái</option>
-                        @foreach (['pending' => 'Đang chờ xử lý', 'confirmed' => 'Đã xác nhận', 'preparing' => 'Đang chuẩn bị', 'delivering' => 'Đang giao', 'completed' => 'Hoàn thành', 'cancelled' => 'Đã hủy'] as $value => $label)
-                            <option value="{{ $value }}" {{ request('status') === $value ? 'selected' : '' }}>{{ $label }}</option>
+                        @foreach (['pending' => 'Đang chờ xử lý', 'confirmed' => 'Đã xác nhận', 'preparing' => 'Đang chuẩn bị', 'delivering' => 'Đang giao', 'completed' => 'Hoàn thành', 'cancel_requested' => 'Chờ duyệt hủy', 'cancelled' => 'Đã hủy'] as $value => $label)
+                            <option value="{{ $value }}" {{ request('status') === $value ? 'selected' : '' }}>
+                                {{ $label }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -92,38 +57,44 @@
                                     <th class="py-3 text-center">Số món</th>
                                     <th class="py-3 text-end">Tổng tiền</th>
                                     <th class="py-3">Trạng thái</th>
-                                    <th class="py-3">Thanh toán</th>
+                                    <th class="py-3">Phương thức thanh toán</th>
                                     <th class="py-3 text-center">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($orders as $order)
-                                    <tr>
-                                        <td class="fw-bold text-primary">{{ $order->order_number ?? '#' . str_pad($order->id, 6, '0', STR_PAD_LEFT) }}</td>
+                                    <tr data-order-id="{{ $order->id }}">
+                                        <td class="fw-bold text-primary">
+                                            {{ $order->order_number ?? '#' . str_pad($order->id, 6, '0', STR_PAD_LEFT) }}
+                                        </td>
                                         <td>{{ $order->created_at->format('d/m/Y H:i') }}</td>
                                         <td class="text-center">
                                             <span class="badge bg-secondary rounded-pill">{{ $order->items_count }}</span>
                                         </td>
-                                        <td class="fw-bold text-danger text-end">{{ number_format($order->total_amount_cents, 0, ',', '.') }}đ</td>
+                                        <td class="fw-bold text-danger text-end">
+                                            {{ number_format($order->total_amount_cents, 0, ',', '.') }}đ</td>
+                                        <td data-order-status>{{ $order->status_text }}</td>
                                         <td>
-                                            {{ $order->status_text }}
-                                        </td>
-                                        <td>
-                                            <span class="badge {{ $order->payment_status == 'paid' ? 'bg-success' : 'bg-warning text-dark' }}">
-                                                {{ $order->payment_status_text ?? 'Chưa thanh toán' }}
+                                            <span class="badge bg-light text-dark">
+                                                {{ $order->payment_method_text ?? 'Tiền mặt' }}
                                             </span>
                                         </td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center gap-2">
-                                                <a href="{{ route('my-orders.show', $order) }}" class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
+                                                <a href="{{ route('my-orders.show', $order) }}"
+                                                    class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
                                                     <i class="fas fa-eye"></i> Xem
                                                 </a>
                                                 @if (in_array($order->status, ['pending', 'confirmed'], true))
-                                                    <form action="{{ route('my-orders.cancel', $order) }}" method="POST" class="d-inline m-0" onsubmit="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?');">
+                                                    <form action="{{ route('my-orders.cancel', $order) }}" method="POST"
+                                                        class="d-inline m-0 js-cancel-order-form"
+                                                        data-order-id="{{ $order->id }}"
+                                                        onsubmit="return confirm('Bạn có chắc chắn muốn gửi yêu cầu hủy đơn hàng này không?');">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Hủy đơn">
-                                                            <i class="fas fa-times"></i> Hủy
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                            title="Yêu cầu hủy">
+                                                            <i class="fas fa-times"></i> Yêu cầu hủy
                                                         </button>
                                                     </form>
                                                 @endif
@@ -134,11 +105,11 @@
                             </tbody>
                         </table>
                     </div>
-                    </div>
+                </div>
 
-                {{-- <div class="d-flex justify-content-center mt-4">
+                <div class="d-flex justify-content-center mt-4">
                     {{ $orders->links() }}
-                </div> --}}
+                </div>
             @endif
         </div>
     </section>

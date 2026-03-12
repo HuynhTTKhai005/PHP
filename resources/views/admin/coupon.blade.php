@@ -5,7 +5,7 @@
         <div class="page-header fade-in">
             <div class="page-title">
                 <h1>Quản lý Mã giảm giá</h1>
-                <p>Tạo và quản lý mã giảm giá, khuyến mãi cho cửa hàng</p>
+                <p>Tạo và quản lý mã giảm giá, khuyến mãi cho của hàng</p>
             </div>
             <div class="header-actions">
                 <a class="btn btn-primary" href="{{ route('admin.coupons.create') }}">
@@ -77,7 +77,7 @@
                 <div class="filter-group">
                     <label>Loại giảm giá</label>
                     <select class="filter-select" name="type">
-                        <option value="">Tất cả loại</option>
+                        <option value="">Tất cả lo?i</option>
                         <option value="percent" {{ request('type') === 'percent' ? 'selected' : '' }}>Phần trăm (%)
                         </option>
                         <option value="fixed" {{ request('type') === 'fixed' ? 'selected' : '' }}>Cố định</option>
@@ -92,8 +92,8 @@
 
                 <div class="filter-actions">
                     <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i> Lọc</button>
-                    <a class="btn btn-secondary" href="{{ route('admin.coupons') }}"><i class="fas fa-redo"></i> Đặt
-                        lại</a>
+                    <a class="btn btn-secondary" href="{{ route('admin.coupons') }}"><i class="fas fa-redo"></i> D?t
+                        l?i</a>
                 </div>
             </form>
         </div>
@@ -161,7 +161,7 @@
                                             @method('PATCH')
                                             <button class="action-btn {{ $coupon->is_active ? 'edit' : 'view' }}"
                                                 type="submit"
-                                                title="{{ $coupon->is_active ? 'Tắt hoạt động' : 'Bật hoạt động' }}">
+                                                title="{{ $coupon->is_active ? 'Tắt hoạt động' : 'Bật ho?t d?ng' }}">
                                                 <i
                                                     class="fas {{ $coupon->is_active ? 'fa-toggle-on' : 'fa-toggle-off' }}"></i>
                                             </button>
@@ -231,11 +231,11 @@
                         </div>
                         <div class="detail-group">
                             <label>Đơn tối thiểu</label>
-                            <p>{{ number_format($selectedCoupon->min_order_total_amount_cents, 0, ',', '.') }}đ</p>
+                            <p>{{ number_format($selectedCoupon->min_order_total_amount_cents, 0, ',', '.') }}d</p>
                         </div>
                         <div class="detail-group">
                             <label>Giảm tối đa</label>
-                            <p>{{ $selectedCoupon->max_discount_amount_cents ? number_format($selectedCoupon->max_discount_amount_cents, 0, ',', '.') . 'đ' : '-' }}
+                            <p>{{ $selectedCoupon->max_discount_amount_cents ? number_format($selectedCoupon->max_discount_amount_cents, 0, ',', '.') . 'd' : '-' }}
                             </p>
                         </div>
                         <div class="detail-group">
@@ -248,11 +248,11 @@
                         @forelse($selectedCoupon->orderCoupons as $orderCoupon)
                             <div class="order-item">
                                 <div class="order-info">
-                                    <h4>{{ $orderCoupon->order?->order_number ?: 'Không có đơn' }}</h4>
+                                    <h4>{{ $orderCoupon->order?->order_number ?: 'Không có don' }}</h4>
                                     <p>{{ $orderCoupon->created_at?->format('d/m/Y H:i') }}</p>
                                 </div>
                                 <div class="order-amount">{{ number_format($orderCoupon->discount_amount_cents, 0, ',', '.') }}
-                                    đ</div>
+                                    d</div>
                             </div>
                         @empty
                             <div class="order-item">

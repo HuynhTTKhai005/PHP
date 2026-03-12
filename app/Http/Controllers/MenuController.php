@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -42,6 +43,15 @@ class MenuController extends Controller
                 ->all();
         }
 
+        if ($request->expectsJson()) {
+            $html = view('frontend.partials.menu_content', compact('products'))->render();
+
+            return response()->json([
+                'status' => 'success',
+                'html' => $html,
+            ]);
+        }
+
         return view('frontend.menu', compact('categories', 'products', 'wishlistProductIds'));
     }
 
@@ -66,5 +76,16 @@ class MenuController extends Controller
         }
 
         return view('frontend.product_detail', compact('product', 'isWishlisted'));
+    }
+
+    public function vouchers(): \Illuminate\View\View
+    {
+        $coupons = Coupon::query()
+            ->where('is_active', true)
+            ->orderByDesc('id')
+            ->paginate(12)
+            ->withQueryString();
+
+        return view('frontend.vouchers', compact('coupons'));
     }
 }

@@ -16,11 +16,11 @@
                 <div class="col-lg-10 text-center">
                     <p class="noodle-about-section-text">
                         Chúng tôi bắt đầu hành trình của mình với niềm đam mê ẩm thực Hàn Quốc đích thực. Từ những ngày đầu
-                        tiên, chúng tôi đã cam kết mang đến những món mỳ cay tươi ngon, nguyên liệu chất lượng cao và trải
+                        tiên, chúng tôi đã cam kết mang đến những món mì cay tươi ngon, nguyên liệu chất lượng cao và trải
                         nghiệm ẩm thực tuyệt vời. Nhà hàng
                         của chúng tôi không chỉ là nơi thưởng thức ẩm thực mà còn là nơi kể chuyện về truyền thống ẩm thực
                         Hàn Quốc, nơi
-                        mọi khách hàng đều cảm nhận được sự ấm áp và chân thành.
+                        mới khách hàng đầu cảm nhận được sự ấm áp và chân thành.
                     </p>
                 </div>
             </div>
@@ -71,10 +71,10 @@
                         <span class="noodle-about-subtitle">Ngon Miệng</span>
                         <h3 class="noodle-about-feature-title">CÔNG THỨC ĐẶC BIỆT</h3>
                         <p class="noodle-about-feature-description">
-                            Các công thức mỳ cay của chúng tôi được chế biến từ những nguyên liệu tươi ngon nhất nhập khẩu
+                            Các công thức mì cay của chúng tôi được chế biến từ những nguyên liệu tươi ngon nhất nhập khẩu
                             từ Hàn Quốc. Chúng tôi
                             luôn chú trọng đến sự sáng tạo và hương vị tinh tế, mang đến những món ăn không chỉ ngon
-                            miệng mà còn đầy dinh dưỡng với nhiều cấp độ cay phù hợp cho mọi thực khách.
+                            miệng mà còn đầy đủ dinh dưỡng với nhiều cấp độ cay phù hợp cho mọi thực khách.
                         </p>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                             <span class="noodle-about-chef-role">Bếp Trưởng</span>
                             <p class="noodle-about-chef-description">
                                 Lee là một đầu bếp tài ba với hơn 15 năm kinh nghiệm trong lĩnh vực ẩm thực Hàn Quốc. Anh ấy
-                                chuyên về các món mỳ cay và lẩu Hàn Quốc, luôn sáng tạo để mang đến những hương vị mới lạ và
+                                chuyên về các món mì cay và lẩu Hàn Quốc, luôn sáng tạo để mang đến những hương vị mới lạ và
                                 tinh tế.
                             </p>
                         </div>
@@ -153,7 +153,7 @@
                             <p class="noodle-about-chef-description">
                                 Park là một chuyên gia về các món cay Hàn Quốc với 12 năm kinh nghiệm. Cô ấy đam mê tạo ra
                                 những
-                                công thức nước dùng độc đáo, cân bằng giữa vị cay và hương vị đậm đà truyền thống.
+                                công thức nước dùng đặc độ, cân bằng giữa vị cay và hương vị đậm đà truyền thống.
                             </p>
                         </div>
                     </div>
@@ -181,4 +181,3 @@
         </div>
     </section>
 @endsection
-

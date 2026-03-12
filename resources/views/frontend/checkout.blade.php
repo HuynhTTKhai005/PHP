@@ -2,17 +2,6 @@
 
 @push('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/cart.css') }}">
-    <style>
-        /* Đẩy khối nội dung xuống để nhường chỗ cho Header cố định */
-        .checkout-spacing {
-            padding-top: 130px; 
-        }
-        @media (max-width: 768px) {
-            .checkout-spacing {
-                padding-top: 100px; /* Nhỏ hơn một chút trên điện thoại */
-            }
-        }
-    </style>
 @endpush
 
 @section('content')
@@ -104,8 +93,7 @@
 
                         <label
                             class="payment-method-item d-flex align-items-center p-3 mb-3 border rounded cursor-pointer {{ old('payment_method', 'cash') == 'bank_transfer' ? 'border-primary bg-light' : 'border-secondary' }}">
-                            <input type="radio" name="payment_method" value="bank_transfer"
-                                class="form-check-input me-3"
+                            <input type="radio" name="payment_method" value="bank_transfer" class="form-check-input me-3"
                                 {{ old('payment_method', 'cash') == 'bank_transfer' ? 'checked' : '' }} required>
                             <div class="d-flex align-items-center w-100">
                                 <i class="fas fa-university fa-2x text-primary me-3"></i>
@@ -132,11 +120,11 @@
                 </div>
 
                 <div class="col-12 mt-3 checkout-actions">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #d63031; border-color: #d63031;">Xác nhận đặt hàng</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block btn-checkout-primary">Xác nhận đặt
+                        hàng</button>
                     <a href="{{ route('cart') }}" class="btn btn-secondary btn-block">Quay lại giỏ hàng</a>
                 </div>
             </div>
         </form>
     </div>
 @endsection
-

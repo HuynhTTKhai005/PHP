@@ -38,7 +38,7 @@ class ProductsController extends Controller
 
         if ($request->filled('search')) {
             $search = (string) $request->search;
-            $query->where(fn ($q) => $q->where('name', 'like', "%{$search}%"));
+            $query->where(fn($q) => $q->where('name', 'like', "%{$search}%"));
         }
 
         $products = $query->paginate(10)->withQueryString();
@@ -118,7 +118,7 @@ class ProductsController extends Controller
 
         if ($request->hasFile('image_file')) {
             $storedPath = $request->file('image_file')->store('products', 'public');
-            $imageUrl = 'storage/'.$storedPath;
+            $imageUrl = 'storage/' . $storedPath;
         }
 
         DB::transaction(function () use ($request, $basePriceCents, $imageUrl): void {
@@ -168,7 +168,7 @@ class ProductsController extends Controller
         $imageUrl = $request->image_url;
         if ($request->hasFile('image_file')) {
             $storedPath = $request->file('image_file')->store('products', 'public');
-            $imageUrl = 'storage/'.$storedPath;
+            $imageUrl = 'storage/' . $storedPath;
         }
 
         DB::transaction(function () use ($request, $product, $imageUrl): void {
@@ -177,7 +177,7 @@ class ProductsController extends Controller
 
             if (! $variant) {
                 $variant = $product->variants()->create([
-                    'sku' => 'SKU-'.$product->id.'-'.now()->timestamp,
+                    'sku' => 'SKU-' . $product->id . '-' . now()->timestamp,
                     'name' => 'Mặc định',
                     'price_adjustment' => 0,
                     'stock_quantity' => 0,

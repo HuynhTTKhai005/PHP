@@ -24,13 +24,14 @@
 
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}" class="img-fluid rounded shadow-sm">
+                    <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}"
+                        class="img-fluid rounded shadow-sm">
                 </div>
 
                 <div class="col-md-6 mb-4">
                     <h2 class="mb-3">{{ $product->name }}</h2>
                     <p class="text-muted mb-2">Danh mục: {{ $product->category?->name ?? 'Chưa phân loại' }}</p>
-                    <h4 class="text-danger fw-bold mb-3">{{ number_format($product->base_price_cents) }}đ</h4>
+                    <h4 class="text-danger fw-bold mb-3">{{ number_format($product->base_price_cents) }}d</h4>
                     <p class="mb-3">{{ $product->description ?: 'Chưa có mô tả.' }}</p>
 
                     <div class="mb-3">
@@ -79,7 +80,8 @@
                                     <label for="spicy_level" class="form-label">Chọn cấp độ cay</label>
                                     <select name="spicy_level" id="spicy_level" class="form-control">
                                         @for ($i = 0; $i <= 7; $i++)
-                                            <option value="{{ $i }}" {{ $i === 3 ? 'selected' : '' }}>Cấp {{ $i }}</option>
+                                            <option value="{{ $i }}" {{ $i === 3 ? 'selected' : '' }}>Cấp
+                                                {{ $i }}</option>
                                         @endfor
                                     </select>
                                 </div>

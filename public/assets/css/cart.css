@@ -225,10 +225,10 @@ p {
 }
 
 .cart-item {
-    flex-shrink: 0; /* QUAN TRỌNG: Ngăn không cho sản phẩm bị ép dẹp lép khi có nhiều món */
+    flex-shrink: 0; /* QUAN TR?NG: Ngan khï¿½ng cho sáº£n pháº©m b? ï¿½p d?p lï¿½p khi cï¿½ nhi?u mï¿½n */
     background: white;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm); /* Giảm độ bóng xuống cho đỡ rối mắt */
+    box-shadow: var(--shadow-sm); /* Giảm độ bóng xuống cho dễ rơi mắt */
     padding: 1.5rem;
     border: 1px solid var(--gray-200);
     transition: var(--transition);
@@ -261,21 +261,21 @@ p {
     align-items: center;
 }
 
-/* --- Tùy chỉnh Checkbox to, viền đậm và rõ ràng hơn --- */
+/* --- Tùy chỉnh checkbox to, viền đậm và rõ ràng hơn --- */
 .item-checkbox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Áp dụng cho cả checkbox Chọn tất cả và checkbox từng món */
+/* ï¿½p d?ng cho c? checkbox Ch?n táº¥t c? vï¿½ checkbox t?ng mï¿½n */
 .item-checkbox .form-check-input,
 .cart-actions-header .form-check-input {
     width: 1.8rem !important; /* Phóng to hết cỡ */
     height: 1.8rem !important;
     cursor: pointer;
     margin: 0;
-    border: 2px solid var(--primary) !important; /* Ép viền dày 2px và dùng màu đỏ/cam của nhà hàng */
+    border: 2px solid var(--primary) !important; /* Áp viền dày 2px và dùng màu đỏ/cam của nhà hàng */
     background-color: white !important; /* Nền trắng để viền nổi lên */
     box-shadow: 0 2px 5px rgba(234, 83, 19, 0.3) !important; /* Thêm hiệu ứng đổ bóng màu cam nhẹ */
     transition: all 0.2s ease-in-out;
@@ -288,14 +288,14 @@ p {
     border-color: var(--primary) !important;
 }
 
-/* Hiệu ứng khi được chọn (Đánh dấu Tick) */
+/* Hiệu ứng khi được chọn (đánh dấu tick) */
 .item-checkbox .form-check-input:checked,
 .cart-actions-header .form-check-input:checked {
     background-color: var(--primary) !important;
     border-color: var(--primary) !important;
 }
 
-/* --- Tùy chỉnh Ảnh --- */
+/* --- Tùy chỉnh ảnh --- */
 .product-image {
     width: 100px;
     height: 100px;
@@ -303,7 +303,7 @@ p {
     overflow: hidden;
     background: var(--gray-100);
     flex-shrink: 0; /* Tuyệt đối không cho ảnh bị bóp méo */
-    margin: 0; /* Xóa mọi margin rác nếu có */
+    margin: 0; /* Xóa margin rác nếu có */
 }
 
 .product-image img {
@@ -312,12 +312,12 @@ p {
     object-fit: cover;
 }
 
-/* --- Tùy chỉnh phần Chữ --- */
+/* --- Tùy chỉnh phần chữ --- */
 .product-details {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    min-width: 0; /* Bí quyết để text dài tự xuống dòng, không phá vỡ khung Grid làm đè lên ảnh */
+    min-width: 0; /* Bí quyết để text dài tự xuống dòng, không phá vỡ khung grid */
     padding-right: 1rem;
 }
 
@@ -327,7 +327,7 @@ p {
     word-wrap: break-word;
 }
 
-/* --- Tùy chỉnh Responsive cho Điện thoại --- */
+/* --- Tùy chỉnh responsive cho điện thoại --- */
 @media (max-width: 768px) {
     .product-grid {
         grid-template-columns: 40px 1fr; 

@@ -29,8 +29,8 @@
                         <label>Loại giảm giá <span class="required">*</span></label>
                         <select class="form-control" name="discount_type" required>
                             <option value="percent"
-                                {{ old('discount_type', $coupon->discount_type) === 'percent' ? 'selected' : '' }}>Phần
-                                trăm (%)</option>
+                                {{ old('discount_type', $coupon->discount_type) === 'percent' ? 'selected' : '' }}>Ph?n
+                                tram (%)</option>
                             <option value="fixed"
                                 {{ old('discount_type', $coupon->discount_type) === 'fixed' ? 'selected' : '' }}>Cố định
                             </option>
@@ -58,7 +58,7 @@
                             value="{{ old('max_discount_amount_cents', $coupon->max_discount_amount_cents) }}">
                     </div>
                     <div class="form-group">
-                        <label>Giới hạn sử dụng</label>
+                        <label>Giới hạn s? d?ng</label>
                         <input type="number" class="form-control" min="0" name="usage_limit"
                             value="{{ old('usage_limit', $coupon->usage_limit) }}">
                     </div>

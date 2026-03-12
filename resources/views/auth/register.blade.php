@@ -54,7 +54,8 @@
                             <input type="password" class="form-input" id="password_confirmation"
                                 name="password_confirmation" placeholder="Xác nhận mật khẩu" required>
                             <i class="fas fa-lock input-icon"></i>
-                            <button type="button" class="password-toggle" onclick="togglePassword('password_confirmation')">
+                            <button type="button" class="password-toggle"
+                                onclick="togglePassword('password_confirmation')">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
@@ -72,6 +73,4 @@
             </div>
         </div>
     </div>
-
 @endsection
-

@@ -19,7 +19,9 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\WishlistController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,13 +36,34 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.detail');
 Route::post('/blog/save', [BlogController::class, 'savePost'])->name('blog.save');
+Route::get('/vouchers', [MenuController::class, 'vouchers'])->name('vouchers');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/reload', function (Request $request) {
+    $to = urldecode((string) $request->query('to', '/'));
+    if (Str::startsWith($to, ['http://', 'https://'])) {
+        $parsed = parse_url($to);
+        $host = $parsed['host'] ?? '';
+        if ($host && $host !== $request->getHost()) {
+            $to = '/';
+        } else {
+            $to = ($parsed['path'] ?? '/')
+                .(isset($parsed['query']) ? '?'.$parsed['query'] : '')
+                .(isset($parsed['fragment']) ? '#'.$parsed['fragment'] : '');
+        }
+    }
+    if (!Str::startsWith($to, '/')) {
+        $to = '/';
+    }
+
+    return view('reload', ['to' => $to]);
+})->name('reload');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::delete('/cart/remove-selected', [CartController::class, 'removeSelected'])->name('cart.removeSelected');
 Route::post('/cart/apply-coupon', [CartController::class, 'applyCoupon'])->name('cart.applyCoupon');
 Route::post('/cart/remove-coupon', [CartController::class, 'removeCoupon'])->name('cart.removeCoupon');
 
@@ -57,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-orders', [ProfileController::class, 'myOrders'])->name('my-orders');
     Route::get('/my-orders/{order}', [ProfileController::class, 'myOrderShow'])->name('my-orders.show');
     Route::patch('/my-orders/{order}/cancel', [ProfileController::class, 'cancelMyOrder'])->name('my-orders.cancel');
+    Route::get('/notifications', [ProfileController::class, 'notifications'])->name('notifications');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
